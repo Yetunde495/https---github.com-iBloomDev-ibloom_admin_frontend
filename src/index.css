@@ -1,0 +1,86 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  /* margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh; */
+  background-color: rgb(241 245 249 / 1);
+}
+/* .custom-scrollbar::webkit-scrollbar {
+  width: 6px;
+}
+.custom-scrollbar::webkit-scrollbar-thumb {
+  background-color: #00112c79;
+  border-radius: 6px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background-color: #beb9b965;
+} */
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+} 
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #c4c4c4d4;
+  border-radius:5px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: #c4c4c4;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background-color: #1c2434!important;
+}
+
+ /* For Firefox */
+.custom-scrollbar::-moz-scrollbar {
+  width: 8px;
+} 
+.custom-scrollbar::-moz-scrollbar-thumb {
+  background-color: #c4c4c4d4;
+  border-radius:5px;
+}
+.custom-scrollbar::-moz-scrollbar-thumb {
+  background-color: #1c2434!important;
+}
+.custom-scrollbar::-moz-scrollbar-thumb:hover {
+  background-color: #c4c4c4;
+}
+.custom-scrollbar::-moz-scrollbar-track {
+  background-color: #1c2434!important
+}
+.sidebar-scrollbar::-moz-scrollbar-track {
+  background-color: #1c2434!important;
+}
+
+ /* For Other Browsers */
+.custom-scrollbar::-ms-scrollbar {
+  width: 8px;
+} 
+ .custom-scrollbar::-ms-scrollbar-thumb {
+  background-color: #c4c4c4d4;
+  border-radius:5px;
+}
+.custom-scrollbar::-ms-scrollbar-thumb:hover {
+  background-color: #c4c4c4;
+}
+ .custom-scrollbar::-ms-scrollbar-track {
+  background-color: #f1f1f1;
+}
+
