@@ -24,6 +24,9 @@ import {
   MdPerson,
   MdPrivacyTip,
   MdTableRestaurant,
+  MdOutlineAssessment,
+  MdAssessment,
+  MdOutlineSettings,
 } from "react-icons/md";
 import {
   FaSchool,
@@ -56,6 +59,7 @@ import { GiRolledCloth, GiBookshelf } from "react-icons/gi";
 import { TbReceiptTax, TbBuildingWarehouse } from "react-icons/tb";
 import { ImBooks } from "react-icons/im";
 import { BiTestTube, BiEdit } from "react-icons/bi";
+import { HiOutlineLightBulb } from "react-icons/hi2";
 
 export default {
   Notification: BsBellFill,
@@ -111,4 +115,7 @@ export default {
   Billing: FaMoneyBillAlt,
   Support: FaHandsHelping,
   General: FaGraduationCap,
+  Assessment: MdAssessment,
+  Settings: MdOutlineSettings,
+  Bulb: HiOutlineLightBulb
 };

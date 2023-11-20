@@ -109,35 +109,9 @@ export const ADMIN_NAV_DATA = [
       },
     ],
   },
-  // TEMPLATE
-  {
-    section: "TEMPLATE",
-    children: [
-      {
-        name: "List Page",
-        path: "/app/templates/ListPage",
-        icon: icons.Table,
-      },
-      {
-        name: "Add Form Page",
-        path: "/app/templates/NewFormPage",
-        icon: icons.Plus,
-      },
-      {
-        name: "Data Detail Page",
-        path: "/app/templates/DetailPage",
-        icon: icons.Edit,
-      },
-      {
-        name: "Template Event Page",
-        path: "/app/templates/EventPage",
-        icon: icons.Edit,
-      },
-    ],
-  },
+ 
   // USERS
   {
-    section: "USERS",
     children: [
       {
         name: "Students",
@@ -156,108 +130,7 @@ export const ADMIN_NAV_DATA = [
       },
     ],
   },
-  // ACADEMICS
-  {
-    section: "ACADEMICS",
-    children: [
-      {
-        name: "Admissions",
-        path: "/app/admins/academics/admission",
-        icon: icons.List,
-      },
-      {
-        name: "Transfers",
-        path: "/app/admins/academics/transfers",
-        icon: icons.Library,
-      },
-      {
-        name: "Classes",
-        path: "/app/admins/academics/classes",
-        icon: icons.ClassRoom,
-      },
-      {
-        name: "Subjects",
-        path: "/app/admins/academics/subjects",
-        icon: icons.Book,
-      },
-      {
-        name: "Attendance",
-        path: "/app/admins/academics/attendances",
-        icon: icons.List,
-      },
-      {
-        name: "Schedules",
-        path: "/app/admins/academics/schedules",
-        icon: icons.Calendar,
-      },
-      {
-        name: "Activities",
-        path: "/app/admins/academics/activities",
-        icon: icons.List,
-      },
-      {
-        name: "Evaluations",
-        path: "/app/admins/academics/evaluations",
-        icon: icons.Exam,
-      },
-      {
-        name: "Results",
-        path: "/apps/admins/academics/evaluations",
-        icon: icons.Result,
-      },
-      {
-        name: "Boards",
-        path: "/app/admins/academics/boards",
-        icon: icons.Board,
-      },
-      {
-        name: "Questions",
-        path: "/app/admins/academics/questions",
-        icon: icons.Quiz,
-      },
-    ],
-  },
-  // ACCOUNTS
-  {
-    section: "ACCOUNTS",
-    children: [
-      {
-        name: "Payments",
-        path: "/app/admins/accounts/payments",
-        icon: icons.NewsPaper,
-      },
-      {
-        name: "Fees",
-        path: "/app/admins/accounts/fees",
-        icon: icons.Payment,
-      },
-      {
-        name: "Credits",
-        path: "/app/admins/accounts/credits",
-        icon: icons.Expenses,
-      },
-      {
-        name: "Expenses",
-        path: "/app/admins/accounts/expenses",
-        icon: icons.Expenses,
-      },
-      {
-        name: "Salary",
-        path: "/app/admins/accounts/salaries",
-        icon: icons.Payment,
-      },
-      {
-        name: "Payroll",
-        path: "/app/admins/accounts/payrolls",
-        icon: icons.Payroll,
-      },
-      {
-        name: "Subscriptions",
-        path: "/app/admins/accounts/subscriptions",
-        icon: icons.Payment,
-      },
-    ],
-  },
+  
   // SETTINGS
   {
     section: "SETTINGS",
@@ -445,131 +318,27 @@ export const TEACHER_NAV_DATA = [
 export const STUDENT_NAV_DATA = [
   // MENU
   {
-    section: "MENU",
     children: [
       {
         name: "Dashboard",
         path: "/app/student/dashboard", //use for nested rendering
         icon: icons.Dashboard,
       },
-    ],
-  },
-  // ACADEMICS
-  {
-    section: "ACADEMICS",
-    children: [
       {
-        name: "Classroom",
-        path: "classroom", //use for nested rendering
-        icon: icons.Book,
-        children: [
-          {
-            name: "Classes",
-            path: "/app/students/academics/classes",
-            icon: icons.ClassRoom,
-          },
-          {
-            name: "Subjects",
-            path: "/app/students/academics/subjects",
-            icon: icons.Book,
-          },
-          {
-            name: "Attendance",
-            path: "/app/students/academics/attendance",
-            icon: icons.List,
-          },
-          {
-            name: "Schedules",
-            path: "/app/students/academics/schedules",
-            icon: icons.Calendar,
-          },
-          {
-            name: "Activities",
-            path: "/app/students/academics/activites",
-            icon: icons.List,
-          },
-        ],
-      },
-      // Evaluations
-      {
-        name: "Evaluations",
-        path: "evaluations",
-        icon: icons.Exam,
-        children: [
-          {
-            name: "Examinations",
-            path: "/app/students/evaluations/exams",
-            icon: icons.Exam,
-          },
-          {
-            name: "Quizzes",
-            path: "/app/students/evaluations/quizzes",
-            icon: icons.Book,
-          },
-          {
-            name: "CBT",
-            path: "/app/students/evaluations/cbts",
-            icon: icons.Computer,
-          },
-          {
-            name: "Results",
-            path: "/app/students/evaluations/results",
-            icon: icons.Result,
-          },
-        ],
-      },
-      {
-        name: "Boards",
-        path: "/app/students/academics/boards",
-        icon: icons.Board,
-      },
-      {
-        name: "Labs",
-        path: "/app/students/academics/labs",
-        icon: icons.Lab,
-      },
-      {
-        name: "Library",
-        path: "/app/students/libraries/books",
+        name: "My Courses",
+        path: "/app/students/academics/subjects",
         icon: icons.Book,
       },
-    ],
-  },
-  // OTHERS
-  {
-    section: "OTHERS",
-    children: [
       {
-        name: "Fees",
-        path: "/app/students/others/fees",
-        icon: icons.Payment,
+        name: "Assessments",
+        path: "/app/students/academics/subjects",
+        icon: icons.Assessment,
       },
       {
-        name: "Notifications",
-        path: "/app/students/others/notifications",
-        icon: icons.Notification,
+        name: "Live Classes",
+        path: "/app/students/academics/subjects",
+        icon: icons.Bulb,
       },
-      {
-        name: "Chats",
-        path: "/app/students/others/chats",
-        icon: icons.Chat,
-      },
-      {
-        name: "Routes",
-        path: "/app/students/others/routes",
-        icon: icons.Route,
-      },
-      {
-        name: "Hostel",
-        path: "/app/students/hostels/dorms",
-        icon: icons.Hostel,
-      },
-    ],
-  },
-  // SETTINGS
-  {
-    section: "SETTINGS",
-    children: [
       {
         name: "Profile",
         path: "/app/students/settings/profile",
@@ -577,6 +346,9 @@ export const STUDENT_NAV_DATA = [
       },
     ],
   },
+ 
+  
+ 
 ];
 
 

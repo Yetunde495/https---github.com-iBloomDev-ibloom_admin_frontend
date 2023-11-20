@@ -9,6 +9,7 @@ import {
   ADMIN_NAV_DATA,
   TEACHER_NAV_DATA,
 } from './config';
+import { SlSettings } from 'react-icons/sl';
 type UserAccount = {
   id: string;
   userType: 'admin' | 'teacher' | 'burser' | 'student' | 'parent' | 'guardian'
@@ -33,7 +34,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: { sidebarOpen: any, setSidebar
   //nav configuration
   //users = admin, teacher, student
   // const emptyArray: any[] = [];
-  const navConfig = TEACHER_NAV_DATA
+  const navConfig =  STUDENT_NAV_DATA;
   // currentUser.userType === 'admin' ? ADMIN_NAV_DATA
   // : currentUser.userType === 'teacher' ? TEACHER_NAV_DATA
   // : currentUser.userType === 'student' ? STUDENT_NAV_DATA
@@ -77,14 +78,16 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: { sidebarOpen: any, setSidebar
   return (
     <aside
       ref={sidebar}
-      className={`absolute left-0 top-0 z-9999 flex h-screen ${mini ? 'lg:w-32' : 'w-72.5'} flex-col overflow-y-hidden bg-black duration-300 ease-linear dark:bg-boxdark lg:static lg:translate-x-0 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'
+      className={`absolute left-0 top-0 z-9999 flex h-screen ${
+        sidebarOpen ? "lg:w-[65px]" : "lg:w-[220px]"
+      } w-[250px] flex-col overflow-hidden bg-white text-black duration-300 ease-linear dark:bg-boxdark lg:static lg:translate-x-0 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
     >
       {/* <!-- SIDEBAR HEADER --> */}
-      <div className="flex items-center justify-between gap-2 px-6 py-5.5 lg:py-6.5">
+      <div className="flex items-center justify-between gap-2 px-6 pt-5.5 pb-3">
         <NavLink to="/app">
           <div>
-            <h1 className="text-white font-extrabold text-lg">E-Study</h1>
+            <h1 className=" font-extrabold text-lg">ByteDegree</h1>
           </div>
           {/* <img src={Logo} alt="Logo" style={{width: '90px', height: '90px'}} /> */}
         </NavLink>
@@ -112,7 +115,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: { sidebarOpen: any, setSidebar
           </svg>
         </button>
 
-        <button
+        {/* <button
           type='button'
           ref={trigger}
           onClick={() => {
@@ -136,17 +139,17 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: { sidebarOpen: any, setSidebar
               fill=""
             />
           </svg>
-        </button>
+        </button> */}
       </div>
       {/* <!-- SIDEBAR HEADER --> */}
 
-      <div className="sidebar-scrollbar custom-scrollbar flex flex-col overflow-y-hidden hover:overflow-y-auto duration-300 ease-linear">
+      <div className="sidebar-scrollbar custom-scrollbar flex flex-col overflow-y-hidden overflow-x-hidden  hover:overflow-y-auto duration-300 ease-linear">
         {/* <!-- Sidebar Menu --> */}
-        <nav className="py-4 px-4 lg:px-6">
+        <nav className="px-4 py-2">
           {
             navConfig.map((navdata: any, index: number) => (
               <Fragment key={navdata.section + '-' + index}>
-                <h3 className="mb-4 ml-4 text-sm font-semibold text-bodydark2">
+                <h3 className="mb-4 ml-4 text-sm font-semibold">
                   {navdata.section}
                 </h3>
                 <ul className="mb-6 flex flex-col gap-1">
@@ -215,12 +218,12 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: { sidebarOpen: any, setSidebar
                             <li key={nindex}>
                               <NavLink
                                 to={nchild?.path}
-                                className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${pathname.includes('calendar') &&
+                                className={`group relative flex items-center gap-2.5 font-medium  dark:text-primary rounded-sm py-2 ${!sidebarOpen ? 'px-4' : 'px-1'} font-medium text-black hover:text-white duration-300 ease-in-out hover:bg-primary dark:hover:bg-meta-4 ${pathname.includes('calendar') &&
                                   'bg-graydark dark:bg-meta-4'
                                   }`}
                               >
                                 <NChildIcon />
-                                {!mini && nchild.name}
+                                {!sidebarOpen && nchild.name}
                               </NavLink>
                             </li>
                           )
@@ -231,6 +234,19 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: { sidebarOpen: any, setSidebar
               </Fragment>
             ))
           }
+
+<div className="absolute bottom-8 w-full right-0 px-4">
+            <NavLink
+              to={"/app/patient/settings"}
+              className={`group relative flex items-center gap-2.5 text-lg  rounded-sm py-2 px-2 font-medium hover:text-white dark:text-primary hover:bg-primary dark:hover:bg-primary/20 text-black duration-300 ease-in-out dark:hover-bg-meta-4 ${
+                (pathname.includes('settings')) &&
+                " text-white bg-primary hover:text-white hover:bg-primary/90 dark:text-white"
+              }`}
+            >
+              <SlSettings className="w-5 h-5" />
+              {sidebarOpen ? null : "Settings"}
+            </NavLink>
+          </div>
         </nav>
         {/* <!-- Sidebar Menu --> */}
       </div>
