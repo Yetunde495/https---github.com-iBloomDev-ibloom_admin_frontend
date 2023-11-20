@@ -3,6 +3,9 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { AppProvider, useApp } from "./context/AppContext";
 import './App.css'
 import Components from "./pages/components";
+import RouteLayout from "./layout/RouteLayout";
+
+import StudentPages from "./pages/Students/Index"
 
 
 const App = () => {
@@ -26,7 +29,10 @@ const App = () => {
         <Router>
           <Routes>
             <Route path="/" element={<Components />} />
-            
+            <Route path="app" element={<RouteLayout children={null} />}>
+            <Route path="students/dashboard" element={<StudentPages.Dashboard />} />
+        
+          </Route>
            
               
           </Routes>

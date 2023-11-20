@@ -78,81 +78,32 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: { sidebarOpen: any, setSidebar
   return (
     <aside
       ref={sidebar}
-      className={`absolute left-0 top-0 z-9999 flex h-screen ${
-        sidebarOpen ? "lg:w-[65px]" : "lg:w-[220px]"
-      } w-[250px] flex-col overflow-hidden bg-white text-black duration-300 ease-linear dark:bg-boxdark lg:static lg:translate-x-0 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'
+      className={`absolute h-full left-0 top-0 z-9999 flex border-r border-stroke dark:border-strokedark ${
+        sidebarOpen ? "lg:w-[65px]" : "lg:w-[240px]"
+      } w-[250px] flex-col overflow-hidden bg-white text-[#4d4d4d] duration-300 ease-linear dark:bg-boxdark lg:static lg:translate-x-0 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
     >
       {/* <!-- SIDEBAR HEADER --> */}
-      <div className="flex items-center justify-between gap-2 px-6 pt-5.5 pb-3">
-        <NavLink to="/app">
-          <div>
-            <h1 className=" font-extrabold text-lg">ByteDegree</h1>
-          </div>
-          {/* <img src={Logo} alt="Logo" style={{width: '90px', height: '90px'}} /> */}
-        </NavLink>
+      {/* <div className="flex items-center justify-between gap-2 px-6 pt-5.5 pb-3">
+       
 
-        <button
-          type='button'
-          ref={trigger}
-          onClick={() => setSidebarOpen(!sidebarOpen)}
-          aria-controls="sidebar"
-          aria-expanded={sidebarOpen}
-          className="block lg:hidden"
-        >
-          <svg
-            className="fill-current"
-            width="20"
-            height="18"
-            viewBox="0 0 20 18"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M19 8.175H2.98748L9.36248 1.6875C9.69998 1.35 9.69998 0.825 9.36248 0.4875C9.02498 0.15 8.49998 0.15 8.16248 0.4875L0.399976 8.3625C0.0624756 8.7 0.0624756 9.225 0.399976 9.5625L8.16248 17.4375C8.31248 17.5875 8.53748 17.7 8.76248 17.7C8.98748 17.7 9.17498 17.625 9.36248 17.475C9.69998 17.1375 9.69998 16.6125 9.36248 16.275L3.02498 9.8625H19C19.45 9.8625 19.825 9.4875 19.825 9.0375C19.825 8.55 19.45 8.175 19 8.175Z"
-              fill=""
-            />
-          </svg>
-        </button>
+       
 
-        {/* <button
-          type='button'
-          ref={trigger}
-          onClick={() => {
-            setSidebarOpen(!sidebarOpen)
-            setMini(!mini)
-          }}
-          aria-controls="sidebar"
-          aria-expanded={sidebarOpen}
-          className="lg:block hidden"
-        >
-          <svg
-            className="fill-white"
-            width="20"
-            height="18"
-            viewBox="0 0 20 18"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M19 8.175H2.98748L9.36248 1.6875C9.69998 1.35 9.69998 0.825 9.36248 0.4875C9.02498 0.15 8.49998 0.15 8.16248 0.4875L0.399976 8.3625C0.0624756 8.7 0.0624756 9.225 0.399976 9.5625L8.16248 17.4375C8.31248 17.5875 8.53748 17.7 8.76248 17.7C8.98748 17.7 9.17498 17.625 9.36248 17.475C9.69998 17.1375 9.69998 16.6125 9.36248 16.275L3.02498 9.8625H19C19.45 9.8625 19.825 9.4875 19.825 9.0375C19.825 8.55 19.45 8.175 19 8.175Z"
-              fill=""
-            />
-          </svg>
-        </button> */}
-      </div>
+        
+      </div> */}
       {/* <!-- SIDEBAR HEADER --> */}
 
       <div className="sidebar-scrollbar custom-scrollbar flex flex-col overflow-y-hidden overflow-x-hidden  hover:overflow-y-auto duration-300 ease-linear">
         {/* <!-- Sidebar Menu --> */}
-        <nav className="px-4 py-2">
+        <nav className={`px-4 py-2 ${sidebarOpen ? 'px-0' : 'px-4'
+        }`}>
           {
             navConfig.map((navdata: any, index: number) => (
               <Fragment key={navdata.section + '-' + index}>
                 <h3 className="mb-4 ml-4 text-sm font-semibold">
                   {navdata.section}
                 </h3>
-                <ul className="mb-6 flex flex-col gap-1">
+                <ul className="sm:gap-1 sm:mb-1 flex flex-col ">
                   {
                     navdata.children.map((nchild: any, nindex: number) => {
                       const NChildIcon = nchild.icon;
@@ -218,12 +169,17 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: { sidebarOpen: any, setSidebar
                             <li key={nindex}>
                               <NavLink
                                 to={nchild?.path}
-                                className={`group relative flex items-center gap-2.5 font-medium  dark:text-primary rounded-sm py-2 ${!sidebarOpen ? 'px-4' : 'px-1'} font-medium text-black hover:text-white duration-300 ease-in-out hover:bg-primary dark:hover:bg-meta-4 ${pathname.includes('calendar') &&
+                                className={`group relative flex items-center gap-2.5 font-medium  dark:text-primary rounded-sm  ${!sidebarOpen ? 'px-4 py-2' : 'pl-5 py-3'} font-medium  hover:text-white duration-300 ease-in-out hover:bg-primary dark:hover:bg-meta-4 ${pathname.includes('calendar') &&
                                   'bg-graydark dark:bg-meta-4'
+                                  } ${
+                                    (pathname.includes(nchild?.path)) ?
+                                    "text-white bg-primary hover:text-white hover:bg-primary/90 dark:text-white" :
+                                    "text-[#4d4d4d]"
                                   }`}
                               >
                                 <NChildIcon />
                                 {!sidebarOpen && nchild.name}
+                                <p className="block lg:hidden">{nchild.name}</p>
                               </NavLink>
                             </li>
                           )

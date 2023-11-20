@@ -63,7 +63,7 @@ const DropdownUser = () => {
           <span className="block text-sm font-medium text-black dark:text-white">
             Thomas Anree
           </span>
-          <span className="block text-xs">UX Designer</span>
+          {/* <span className="block text-xs">St</span> */}
         </span>
 
         <svg

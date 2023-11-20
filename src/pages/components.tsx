@@ -10,11 +10,7 @@ export default function Components() {
   const [tab, setTab] = React.useState<string>('Basic')
   return (
     <DefaultLayout>
-      <Breadcrumb 
-        pageName='Components' 
-        homeRoute='/'
-        homeRouteName='Home'
-      />
+      
 
 
       <Tabs>

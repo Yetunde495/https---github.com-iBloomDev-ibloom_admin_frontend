@@ -321,7 +321,7 @@ export const STUDENT_NAV_DATA = [
     children: [
       {
         name: "Dashboard",
-        path: "/app/student/dashboard", //use for nested rendering
+        path: "/app/students/dashboard", //use for nested rendering
         icon: icons.Dashboard,
       },
       {
