@@ -1,22 +1,16 @@
 import React, { Fragment, useEffect, useRef, useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
-import Logo from '../images/logo/logo.svg';
+import Logo from '../images/logo/logo-icon.svg';
+
 import SidebarLinkGroup from './SidebarLinkGroup';
 import { RiArrowDownSLine } from 'react-icons/ri';
 import {
-  ISidebarNav,
   STUDENT_NAV_DATA,
-  ADMIN_NAV_DATA,
-  TEACHER_NAV_DATA,
 } from './config';
 import { SlSettings } from 'react-icons/sl';
-type UserAccount = {
-  id: string;
-  userType: 'admin' | 'teacher' | 'burser' | 'student' | 'parent' | 'guardian'
-}
 
 
-const currentUser: UserAccount = { userType: 'admin', id: '123' }
+
 
 const Sidebar = ({ sidebarOpen, setSidebarOpen }: { sidebarOpen: any, setSidebarOpen: any }) => {
   const location = useLocation();
@@ -79,8 +73,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: { sidebarOpen: any, setSidebar
     <aside
       ref={sidebar}
       className={`absolute h-full left-0 top-0 z-9999 flex border-r border-stroke dark:border-strokedark ${
-        sidebarOpen ? "lg:w-[65px]" : "lg:w-[240px]"
-      } w-[250px] flex-col overflow-hidden bg-white text-[#4d4d4d] duration-300 ease-linear dark:bg-boxdark lg:static lg:translate-x-0 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'
+        sidebarOpen ? "lg:hidden" : "lg:static"
+      } w-[250px] flex-col bg-white overflow-y-hidden text-[#4d4d4d] duration-300 ease-linear dark:bg-boxdark lg:static lg:translate-x-0 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
     >
       {/* <!-- SIDEBAR HEADER --> */}
@@ -91,6 +85,10 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: { sidebarOpen: any, setSidebar
 
         
       </div> */}
+      <div className="flex items-center justify-between gap-2 px-6 pt-5.5 pb-5">
+            <h1 className=" font-extrabold text-lg sm:block hidden">ByteDegree</h1>
+             <img src={Logo} alt="Logo"  className='sm:hidden block ' />
+          </div>
       {/* <!-- SIDEBAR HEADER --> */}
 
       <div className="sidebar-scrollbar custom-scrollbar flex flex-col overflow-y-hidden overflow-x-hidden  hover:overflow-y-auto duration-300 ease-linear">
