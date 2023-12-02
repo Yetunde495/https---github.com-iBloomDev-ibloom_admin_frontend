@@ -11,7 +11,7 @@ export const ProgressCourseCard: React.FC<InProgressCourseCardData> = ({
 }) => {
   const navigate = useNavigate()
   return (
-    <div className="w-[350px] h-[290px] rounded-md p-2 border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+    <div className="md:w-[300px] w-auto h-[290px] rounded-md p-2 border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
       <div className="w-full h-[50%]">
         <img src={preview_img_url} className="w-full h-full" />
       </div>
@@ -52,8 +52,8 @@ export const CourseCard: React.FC<CourseData> = ({
     backgroundSize: 'cover', // Adjust this according to your needs
   };
   return (
-    <div className="w-[30rem] flex h-[200px] rounded-md border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
-      <div className={`h-full w-[40%]`} style={cardStyle}>
+    <div className="mx-2 md:mx-[15px] md:w-auto flex md:flex-row flex-col h-[180px] rounded-md border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+      <div className={`md:h-full md:w-[40%] w-full h-[200px]`} style={cardStyle}>
         {/* <img src={preview_img_url} className="h-full object-fit" /> */}
       </div>
 

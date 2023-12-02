@@ -7,7 +7,7 @@ import '../src/css/components.css';
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import 'react-datepicker/dist/react-datepicker.css'
+import 'react-datepicker/dist/react-datepicker.css';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import AppLoader, { globalLoadingRef } from './components/Loader.tsx';
 

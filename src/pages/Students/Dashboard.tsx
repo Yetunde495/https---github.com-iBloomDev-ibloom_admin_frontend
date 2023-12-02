@@ -3,6 +3,8 @@ import DashboardCard from "../../components/card/dashboardCards";
 import DefaultLayout from "../../layout/DefaultLayout";
 import PreviewImg from "../../assets/images/Image.png";
 import CourseSlider from "../../components/Slider";
+import Slider from "react-slick";
+import { Slidersettings } from "../../configurations/SliderConfig";
 
 const data = [
   {
@@ -37,14 +39,28 @@ const data2 = [
     progress_bookmark: "6-8 weeks",
   },
   {
-    title: "Intro to Product Design",
+    title: "Intro to Product Design2",
+    progress: 60,
+    progress_url: "",
+    preview_img_url: PreviewImg,
+    progress_bookmark: "6-8 weeks",
+  },
+  {
+    title: "Intro to Product Design3",
+    progress: 60,
+    progress_url: "",
+    preview_img_url: PreviewImg,
+    progress_bookmark: "6-8 weeks",
+  },
+  {
+    title: "Intro to Product Design4",
     progress: 40,
     progress_url: "",
     preview_img_url: PreviewImg,
     progress_bookmark: "8-10 weeks",
   },
   {
-    title: "Intro to Product Design",
+    title: "Intro to Product Design5",
     progress: 30,
     progress_url: "",
     preview_img_url: PreviewImg,
@@ -77,7 +93,7 @@ export default function StudentDashboard() {
             </h1>
             <a className="font-bold dark:text-slate-200">See all</a>
           </div>
-          <div className="flex gap-3 lg:gap-6 flex-wrap py-4 w-full">
+          <div className="flex flex-wrap gap-3 lg:gap-6 lg:flex-nowrap py-4 w-full">
             {data.map((val, index) => (
               <ProgressCourseCard
                 key={index}
@@ -91,7 +107,7 @@ export default function StudentDashboard() {
           </div>
         </section>
 
-        <section className=" py-8">
+        <section className="w-full py-8">
           <div className="flex justify-between items-center relativ max-w-[1100px]">
             <h1 className="text-xl font-bold dark:text-slate-200">
               Newly added courses
@@ -99,9 +115,9 @@ export default function StudentDashboard() {
             <a className="font-bold dark:text-slate-200">See more</a>
           </div>
 
-          <CourseSlider 
-          cardsPerView={3}
-          cards={data2.map((val, index) => (
+          <div className="lg:w-full px-4">
+          <Slider {...Slidersettings}>
+          {data2.map((val, index) => (
             <CourseCard
               key={index}
               title={val.title}
@@ -111,19 +127,21 @@ export default function StudentDashboard() {
               creator=""
             />
           ))}
-          />
+          </Slider>
+          </div>
         </section>   
         
-        <section className=" py-8">
+        <section className="w-full py-8">
           <div className="flex justify-between items-center relativ max-w-[1100px]">
             <h1 className="text-xl font-bold dark:text-slate-200">
               Top picks for you
             </h1>
             <a className="font-bold dark:text-slate-200">See more</a>
           </div>
-          <CourseSlider 
-          cardsPerView={3}
-          cards={data2.map((val, index) => (
+          
+          <div className="lg:w-full px-4">
+          <Slider {...Slidersettings}>
+          {data2.map((val, index) => (
             <CourseCard
               key={index}
               title={val.title}
@@ -133,7 +151,9 @@ export default function StudentDashboard() {
               creator=""
             />
           ))}
-          />
+          </Slider>
+          </div>
+          
         </section>
 
 
