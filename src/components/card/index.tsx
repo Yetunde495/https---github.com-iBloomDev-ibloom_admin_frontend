@@ -47,6 +47,7 @@ export const CourseCard: React.FC<CourseData> = ({
   duration,
   creator,
   course_url,
+  tag,
 }) => {
   const navigate = useNavigate();
   const cardStyle = {
@@ -54,24 +55,36 @@ export const CourseCard: React.FC<CourseData> = ({
     backgroundSize: "cover", // Adjust this according to your needs
   };
   return (
-    <div className="mx-2 md:mx-[15px] md:w-auto flex md:flex-row flex-col h-[180px] rounded-md border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+    <div className="mx-2 md:mx-[15px] cursor-pointer md:w-auto flex md:flex-row flex-col md:h-full lg:h-[180px] rounded-md border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
       <div
-        className={`md:h-full md:w-[40%] w-full h-[200px]`}
+        className={`md:w-[40%] w-full sm:h-[150px] lg:h-full h-[120px]  `}
         style={cardStyle}
       >
-        {/* <img src={preview_img_url} className="h-full object-fit" /> */}
       </div>
 
-      <div className="px-3 py-3">
+      <div className="px-3 py-3 relative">
         <div className="">
           <h4 className="text-lg font-bold">{title}</h4>
           <p className="text-primary ">Duration: {duration}</p>
         </div>
 
-        {/* <div className="px-1">
-        <a onClick={() => navigate(progress_url)} className="w-full py-2.5 px-4 rounded-md">
-          View More
-        </a></div> */}
+        <div className="px-1 py-2">
+          <div className="flex gap-2 items-center">
+            <span className="h-8 w-8 rounded-full">
+              <img
+                src={creator.photo}
+                className="rounded-full object-cover h-full w-full "
+              />
+            </span>
+            <small className="text-sm font-medium">{creator.name}</small>
+          </div>
+        </div>
+
+        <div className="px-1 md:absolute  bottom-2 py-2">
+          <span className={`text-sm py-1 px-4 rounded-sm bg-[#F8A33F]`}>
+            {tag}
+          </span>
+        </div>
       </div>
     </div>
   );

@@ -40,8 +40,12 @@ declare global {
         preview_img_url: string;
         title: string;
         duration: string;
-        creator: string;
         course_url: string;
+        tag: string;
+        creator: {
+            name: string;
+            photo: string;
+        }
       }
     
    

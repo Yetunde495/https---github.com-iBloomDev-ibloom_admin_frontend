@@ -13,6 +13,7 @@ const data = [
     progress_url: "",
     preview_img_url: PreviewImg,
     progress_bookmark: "2. Basics of Product Design",
+    tag: "Fresh"
   },
   {
     title: "Intro to Product Design",
@@ -20,6 +21,7 @@ const data = [
     progress_url: "",
     preview_img_url: PreviewImg,
     progress_bookmark: "2. Basics of Product Design",
+    tag: "Fresh"
   },
   {
     title: "Intro to Product Design",
@@ -27,6 +29,7 @@ const data = [
     progress_url: "",
     preview_img_url: PreviewImg,
     progress_bookmark: "2. Basics of Product Design",
+    tag: "Fresh"
   },
 ];
 
@@ -37,6 +40,11 @@ const data2 = [
     progress_url: "",
     preview_img_url: PreviewImg,
     progress_bookmark: "6-8 weeks",
+    tag: "Fresh",
+    creator: {
+      name: "Angela Yu",
+      photo: PreviewImg
+    }
   },
   {
     title: "Intro to Product Design2",
@@ -44,6 +52,11 @@ const data2 = [
     progress_url: "",
     preview_img_url: PreviewImg,
     progress_bookmark: "6-8 weeks",
+    tag: "Fresh",
+    creator: {
+      name: "Angela Yu",
+      photo: PreviewImg
+    }
   },
   {
     title: "Intro to Product Design3",
@@ -51,6 +64,11 @@ const data2 = [
     progress_url: "",
     preview_img_url: PreviewImg,
     progress_bookmark: "6-8 weeks",
+    tag: "Fresh",
+    creator: {
+      name: "Angela Yu",
+      photo: PreviewImg
+    }
   },
   {
     title: "Intro to Product Design4",
@@ -58,6 +76,12 @@ const data2 = [
     progress_url: "",
     preview_img_url: PreviewImg,
     progress_bookmark: "8-10 weeks",
+    tag: "Fresh",
+    creator: {
+      name: "Angela Yu",
+      photo: PreviewImg
+    }
+
   },
   {
     title: "Intro to Product Design5",
@@ -65,6 +89,11 @@ const data2 = [
     progress_url: "",
     preview_img_url: PreviewImg,
     progress_bookmark: "22 hours",
+    tag: "Fresh",
+    creator: {
+      name: "Angela Yu",
+      photo: PreviewImg
+    }
   },
 ];
 
@@ -132,7 +161,7 @@ export default function StudentDashboard() {
         </section> 
 
         <section className="w-full py-8">
-          <div className="flex justify-between items-center relativ max-w-[1100px]">
+          <div className="flex justify-between items-center relative">
             <h1 className="text-xl font-bold dark:text-slate-200">
               Newly added courses
             </h1>
@@ -148,7 +177,8 @@ export default function StudentDashboard() {
               preview_img_url={val.preview_img_url}
               duration={val.progress_bookmark}
               course_url=""
-              creator=""
+              creator={val.creator}
+              tag={val.tag}
             />
           ))}
           </Slider>
@@ -156,7 +186,7 @@ export default function StudentDashboard() {
         </section>   
         
         <section className="w-full py-8">
-          <div className="flex justify-between items-center relativ max-w-[1100px]">
+          <div className="flex justify-between items-center relative">
             <h1 className="text-xl font-bold dark:text-slate-200">
               Top picks for you
             </h1>
@@ -172,7 +202,8 @@ export default function StudentDashboard() {
               preview_img_url={val.preview_img_url}
               duration={val.progress_bookmark}
               course_url=""
-              creator=""
+              creator={val.creator}
+              tag={val.tag}
             />
           ))}
           </Slider>
