@@ -12,6 +12,7 @@ import {
   AiFillNotification,
   AiOutlineTable,
   AiOutlinePlus,
+  AiOutlineHome,
 } from "react-icons/ai";
 import {
   MdOutlineAnalytics,
@@ -62,6 +63,7 @@ import { BiTestTube, BiEdit } from "react-icons/bi";
 import { HiOutlineLightBulb } from "react-icons/hi2";
 
 export default {
+  Home: AiOutlineHome,
   Notification: BsBellFill,
   Plus: AiOutlinePlus,
   User: FiUsers,

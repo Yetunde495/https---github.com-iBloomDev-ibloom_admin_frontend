@@ -49,7 +49,7 @@ const Header = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                 <input
                   type="text"
                   placeholder="Search"
-                  className="w-full border  border-stroke py-2 rounded-md bg-transparent text-sm pr-3 pl-8 focus:outline-none focus:border-1 focus:border-primary"
+                  className="w-full lg:w-65 border  border-stroke py-2 rounded-md bg-transparent text-sm pr-3 pl-8 focus:outline-none focus:border-1 focus:border-primary"
                 />
               </div>
             </form>
@@ -59,7 +59,7 @@ const Header = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
         <div className="flex ms-auto items-center gap-3 2xsm:gap-7">
           <ul className="flex items-center gap-2 2xsm:gap-4">
             {/* <!-- Dark Mode Toggler --> */}
-            <DarkModeSwitcher />
+            {/* <DarkModeSwitcher /> */}
             {/* <!-- Dark Mode Toggler --> */}
 
             {/* <!-- Notification Menu Area --> */}

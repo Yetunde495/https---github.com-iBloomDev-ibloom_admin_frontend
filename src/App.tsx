@@ -30,6 +30,7 @@ const App = () => {
         <Router>
           <Routes>
             <Route path="/" element={<Homepage />} />
+            <Route path="/app/home" element={<Homepage />} />
             <Route path="/components" element={<Components />} />
             <Route path="app" element={<RouteLayout children={null} />}>
             <Route path="students/dashboard" element={<StudentPages.Dashboard />} />
