@@ -4,7 +4,7 @@ import DefaultLayout from "../../layout/DefaultLayout";
 import PreviewImg from "../../assets/images/Image.png";
 import CourseSlider from "../../components/Slider";
 import Slider from "react-slick";
-import { Slidersettings } from "../../configurations/SliderConfig";
+import { ProgressCourseSlidersettings, Slidersettings } from "../../configurations/SliderConfig";
 
 const data = [
   {
@@ -76,7 +76,7 @@ export default function StudentDashboard() {
           Welcome, Thomas
         </h1>
 
-        <div className="py-4 bg-white gap-6 flex flex-col sm:flex-row">
+        <div className="py-4 bg-white grid md:grid-cols-4 grid-cols-2 gap-6">
           <DashboardCard title="Total Courses" number={15} />
 
           <DashboardCard title="Ongoing Courses" number={10} />
@@ -86,14 +86,14 @@ export default function StudentDashboard() {
           <DashboardCard title="My Courses" number={5} />
         </div>
 
-        <section className=" py-8">
-          <div className="flex justify-between items-center relativ max-w-[1100px]">
+        <section className="sm:block hidden py-8">
+          <div className="flex justify-between items-center relativ">
             <h1 className="text-xl font-bold dark:text-slate-200">
               Pickup where you left off
             </h1>
             <a className="font-bold dark:text-slate-200">See all</a>
           </div>
-          <div className="flex flex-wrap gap-3 lg:gap-6 lg:flex-nowrap py-4 w-full">
+          <div className="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-3 md:gap-2 lg:gap-4 xl:gap-6 py-4 w-full">
             {data.map((val, index) => (
               <ProgressCourseCard
                 key={index}
@@ -106,6 +106,30 @@ export default function StudentDashboard() {
             ))}
           </div>
         </section>
+
+        <section className="w-full py-8 block sm:hidden">
+        <div className="flex justify-between items-center relative mb-3">
+            <h1 className="text-xl font-bold dark:text-slate-200">
+              Pickup where you left off
+            </h1>
+            <a className="font-bold dark:text-slate-200">See all</a>
+          </div>
+
+          <div className="lg:w-full px-4">
+          <Slider {...ProgressCourseSlidersettings}>
+          {data.map((val, index) => (
+            <ProgressCourseCard
+            key={index}
+            title={val.title}
+            progress={val.progress}
+            progress_url={val.progress_url}
+            preview_img_url={val.preview_img_url}
+            progress_bookmark={val.progress_bookmark}
+          />
+          ))}
+          </Slider>
+          </div>
+        </section> 
 
         <section className="w-full py-8">
           <div className="flex justify-between items-center relativ max-w-[1100px]">

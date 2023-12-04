@@ -43,3 +43,48 @@ export const Slidersettings = {
       }
     ]
   };
+
+  export const ProgressCourseSlidersettings = {
+    speed: 700,
+    slidesToShow: 2.5,
+    slidesToScroll: 2,
+    slidesPerRow: 1,
+    initialSlide: 0,
+    infinite: false,
+    // centerMode: true,
+    // centerPadding: '20px',
+    responsive: [
+      {
+        breakpoint: 1400,
+        settings: {
+          slidesToShow: 2.5,
+          slidesToScroll: 1,
+          // centerMode: true,
+        }
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 2.7,
+          slidesToScroll: 1,
+          // centerMode: true,
+        }
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 1.4,
+          slidesToScroll: 1,
+          initialSlide: 1,
+          //  centerMode: true,
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1.2,
+          slidesToScroll: 1
+        }
+      }
+    ]
+  };
