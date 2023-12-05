@@ -6,6 +6,8 @@ import Components from "./pages/components";
 import RouteLayout from "./layout/RouteLayout";
 import StudentPages from "./pages/Students/Index";
 import CourseProgress from "./pages/AllComponents/courses/CourseProgress";
+import Homepage from "./pages/Landing/Index";
+
 
 const App = () => {
   const [loading, setLoading] = useState(true);
@@ -24,7 +26,9 @@ const App = () => {
       <AppProvider>
         <Router>
           <Routes>
-            <Route path="/" element={<Components />} />
+            <Route path="/" element={<Homepage />} />
+            <Route path="/app/home" element={<Homepage />} />
+            <Route path="/components" element={<Components />} />
             <Route path="app" element={<RouteLayout children={null} />}>
               <Route
                 path="students/dashboard"

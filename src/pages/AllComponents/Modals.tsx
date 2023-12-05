@@ -6,6 +6,22 @@ import ErrorModal from '../../components/modal/Error'
 import Button from '../../components/button'
 import { Section } from '../../components/container'
 import useToastNotifications from '../../hooks/useToastNotifications'
+import Accordion from '../../components/Accordion'
+
+const accordionItems = [
+    {
+      title: 'Section 1',
+      content: <p>Content for Section 1</p>,
+    },
+    {
+      title: 'Section 2',
+      content: <p>Content for Section 2</p>,
+    },
+    {
+      title: 'Section 3',
+      content: <p>Content for Section 3</p>,
+    },
+  ];
 
 export default function BasicComponents() {
     const {showSuccess, showError, showInfo} = useToastNotifications()
@@ -42,6 +58,16 @@ export default function BasicComponents() {
          <Button variant='light' onClick={() => {}}>Light Button</Button>
          <Button variant='link' onClick={() => {}}>Link Button</Button>
          </div>
+         </section>
+
+         <section className='mb-6'>
+         <h2 className='font-medium mb-2 text-xl'>Accordion</h2>
+         <section>
+      <div className="container mx-auto mt-8">
+      <h1 className="text-2xl font-bold mb-4">Accordion Example</h1>
+      <Accordion items={accordionItems} />
+    </div>
+      </section>
          </section>
 
          
