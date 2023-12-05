@@ -99,21 +99,21 @@ export default function StudentDashboard() {
             <a className="font-bold dark:text-slate-200">See more</a>
           </div>
 
-          <CourseSlider 
-          cardsPerView={3}
-          cards={data2.map((val, index) => (
-            <CourseCard
-              key={index}
-              title={val.title}
-              preview_img_url={val.preview_img_url}
-              duration={val.progress_bookmark}
-              course_url=""
-              creator=""
-            />
-          ))}
+          <CourseSlider
+            cardsPerView={3}
+            cards={data2.map((val, index) => (
+              <CourseCard
+                key={index}
+                title={val.title}
+                preview_img_url={val.preview_img_url}
+                duration={val.progress_bookmark}
+                course_url=""
+                creator=""
+              />
+            ))}
           />
-        </section>   
-        
+        </section>
+
         <section className=" py-8">
           <div className="flex justify-between items-center relativ max-w-[1100px]">
             <h1 className="text-xl font-bold dark:text-slate-200">
@@ -121,22 +121,20 @@ export default function StudentDashboard() {
             </h1>
             <a className="font-bold dark:text-slate-200">See more</a>
           </div>
-          <CourseSlider 
-          cardsPerView={3}
-          cards={data2.map((val, index) => (
-            <CourseCard
-              key={index}
-              title={val.title}
-              preview_img_url={val.preview_img_url}
-              duration={val.progress_bookmark}
-              course_url=""
-              creator=""
-            />
-          ))}
+          <CourseSlider
+            cardsPerView={3}
+            cards={data2.map((val, index) => (
+              <CourseCard
+                key={index}
+                title={val.title}
+                preview_img_url={val.preview_img_url}
+                duration={val.progress_bookmark}
+                course_url=""
+                creator=""
+              />
+            ))}
           />
         </section>
-
-
       </section>
     </DefaultLayout>
   );
