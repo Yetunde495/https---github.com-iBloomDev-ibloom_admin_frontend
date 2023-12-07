@@ -11,10 +11,6 @@ export const ProgressCourseCard: React.FC<InProgressCourseCardData> = ({
   textColor,
 }) => {
   const navigate = useNavigate();
-<<<<<<< HEAD
-
-=======
->>>>>>> 46934fa95dd4df4e85566510d3712f781029c5a9
   return (
     <div className="mx-2 sm:mx-0 w-auto relative rounded-md h-full p-2 border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
       <div className="w-full">
@@ -34,25 +30,6 @@ export const ProgressCourseCard: React.FC<InProgressCourseCardData> = ({
           </div>
         </div>
 
-<<<<<<< HEAD
-        <div className="">
-          <ProgressBar percent={progress} />
-        </div>
-      </div>
-
-      <div className="px-1">
-        <button
-          onClick={() => navigate(progress_url)}
-          style={{
-            backgroundColor: customBackgroundColor || "#3843D0",
-            color: textColor || "#fff",
-          }}
-          className="w-full py-2.5 px-4 rounded-md text-white hover:bg-primary"
-        >
-          Continue Learning
-        </button>
-      </div>
-=======
         <div className="mt-4 px-1 md:py-4 py-2 w-full">
           <button
             onClick={() => navigate(progress_url)}
@@ -62,7 +39,6 @@ export const ProgressCourseCard: React.FC<InProgressCourseCardData> = ({
           </button>
         </div>
       </div>
->>>>>>> 46934fa95dd4df4e85566510d3712f781029c5a9
     </div>
   );
 };
@@ -94,12 +70,6 @@ export const CourseCard: React.FC<CourseData> = ({
           <p className="text-primary ">Duration: {duration}</p>
         </div>
 
-<<<<<<< HEAD
-        {/* <div className="px-1">
-        <a onClick={() => navigate(progress_url)} className="w-full py-2.5 px-4 rounded-md">
-          View More
-        </a></div> */}
-=======
         <div className="px-1 py-2">
           <div className="flex gap-2 items-center">
             <span className="h-8 w-8 rounded-full">
@@ -117,7 +87,6 @@ export const CourseCard: React.FC<CourseData> = ({
             {tag}
           </span>
         </div>
->>>>>>> 46934fa95dd4df4e85566510d3712f781029c5a9
       </div>
     </div>
   );
