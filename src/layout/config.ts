@@ -337,7 +337,8 @@ export const STUDENT_NAV_DATA = [
       },
       {
         name: "Live Classes",
-        path: "/app/students/academics/subjects",
+        // path: "/app/students/academics/subjects",
+        path: "/app/students/live-classes",
         icon: icons.Bulb,
       },
       {

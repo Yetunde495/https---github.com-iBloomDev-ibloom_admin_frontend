@@ -7,7 +7,7 @@ import RouteLayout from "./layout/RouteLayout";
 import StudentPages from "./pages/Students/Index";
 import CourseProgress from "./pages/AllComponents/courses/CourseProgress";
 import Homepage from "./pages/Landing/Index";
-
+import LiveComment from "./pages/AllComponents/liveClasses/LiveComment";
 
 const App = () => {
   const [loading, setLoading] = useState(true);
@@ -39,6 +39,10 @@ const App = () => {
                 element={<StudentPages.Courses />}
               />
               <Route path="students/courses/:id" element={<CourseProgress />} />
+              <Route path="students/live-classes">
+                <Route index element={<StudentPages.LiveClasses />} />
+                <Route path="ongoing-class/:id" element={<LiveComment />} />
+              </Route>
             </Route>
           </Routes>
         </Router>

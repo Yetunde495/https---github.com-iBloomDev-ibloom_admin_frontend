@@ -25,7 +25,7 @@ const Assessment = () => {
     setSelectedOption(event.target.value);
   };
   return (
-    <div className="my-5 bg-[#fcfcfc] min-h-sceen w-full py-5 ">
+    <div className="my-5 bg-[#fcfcfc] min-h-sceen w-full py-5 border-b border-stroke">
       <div className=" mx-auto mt-8 border-b border-zinc-200 p px-9 pb-2">
         <h4 className="text-base">Assessment</h4>
       </div>

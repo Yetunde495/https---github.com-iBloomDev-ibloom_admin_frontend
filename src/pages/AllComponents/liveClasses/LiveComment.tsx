@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import DefaultLayout from "../../../layout/DefaultLayout";
-import { IoIosArrowRoundBack, IoIosArrowRoundForward } from "react-icons/io";
+import { IoIosArrowRoundBack } from "react-icons/io";
 import PreviewVideo from "../../../assets/images/Video.png";
 import PreviewImg from "../../../assets/images/Image.png";
-import { ProgressCourseCard } from "../../../components/card";
-import CourseAccordion from "./CourseAccordion";
-import Assessment from "./Assessment";
-import Transcription from "./Transcription";
+import { LiveClassCard } from "../../../components/card";
 import { Link } from "react-router-dom";
+import Transcription from "../courses/Transcription";
+import Avatar from "../../../assets/images/Avatar.png";
+import LiveCommentAccordion from "./LiveCommentAccordion";
 
 const data = {
   title: "Intro to Product Design",
@@ -20,28 +20,49 @@ const data = {
 const data2 = [
   {
     title: "Intro to Product Design",
-    progress: 60,
     progress_url: "",
     preview_img_url: PreviewImg,
-    progress_bookmark: "6-8 weeks",
+    progress_bookmark: "2. Basics of Product Design",
+    stateBtnText: "Live",
+    card_action_text: "Join Class",
+    course_url: "",
+    liveDuration: "15 mins",
+    showIcon: true,
+    creator: [
+      { name: "Angela", photo: Avatar },
+      { name: "Angela", photo: Avatar },
+    ],
   },
   {
     title: "Intro to Product Design",
-    progress: 40,
     progress_url: "",
     preview_img_url: PreviewImg,
-    progress_bookmark: "8-10 weeks",
+    progress_bookmark: "2. Basics of Product Design",
+    stateBtnText: "Live",
+    card_action_text: "Join Class",
+    course_url: "",
+    liveDuration: "15 mins",
+    showIcon: true,
+    creator: [{ name: "Angela", photo: Avatar }],
   },
   {
     title: "Intro to Product Design",
-    progress: 30,
     progress_url: "",
     preview_img_url: PreviewImg,
-    progress_bookmark: "22 hours",
+    progress_bookmark: "2. Basics of Product Design",
+    stateBtnText: "Live",
+    card_action_text: "Join Class",
+    course_url: "",
+    liveDuration: "15 mins",
+    showIcon: true,
+    creator: [
+      { name: "Angela", photo: Avatar },
+      { name: "John", photo: Avatar },
+    ],
   },
 ];
 
-const CourseProgress = ({ embedId = "rokGy0huYEA" }) => {
+const LiveComment = ({ embedId = "rokGy0huYEA" }) => {
   return (
     <DefaultLayout>
       <section>
@@ -57,16 +78,9 @@ const CourseProgress = ({ embedId = "rokGy0huYEA" }) => {
         </div>
         <div className="flex justify-between gap-25">
           <div>
-            <div className="flex justify-between items-center">
-              <h1 className="text-xl font-bold dark:text-slate-200">
-                {data.title}
-              </h1>
-
-              <p className="text-slate-500 text-xs font-bold">
-                {data.points}
-                <span className="text-primary">/{data.total_points}</span>
-              </p>
-            </div>
+            <h1 className="text-xl font-bold dark:text-slate-200">
+              {data.title}
+            </h1>
 
             <div>
               <p className="text-xs text-indigo-300">By {data.tutor_name}</p>
@@ -89,43 +103,31 @@ const CourseProgress = ({ embedId = "rokGy0huYEA" }) => {
               <div className="mt-15">
                 <h4 className="font-bold dark:text-slate-200">Transcript</h4>
                 <Transcription />
-
-                <div className="flex justify-end">
-                  <button className="flex items-center gap-1 bg-primary text-white py-1 px-2 rounded-md">
-                    Next <IoIosArrowRoundForward />
-                  </button>
-                </div>
               </div>
 
               <div className="">
-                <CourseAccordion />
-              </div>
-
-              <div>
-                <Assessment />
+                <LiveCommentAccordion />
               </div>
             </div>
           </div>
 
           <div>
-            <p className="font-bold dark:text-slate-200">
-              Pick up where you left off
-            </p>
+            <p className="font-bold dark:text-slate-200">Live Classes</p>
             <div className="flex gap-3 lg:gap-6 flex-wrap py-4 w-full">
               {data2.map((val, index) => (
-                <ProgressCourseCard
+                <LiveClassCard
                   key={index}
                   title={val.title}
-                  progress={val.progress}
-                  progress_url={val.progress_url}
                   preview_img_url={val.preview_img_url}
-                  progress_bookmark={val.progress_bookmark}
+                  stateBtnText={val.stateBtnText}
+                  card_action_text={val.card_action_text}
+                  course_url={`ongoing-class/${index}`}
+                  liveDuration={val.liveDuration}
+                  showIcon={val.showIcon}
+                  creator={val.creator}
+                  stateBtnTextCustomBgColor="#ff4343"
                 />
               ))}
-            </div>
-
-            <div className="flex justify-end w-2/3">
-              <button className="font-bold">See all</button>
             </div>
           </div>
         </div>
@@ -134,4 +136,4 @@ const CourseProgress = ({ embedId = "rokGy0huYEA" }) => {
   );
 };
 
-export default CourseProgress;
+export default LiveComment;

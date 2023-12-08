@@ -34,43 +34,57 @@ declare global {
     textColor?: string;
   }
 
-    interface CourseData {
-        preview_img_url: string;
-        title: string;
-        duration: string;
-        course_url: string;
-        tag: string;
-        creator: {
-            name: string;
-            photo: string;
-        }
-      }
-    
-   
+  interface CourseData {
+    preview_img_url: string;
+    title: string;
+    duration: string;
+    course_url: string;
+    tag: string;
+    creator: {
+      name: string;
+      photo: string;
+    };
+  }
 
-    
-    interface ForgotPasswordObj {
-        email: string;
-    }
-    
-    interface LoginObj extends ForgotPasswordObj {
-        password: string;
-    }
-    
-    interface RegisterObj extends LoginObj {
-        first_name: string;
-        last_name: string;
-    }
-    
-    interface ResetPasswordObj {
-        password: string;
-        confirm_password: string;
-    }
-    
-    interface CompletePasswordReset {
-        code: string;
-        new_password: string;
-    }
+  interface LiveClassCardData {
+    stateBtnText: string;
+    card_action_text: string;
+    preview_img_url: string;
+    title: string;
+    date?: string;
+    course_url: string;
+    time?: string;
+    liveDuration?: string;
+    showIcon?: boolean;
+    stateBtnTextCustomBgColor: string;
+    creator: {
+      name: string;
+      photo: string;
+    }[];
+  }
+
+  interface ForgotPasswordObj {
+    email: string;
+  }
+
+  interface LoginObj extends ForgotPasswordObj {
+    password: string;
+  }
+
+  interface RegisterObj extends LoginObj {
+    first_name: string;
+    last_name: string;
+  }
+
+  interface ResetPasswordObj {
+    password: string;
+    confirm_password: string;
+  }
+
+  interface CompletePasswordReset {
+    code: string;
+    new_password: string;
+  }
 
   interface UserDetailsChange {
     property: string;

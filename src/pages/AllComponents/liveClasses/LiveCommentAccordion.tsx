@@ -1,9 +1,8 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from "react";
-import AccordionData from "./AccordionData";
 import { AiOutlineMinusCircle, AiOutlinePlusCircle } from "react-icons/ai";
+import LiveCommentAccordionData from "./LiveCommentAccordionData";
 
-const CourseAccordion = () => {
+const LiveCommentAccordion = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   const toggleItem = (index: number) => {
@@ -12,11 +11,10 @@ const CourseAccordion = () => {
 
   const items = [
     {
-      title: "Course Outline",
-      content: <AccordionData />,
+      title: "Live Comments",
+      content: <LiveCommentAccordionData />,
     },
   ];
-
   return (
     <div className="mx-auto bg-[#fcfcfc] mt-10 mb-15 min-h-sceen w-full">
       <div className="w-full">
@@ -26,7 +24,7 @@ const CourseAccordion = () => {
               onClick={() => toggleItem(index)}
               className="w-full py-2 text-left bg-gray-200 flex justify-between items-center"
             >
-              <span className="ml-10">{item.title}</span>
+              <span className="ml-10 font-bold">{item.title}</span>
               {openIndex === index ? (
                 <AiOutlineMinusCircle className="text-primary mr-8" size={22} />
               ) : (
@@ -41,4 +39,4 @@ const CourseAccordion = () => {
   );
 };
 
-export default CourseAccordion;
+export default LiveCommentAccordion;
