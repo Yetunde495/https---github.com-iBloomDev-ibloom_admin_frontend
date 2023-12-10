@@ -60,7 +60,7 @@ import { GiRolledCloth, GiBookshelf } from "react-icons/gi";
 import { TbReceiptTax, TbBuildingWarehouse } from "react-icons/tb";
 import { ImBooks } from "react-icons/im";
 import { BiTestTube, BiEdit } from "react-icons/bi";
-import { HiOutlineLightBulb } from "react-icons/hi2";
+import { HiOutlineLightBulb, HiOutlineIdentification } from "react-icons/hi2";
 
 export default {
   Home: AiOutlineHome,
@@ -119,5 +119,6 @@ export default {
   General: FaGraduationCap,
   Assessment: MdAssessment,
   Settings: MdOutlineSettings,
-  Bulb: HiOutlineLightBulb
+  Bulb: HiOutlineLightBulb,
+  certificates: HiOutlineIdentification,
 };

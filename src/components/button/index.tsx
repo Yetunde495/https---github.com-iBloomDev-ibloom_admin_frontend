@@ -1,6 +1,7 @@
 import React from "react";
 import { BsPersonAdd, BsFiletypeXlsx } from "react-icons/bs";
 import { FiFilter, FiDownloadCloud } from "react-icons/fi";
+import { FaFilter } from "react-icons/fa6";
 import {
   AiOutlinePlus,
   AiFillDelete,
@@ -65,7 +66,7 @@ export const ButtonEvent: React.FC<ButtonEventProps> = ({
     variant === "user" ? (
       <BsPersonAdd />
     ) : variant === "filter" ? (
-      <FiFilter />
+      <FaFilter />
     ) : variant === "download" ? (
       <FiDownloadCloud />
     ) : variant === "sheet" ? (
@@ -108,17 +109,17 @@ export default function Button({
   height,
 }: ButtonProps) {
   let cls = classNames
-    ? "flex justify-end gap-4.5 " + classNames
-    : "flex justify-end gap-4.5";
+    ? "flex justify-center gap-4.5 " + classNames
+    : "flex justify-center gap-4.5";
   let bgColor =
     variant === "primary"
       ? "bg-[#60b801] text-white"
       : variant === "secondary"
       ? "bg-[#00112c] text-white"
       : variant === "danger"
-      ? "bg-meta-1 text-white":
-      variant === "link" ?
-      'bg-transparent text-black border-b-2 border-[#60b801] rounded-none py-0'
+      ? "bg-meta-1 text-white"
+      : variant === "link"
+      ? "bg-transparent text-black border-b-2 border-[#60b801] rounded-none py-0"
       : "bg-gray text-black";
   let btnCls = `flex justify-center transition disabled:opacity-65 opacity-95 hover:opacity-100 ${bgColor} rounded-md py-2 px-6 font-medium `;
   // btnCls = size === 'xsm' ? btnCls +' w-10' : size === 'sm' ? btnCls +' w-32' : size === 'md' ? btnCls + ' w-64' : size === 'lg' ? btnCls + ' w-128': btnCls + ' w-100';

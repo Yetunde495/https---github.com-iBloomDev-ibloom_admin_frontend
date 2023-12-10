@@ -342,6 +342,11 @@ export const STUDENT_NAV_DATA = [
         icon: icons.Bulb,
       },
       {
+        name: "Certificates",
+        path: "/app/students/certificates",
+        icon: icons.certificates,
+      },
+      {
         name: "Profile",
         // path: "/app/students/settings/profile",
         path: "/app/students/profile",
