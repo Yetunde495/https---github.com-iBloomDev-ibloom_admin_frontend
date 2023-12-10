@@ -19,11 +19,26 @@ const CheckBoxDataArray = [
 ];
 
 const Assessment = () => {
+  const [nextClicked, setNextClicked] = useState(false);
+  const [error, setError] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
 
   const handleRadioChange = (event: any) => {
-    setSelectedOption(event.target.value);
+    if (event.target.checked) {
+      setSelectedOption(event.target.value);
+      setError(false);
+    }
   };
+
+  const handleNextClick = () => {
+    if (selectedOption === null) {
+      setError(true);
+      return;
+    }
+
+    setNextClicked(true);
+  };
+
   return (
     <div className="my-5 bg-[#fcfcfc] min-h-sceen w-full py-5 border-b border-stroke">
       <div className=" mx-auto mt-8 border-b border-zinc-200 p px-9 pb-2">
@@ -49,31 +64,50 @@ const Assessment = () => {
               <input
                 type="radio"
                 id={item.id}
-                name="ritem"
+                name="item"
                 value={item.id}
-                checked={selectedOption === item.id}
+                disabled={nextClicked}
+                required
                 onChange={handleRadioChange}
               />
               <label
                 htmlFor={item.id}
-                className={` ${item.isCorrect ? "correct" : "wrong"}`}
+                className={` ${
+                  nextClicked && item.isCorrect && item.id === selectedOption
+                    ? "correct"
+                    : nextClicked && item.id === selectedOption
+                    ? "wrong"
+                    : ""
+                }`}
               >
                 <p className="label-text"> {item.label}</p>
                 <div className="item-icon">
-                  {selectedOption === item.id && (
-                    <div>
-                      {item.isCorrect ? <IoCheckmarkOutline /> : <RxCross1 />}
-                    </div>
-                  )}
+                  <div>
+                    {nextClicked && item.isCorrect ? (
+                      <IoCheckmarkOutline />
+                    ) : nextClicked ? (
+                      <RxCross1 />
+                    ) : (
+                      ""
+                    )}
+                  </div>
                 </div>
               </label>
             </div>
           ))}
         </CheckBox>
-        <input className="border h-40 w-full mt-12 mb-10 border-zinc-300 p-5" />
+        <textarea className="border h-40 w-full mt-12 mb-10 border-zinc-200 p-2 outline-none" />
+        {error && (
+          <p className="text-red-500 mt-2">
+            Please select an option before proceeding.
+          </p>
+        )}
 
         <div className="flex ">
-          <button className="flex items-center gap-1 bg-primary text-white py-1 px-2 rounded-md">
+          <button
+            className="flex items-center gap-1 bg-primary text-white py-1 px-2 rounded-md"
+            onClick={handleNextClick}
+          >
             Next <IoIosArrowRoundForward />
           </button>
         </div>

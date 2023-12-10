@@ -45,7 +45,7 @@ const RecommendedLive = () => {
   return (
     <div className="w-full mt-20">
       <h2 className="text-xl font-bold dark:text-slate-200">
-        Recommende Live Classes
+        Recommended Live Classes
       </h2>
       <div className="flex gap-3 lg:gap-6 flex-wrap py-4 mt-5 w-full">
         {data.map((val, index) => (
@@ -58,7 +58,7 @@ const RecommendedLive = () => {
             course_url=""
             date={val.date}
             time="16:00PM GMT+1"
-            creator={[{ name: "Angela", photo: Avatar }]}
+            creator={[{ name: "Ife", photo: Avatar }]}
             stateBtnTextCustomBgColor="#f8a33f"
           />
         ))}

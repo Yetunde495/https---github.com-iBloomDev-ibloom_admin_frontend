@@ -39,6 +39,10 @@ const App = () => {
                 element={<StudentPages.Courses />}
               />
               <Route path="students/courses/:id" element={<CourseProgress />} />
+              <Route
+                path="students/profile"
+                element={<StudentPages.Profile />}
+              />
               <Route path="students/live-classes">
                 <Route index element={<StudentPages.LiveClasses />} />
                 <Route path="ongoing-class/:id" element={<LiveComment />} />

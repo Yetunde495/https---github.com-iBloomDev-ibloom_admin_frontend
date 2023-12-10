@@ -5,7 +5,7 @@ import { MdPlayCircleFilled } from "react-icons/md";
 
 interface AccordionProps {
   items: {
-    title: string;
+    title: string |  React.ReactNode;
     content: React.ReactNode;
     showIcon?: boolean;
     accordionHeaderBg?: string;

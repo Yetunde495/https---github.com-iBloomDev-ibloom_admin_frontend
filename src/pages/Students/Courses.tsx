@@ -149,7 +149,7 @@ export default function StudentCourses() {
             style={{ height: "80vh" }}
           >
             <div>
-              <img src={EmptyStateImage} />
+              <img src={EmptyStateImage} className="m-auto" />
               <div className="my-8">
                 <p>You currently have no course on your dashboard.</p>
 

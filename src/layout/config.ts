@@ -343,7 +343,8 @@ export const STUDENT_NAV_DATA = [
       },
       {
         name: "Profile",
-        path: "/app/students/settings/profile",
+        // path: "/app/students/settings/profile",
+        path: "/app/students/profile",
         icon: icons.Profile,
       },
     ],
