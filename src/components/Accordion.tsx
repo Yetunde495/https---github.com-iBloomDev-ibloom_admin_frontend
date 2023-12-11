@@ -1,14 +1,16 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // src/components/Accordion.tsx
 import React, { useState } from "react";
 import { AiOutlineMinusCircle, AiOutlinePlusCircle } from "react-icons/ai";
-import { MdPlayCircleFilled } from "react-icons/md";
+
 
 interface AccordionProps {
   items: {
-    title: string |  React.ReactNode;
+    title: string | React.ReactNode;
     content: React.ReactNode;
     showIcon?: boolean;
     accordionHeaderBg?: string;
+    icon?: any;
   }[];
 }
 
@@ -34,7 +36,7 @@ const Accordion: React.FC<AccordionProps> = ({ items }) => {
               className="w-full py-2 text-left bg-gray-200 flex justify-between items-center"
             >
               <div className="flex ml-8 gap-2 items-center">
-                {item.showIcon && <MdPlayCircleFilled />}
+                {item.showIcon && item.icon}
                 <span style={{ color: item.accordionHeaderBg }}>
                   {item.title}
                 </span>
