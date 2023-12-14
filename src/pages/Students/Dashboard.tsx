@@ -4,16 +4,19 @@ import DefaultLayout from "../../layout/DefaultLayout";
 import PreviewImg from "../../assets/images/Image.png";
 import CourseSlider from "../../components/Slider";
 import Slider from "react-slick";
-import { ProgressCourseSlidersettings, Slidersettings } from "../../configurations/SliderConfig";
+import {
+  ProgressCourseSlidersettings,
+  Slidersettings,
+} from "../../configurations/SliderConfig";
 
-const data = [
+export const data = [
   {
     title: "Intro to Product Design",
     progress: 60,
     progress_url: "",
     preview_img_url: PreviewImg,
     progress_bookmark: "2. Basics of Product Design",
-    tag: "Fresh"
+    tag: "Fresh",
   },
   {
     title: "Intro to Product Design",
@@ -21,7 +24,7 @@ const data = [
     progress_url: "",
     preview_img_url: PreviewImg,
     progress_bookmark: "2. Basics of Product Design",
-    tag: "Fresh"
+    tag: "Fresh",
   },
   {
     title: "Intro to Product Design",
@@ -29,11 +32,11 @@ const data = [
     progress_url: "",
     preview_img_url: PreviewImg,
     progress_bookmark: "2. Basics of Product Design",
-    tag: "Fresh"
+    tag: "Fresh",
   },
 ];
 
-const data2 = [
+export const data2 = [
   {
     title: "Intro to Product Design",
     progress: 60,
@@ -43,8 +46,8 @@ const data2 = [
     tag: "Fresh",
     creator: {
       name: "Angela Yu",
-      photo: PreviewImg
-    }
+      photo: PreviewImg,
+    },
   },
   {
     title: "Intro to Product Design2",
@@ -55,8 +58,8 @@ const data2 = [
     tag: "Fresh",
     creator: {
       name: "Angela Yu",
-      photo: PreviewImg
-    }
+      photo: PreviewImg,
+    },
   },
   {
     title: "Intro to Product Design3",
@@ -67,8 +70,8 @@ const data2 = [
     tag: "Fresh",
     creator: {
       name: "Angela Yu",
-      photo: PreviewImg
-    }
+      photo: PreviewImg,
+    },
   },
   {
     title: "Intro to Product Design4",
@@ -79,9 +82,8 @@ const data2 = [
     tag: "Fresh",
     creator: {
       name: "Angela Yu",
-      photo: PreviewImg
-    }
-
+      photo: PreviewImg,
+    },
   },
   {
     title: "Intro to Product Design5",
@@ -92,8 +94,8 @@ const data2 = [
     tag: "Fresh",
     creator: {
       name: "Angela Yu",
-      photo: PreviewImg
-    }
+      photo: PreviewImg,
+    },
   },
 ];
 
@@ -128,7 +130,7 @@ export default function StudentDashboard() {
                 key={index}
                 title={val.title}
                 progress={val.progress}
-                progress_url={val.progress_url}
+                progress_url={`/app/students/courses/${index}`}
                 preview_img_url={val.preview_img_url}
                 progress_bookmark={val.progress_bookmark}
               />
@@ -137,7 +139,7 @@ export default function StudentDashboard() {
         </section>
 
         <section className="w-full py-8 block sm:hidden">
-        <div className="flex justify-between items-center relative mb-3">
+          <div className="flex justify-between items-center relative mb-3">
             <h1 className="text-xl font-bold dark:text-slate-200">
               Pickup where you left off
             </h1>
@@ -145,20 +147,20 @@ export default function StudentDashboard() {
           </div>
 
           <div className="lg:w-full px-4">
-          <Slider {...ProgressCourseSlidersettings}>
-          {data.map((val, index) => (
-            <ProgressCourseCard
-            key={index}
-            title={val.title}
-            progress={val.progress}
-            progress_url={val.progress_url}
-            preview_img_url={val.preview_img_url}
-            progress_bookmark={val.progress_bookmark}
-          />
-          ))}
-          </Slider>
+            <Slider {...ProgressCourseSlidersettings}>
+              {data.map((val, index) => (
+                <ProgressCourseCard
+                  key={index}
+                  title={val.title}
+                  progress={val.progress}
+                  progress_url={val.progress_url}
+                  preview_img_url={val.preview_img_url}
+                  progress_bookmark={val.progress_bookmark}
+                />
+              ))}
+            </Slider>
           </div>
-        </section> 
+        </section>
 
         <section className="w-full py-8">
           <div className="flex justify-between items-center relative">
@@ -169,22 +171,22 @@ export default function StudentDashboard() {
           </div>
 
           <div className="lg:w-full px-4">
-          <Slider {...Slidersettings}>
-          {data2.map((val, index) => (
-            <CourseCard
-              key={index}
-              title={val.title}
-              preview_img_url={val.preview_img_url}
-              duration={val.progress_bookmark}
-              course_url=""
-              creator={val.creator}
-              tag={val.tag}
-            />
-          ))}
-          </Slider>
+            <Slider {...Slidersettings}>
+              {data2.map((val, index) => (
+                <CourseCard
+                  key={index}
+                  title={val.title}
+                  preview_img_url={val.preview_img_url}
+                  duration={val.progress_bookmark}
+                  course_url=""
+                  creator={val.creator}
+                  tag={val.tag}
+                />
+              ))}
+            </Slider>
           </div>
-        </section>   
-        
+        </section>
+
         <section className="w-full py-8">
           <div className="flex justify-between items-center relative">
             <h1 className="text-xl font-bold dark:text-slate-200">
@@ -192,26 +194,23 @@ export default function StudentDashboard() {
             </h1>
             <a className="font-bold dark:text-slate-200">See more</a>
           </div>
-          
+
           <div className="lg:w-full px-4">
-          <Slider {...Slidersettings}>
-          {data2.map((val, index) => (
-            <CourseCard
-              key={index}
-              title={val.title}
-              preview_img_url={val.preview_img_url}
-              duration={val.progress_bookmark}
-              course_url=""
-              creator={val.creator}
-              tag={val.tag}
-            />
-          ))}
-          </Slider>
+            <Slider {...Slidersettings}>
+              {data2.map((val, index) => (
+                <CourseCard
+                  key={index}
+                  title={val.title}
+                  preview_img_url={val.preview_img_url}
+                  duration={val.progress_bookmark}
+                  course_url=""
+                  creator={val.creator}
+                  tag={val.tag}
+                />
+              ))}
+            </Slider>
           </div>
-          
         </section>
-
-
       </section>
     </DefaultLayout>
   );

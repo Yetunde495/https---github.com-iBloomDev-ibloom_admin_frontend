@@ -1,4 +1,4 @@
-import { 
+import {
   PropsChildrenOnly,
   RowPhotoProps,
   RowPhoto,
@@ -23,14 +23,14 @@ import {
   StatusCell,
   PaginationProps,
   Pagination,
-} from './Components';
+} from "./Components";
 
 interface TableProps {
   children: React.ReactNode;
   show?: boolean;
 }
 
-const Table : React.FC<TableProps> & {
+const Table: React.FC<TableProps> & {
   Photo: React.FC<RowPhotoProps>;
   SortCol: React.FC<ColSortProps>;
   SearchTable: React.FC<SearchTableProps>;
@@ -45,18 +45,18 @@ const Table : React.FC<TableProps> & {
   StatusCell: React.FC<StatusCellProps>;
   Pagination: React.FC<PaginationProps>;
 } = ({ children, show }) => {
-  return show ?  (
-    <div className='rounded-sm border border-stroke bg-white 
+  return show ? (
+    <div
+      className="rounded-sm 
     px-5 pt-6 pb-2.5 shadow-default dark:border-strokedark 
-    dark:bg-boxdark sm:px-7.5 xl:pb-1'>
-      <div className='max-w-full overflow-x-auto pb-12'>
-        <table className='w-full table-auto'>
-          {children}
-        </table>
+    dark:bg-boxdark sm:px-7.5 xl:pb-1"
+    >
+      <div className="max-w-full overflow-x-auto pb-12">
+        <table className="w-full table-auto">{children}</table>
       </div>
     </div>
-  ): null
-}
+  ) : null;
+};
 
 Table.Photo = RowPhoto;
 Table.SortCol = ColSort;

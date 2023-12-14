@@ -109,7 +109,7 @@ export const ADMIN_NAV_DATA = [
       },
     ],
   },
- 
+
   // USERS
   {
     children: [
@@ -130,7 +130,7 @@ export const ADMIN_NAV_DATA = [
       },
     ],
   },
-  
+
   // SETTINGS
   {
     section: "SETTINGS",
@@ -184,8 +184,6 @@ export const ADMIN_NAV_DATA = [
     ],
   },
 ];
-
-
 
 //Teachers navigation
 export const TEACHER_NAV_DATA = [
@@ -258,7 +256,6 @@ export const TEACHER_NAV_DATA = [
         path: "/app/academics/boards",
         icon: icons.Board,
       },
-     
     ],
   },
   // ACCOUNTS
@@ -298,8 +295,7 @@ export const TEACHER_NAV_DATA = [
       },
     ],
   },
-  
- 
+
   // SETTINGS
   {
     section: "SETTINGS",
@@ -309,7 +305,6 @@ export const TEACHER_NAV_DATA = [
         path: "/app/settings/profile",
         icon: icons.Profile,
       },
-      
     ],
   },
 ];
@@ -331,7 +326,8 @@ export const STUDENT_NAV_DATA = [
       },
       {
         name: "My Courses",
-        path: "/app/students/academics/subjects",
+        // path: "/app/students/academics/subjects",
+        path: "/app/students/courses",
         icon: icons.Book,
       },
       {
@@ -341,19 +337,21 @@ export const STUDENT_NAV_DATA = [
       },
       {
         name: "Live Classes",
-        path: "/app/students/academics/subjects",
+        // path: "/app/students/academics/subjects",
+        path: "/app/students/live-classes",
         icon: icons.Bulb,
       },
       {
+        name: "Certificates",
+        path: "/app/students/certificates",
+        icon: icons.certificates,
+      },
+      {
         name: "Profile",
-        path: "/app/students/settings/profile",
+        // path: "/app/students/settings/profile",
+        path: "/app/students/profile",
         icon: icons.Profile,
       },
     ],
   },
- 
-  
- 
 ];
-
-
