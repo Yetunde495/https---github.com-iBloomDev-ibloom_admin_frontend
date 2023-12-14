@@ -1,39 +1,58 @@
 // src/components/Accordion.tsx
-import React, { useState } from 'react';
-import { AiOutlineMinusCircle, AiOutlinePlusCircle } from 'react-icons/ai';
+import React, { useState } from "react";
+import { AiOutlineMinusCircle, AiOutlinePlusCircle } from "react-icons/ai";
+import { MdPlayCircleFilled } from "react-icons/md";
 
 interface AccordionProps {
-  items: { title: string; content: React.ReactNode }[];
+  items: {
+    title: string |  React.ReactNode;
+    content: React.ReactNode;
+    showIcon?: boolean;
+    accordionHeaderBg?: string;
+  }[];
 }
 
 const Accordion: React.FC<AccordionProps> = ({ items }) => {
-  const [openIndex, setOpenIndex] = useState<number | null>(0);
-
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+  // const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   const toggleItem = (index: number) => {
-    setOpenIndex((prevIndex) => (prevIndex === index ? -1 : index));
+    setOpenIndex((prevIndex) => (prevIndex === index ? null : index));
   };
+
+  // const toggleItem = (index: number) => {
+  //   setOpenIndex((prevIndex) => (prevIndex === index ? - 1 : index));
+  // };
 
   return (
     <div className="w-full">
-      {items.map((item, index) => (
-        <div key={index} className="mb-2 border-b border-stroke">
-          <button
-            onClick={() => toggleItem(index)}
-            className="w-full p-2 text-left bg-gray-200 flex justify-between items-center"
-          >
-            <span>{item.title}</span>
-            {openIndex === index ? (
-              <AiOutlineMinusCircle className="text-primary" size={22} />
-            ) : (
-              <AiOutlinePlusCircle className="text-primary" size={22} />
+      {items.map((item, index) => {
+        return (
+          <div key={index} className="mb-2">
+            <button
+              onClick={() => toggleItem(index)}
+              className="w-full py-2 text-left bg-gray-200 flex justify-between items-center"
+            >
+              <div className="flex ml-8 gap-2 items-center">
+                {item.showIcon && <MdPlayCircleFilled />}
+                <span style={{ color: item.accordionHeaderBg }}>
+                  {item.title}
+                </span>
+              </div>
+              {openIndex === index ? (
+                <AiOutlineMinusCircle className="text-primary mr-6" size={22} />
+              ) : (
+                <AiOutlinePlusCircle className="text-primary mr-6" size={22} />
+              )}
+            </button>
+            {openIndex === index && (
+              <div className="py-2  px-4 mx-4 text-sm bg-[#FAFAFA] border mt-2 border-slate-100 mb-5 rounded-md">
+                {item.content}
+              </div>
             )}
-          </button>
-          {openIndex === index && (
-            <div className="p-2">{item.content}</div>
-          )}
-        </div>
-      ))}
+          </div>
+        );
+      })}
     </div>
   );
 };
