@@ -14,7 +14,7 @@ import {
 } from "../../configurations/SliderConfig";
 import Layout from "../../layout/Layout";
 import { data, data2 } from "../Students/Dashboard";
-// import { LiveClassData } from "../AllComponents/liveClasses/UpcomingLiveClass";
+import { LiveClassData } from "../AllComponents/liveClasses/UpcomingLiveClass";
 import AvatarImg from "../../assets/images/Avatar.png";
 import Logo1 from "../../assets/images/University-logo.png";
 import Logo2 from "../../assets/images/Google-logo.png";
@@ -181,7 +181,7 @@ const Homepage: React.FC = () => {
               <a className="">See more</a>
             </div>
 
-            {/* <div className="w-full px-4 gap-6 grid lg:grid-cols-4 grid-cols-2">
+            <div className="w-full px-4 gap-6 grid lg:grid-cols-4 grid-cols-2">
               {LiveClassData.map((val: any, index: any) => (
                 <LiveClassCard
                   key={index}
@@ -197,7 +197,7 @@ const Homepage: React.FC = () => {
                   showButton={true}
                 />
               ))}
-            </div> */}
+            </div>
           </section>
         </section>
 

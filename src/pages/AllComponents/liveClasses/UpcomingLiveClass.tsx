@@ -4,7 +4,7 @@ import Avatar from "../../../assets/images/Avatar.png";
 import EmptyStateImage from "../../../assets/images/empty-courses.png";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
-const data = [
+export const LiveClassData = [
   {
     title: "Intro to Product Design",
     progress_url: "",
@@ -46,10 +46,10 @@ const data = [
 const UpcomingLiveClass = () => {
   return (
     <div className="w-full">
-      {data.length > 0 ? (
+      {LiveClassData.length > 0 ? (
         <>
           <div className="flex gap-3 lg:gap-6 flex-wrap py-4 mt-5 w-full">
-            {data.map((val, index) => (
+            {LiveClassData.map((val, index) => (
               <LiveClassCard
                 key={index}
                 title={val.title}
