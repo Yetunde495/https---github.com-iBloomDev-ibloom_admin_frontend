@@ -1,8 +1,7 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 // src/components/Accordion.tsx
 import React, { useState } from "react";
 import { AiOutlineMinusCircle, AiOutlinePlusCircle } from "react-icons/ai";
-
+import { MdPlayCircleFilled } from "react-icons/md";
 
 interface AccordionProps {
   items: {
@@ -10,26 +9,18 @@ interface AccordionProps {
     content: React.ReactNode;
     showIcon?: boolean;
     accordionHeaderBg?: string;
-    icon?: any;
   }[];
+  initialOpenIndex?: number | null;
 }
 
-const Accordion: React.FC<AccordionProps> = ({ items }) => {
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
-  // const [openIndex, setOpenIndex] = useState<number | null>(0);
+const Accordion: React.FC<AccordionProps> = ({ items, initialOpenIndex }) => {
+  const [openIndex, setOpenIndex] = useState<number | null>(
+    initialOpenIndex !== undefined ? Number(initialOpenIndex) : null
+  );
 
   const toggleItem = (index: number) => {
     setOpenIndex((prevIndex) => (prevIndex === index ? null : index));
-    setOpenIndex((prevIndex) => (prevIndex === index ? null : index));
   };
-
-  // const toggleItem = (index: number) => {
-  //   setOpenIndex((prevIndex) => (prevIndex === index ? - 1 : index));
-  // };
-
-  // const toggleItem = (index: number) => {
-  //   setOpenIndex((prevIndex) => (prevIndex === index ? - 1 : index));
-  // };
 
   return (
     <div className="w-full">
@@ -41,7 +32,7 @@ const Accordion: React.FC<AccordionProps> = ({ items }) => {
               className="w-full py-2 text-left bg-gray-200 flex justify-between items-center"
             >
               <div className="flex ml-8 gap-2 items-center">
-                {item.showIcon && item.icon}
+                {item.showIcon && <MdPlayCircleFilled />}
                 <span style={{ color: item.accordionHeaderBg }}>
                   {item.title}
                 </span>

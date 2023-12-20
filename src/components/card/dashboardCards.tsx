@@ -2,7 +2,7 @@ import React from "react";
 
 interface DashboardCardProps {
   title?: string;
-  number?: number;
+  number?: number | string;
 }
 
 const DashboardCard: React.FC<DashboardCardProps> = ({ title, number }) => {

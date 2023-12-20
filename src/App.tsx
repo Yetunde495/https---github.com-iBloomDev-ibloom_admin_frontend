@@ -58,6 +58,11 @@ const App = () => {
                 path="tutors/dashboard"
                 element={<TutorsPages.Dashboard />}
               />
+              <Route path="tutors/courses" element={<TutorsPages.Courses />} />
+              <Route
+                path="tutors/courses/courseupload"
+                element={<TutorsPages.CourseUpload />}
+              />
             </Route>
           </Routes>
         </Router>

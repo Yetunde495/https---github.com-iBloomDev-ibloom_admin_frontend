@@ -2,6 +2,7 @@ import { Link, useNavigate, useNavigation } from "react-router-dom";
 import ProgressBar from "../ProgressBar";
 import { IoIosArrowRoundForward } from "react-icons/io";
 import { FaCircle } from "react-icons/fa";
+import { IoMdMore } from "react-icons/io";
 
 export const ProgressCourseCard: React.FC<InProgressCourseCardData> = ({
   title,
@@ -278,5 +279,36 @@ export const CategoryCard: React.FC<CategoryCardProps> = ({
         <p>{title}</p>
       </div>
     </figure>
+  );
+};
+
+export const TutorCourseCard: React.FC<TutorCourseDataProps> = ({
+  title,
+  preview_img_url,
+  course_url,
+  coursePrice,
+}) => {
+  const navigate = useNavigate();
+  const cardStyle = {
+    backgroundImage: `url("${preview_img_url}")`,
+    borderRadius: "6px",
+    backgroundSize: "cover", // Adjust this according to your needs
+  };
+  return (
+    <div className=" cursor-pointer w-full flex flex-col md:h-full hover:bg-white p-4 rounded-lg transition duration-300 ease-in-out transform hover:shadow-lg">
+      <div className={`w-full sm:h-[150px] h-[120px]`} style={cardStyle}></div>
+
+      <div className="px-3 py-3 relative">
+        <div className="mb-2">
+          <div className="pb-2 flex justify-between items-center">
+            <h4 className="text-sm font-medium">{title}</h4>
+            <p className={`text-lg font-medium`}>
+              <IoMdMore />
+            </p>
+          </div>
+          <p className={`text-lg font-semibold`}>{coursePrice}</p>
+        </div>
+      </div>
+    </div>
   );
 };
