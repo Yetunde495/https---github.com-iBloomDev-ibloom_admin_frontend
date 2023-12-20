@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from "react";
 import { BsPersonAdd, BsFiletypeXlsx } from "react-icons/bs";
 import { FiFilter, FiDownloadCloud } from "react-icons/fi";
@@ -77,7 +78,7 @@ export const ButtonEvent: React.FC<ButtonEventProps> = ({
       <AiFillDelete />
     ) : variant === "view" ? (
       <AiOutlineFolderView />
-    ) : variant === "" ? (
+    ) : variant === "edit" ? (
       <BiEdit />
     ) : (
       <AiOutlinePlus />
@@ -108,18 +109,16 @@ export default function Button({
   width,
   height,
 }: ButtonProps) {
-  let cls = classNames
-    ? "flex justify-center gap-4.5 " + classNames
-    : "flex justify-center gap-4.5";
-  let bgColor =
+  const cls = classNames
+  const bgColor =
     variant === "primary"
-      ? "bg-[#60b801] text-white"
+      ? "bg-primary  text-white"
       : variant === "secondary"
       ? "bg-[#00112c] text-white"
       : variant === "danger"
       ? "bg-meta-1 text-white"
       : variant === "link"
-      ? "bg-transparent text-black border-b-2 border-[#60b801] rounded-none py-0"
+      ? "bg-transparent text-black border-b-2 border-primary rounded-none py-0"
       : "bg-gray text-black";
   let btnCls = `flex justify-center transition disabled:opacity-65 opacity-95 hover:opacity-100 ${bgColor} rounded-md py-2 px-6 font-medium `;
   // btnCls = size === 'xsm' ? btnCls +' w-10' : size === 'sm' ? btnCls +' w-32' : size === 'md' ? btnCls + ' w-64' : size === 'lg' ? btnCls + ' w-128': btnCls + ' w-100';
@@ -128,7 +127,6 @@ export default function Button({
   btnCls = height ? btnCls + " h-" + height : btnCls;
 
   return (
-    <div className={cls}>
       <button
         disabled={disabled}
         aria-disabled={disabled}
@@ -139,6 +137,5 @@ export default function Button({
       >
         {text || children}
       </button>
-    </div>
   );
 }

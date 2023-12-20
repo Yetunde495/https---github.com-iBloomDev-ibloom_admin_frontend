@@ -2,6 +2,8 @@ import { Link, useNavigate, useNavigation } from "react-router-dom";
 import ProgressBar from "../ProgressBar";
 import { IoIosArrowRoundForward } from "react-icons/io";
 import { FaCircle } from "react-icons/fa";
+import { IoIosArrowRoundForward } from "react-icons/io";
+import { FaCircle } from "react-icons/fa";
 
 export const ProgressCourseCard: React.FC<InProgressCourseCardData> = ({
   title,
@@ -9,6 +11,8 @@ export const ProgressCourseCard: React.FC<InProgressCourseCardData> = ({
   progress,
   progress_bookmark,
   progress_url,
+  customBackgroundColor,
+  textColor,
   customBackgroundColor,
   textColor,
 }) => {
@@ -63,6 +67,7 @@ export const CourseCard: React.FC<CourseData> = ({
       <div
         className={`md:w-[40%] w-full sm:h-[150px] lg:h-full h-[120px]  `}
         style={cardStyle}
+      ></div>
       ></div>
 
       <div className="px-3 py-3 relative">

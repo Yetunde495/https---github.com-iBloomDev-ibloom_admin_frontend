@@ -11,14 +11,14 @@ import LiveComment from "./pages/AllComponents/liveClasses/LiveComment";
 import CourseDesc from "./pages/AllComponents/CourseDesc";
 
 const App = () => {
-  const [loading, setLoading] = useState(true);
+  // const [loading, setLoading] = useState(true);
   const preloader = document.getElementById("preloader");
   // const { token } = user || {};
 
   if (preloader) {
     setTimeout(() => {
       preloader.style.display = "none";
-      setLoading(false);
+      // setLoading(false);
     }, 1000);
   }
 

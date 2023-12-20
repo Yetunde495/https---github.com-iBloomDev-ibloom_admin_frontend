@@ -56,11 +56,24 @@ declare global {
     time?: string;
     liveDuration?: string;
     showIcon?: boolean;
+    showButton?: boolean;
     stateBtnTextCustomBgColor: string;
     creator: {
       name: string;
       photo: string;
     }[];
+  }
+
+  interface TestimonialCardData {
+    name: string;
+    text: string;
+    role?: string;
+    image: string;
+  }
+  interface CategoryCardProps {
+    title: string;
+    link: string;
+    bgColor?: string;
   }
 
   interface ForgotPasswordObj {

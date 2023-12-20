@@ -2,14 +2,13 @@ import { ProgressCourseCard, CourseCard } from "../../components/card";
 import DashboardCard from "../../components/card/dashboardCards";
 import DefaultLayout from "../../layout/DefaultLayout";
 import PreviewImg from "../../assets/images/Image.png";
-import CourseSlider from "../../components/Slider";
 import Slider from "react-slick";
 import {
   ProgressCourseSlidersettings,
   Slidersettings,
 } from "../../configurations/SliderConfig";
 
-export const data = [
+const data = [
   {
     title: "Intro to Product Design",
     progress: 60,
@@ -36,7 +35,7 @@ export const data = [
   },
 ];
 
-export const data2 = [
+const data2 = [
   {
     title: "Intro to Product Design",
     progress: 60,
@@ -99,7 +98,7 @@ export const data2 = [
   },
 ];
 
-export default function StudentDashboard() {
+export default function TutorDashboard() {
   return (
     <DefaultLayout>
       <section className="py-3 px-6 dark:bg-boxdark">

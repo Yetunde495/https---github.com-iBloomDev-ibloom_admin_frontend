@@ -17,10 +17,17 @@ interface AccordionProps {
 const Accordion: React.FC<AccordionProps> = ({ items }) => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   // const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+  // const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   const toggleItem = (index: number) => {
     setOpenIndex((prevIndex) => (prevIndex === index ? null : index));
+    setOpenIndex((prevIndex) => (prevIndex === index ? null : index));
   };
+
+  // const toggleItem = (index: number) => {
+  //   setOpenIndex((prevIndex) => (prevIndex === index ? - 1 : index));
+  // };
 
   // const toggleItem = (index: number) => {
   //   setOpenIndex((prevIndex) => (prevIndex === index ? - 1 : index));
