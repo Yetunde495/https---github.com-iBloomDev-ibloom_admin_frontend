@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import Slider from "react-slick";
 import Button from "../../components/button";
 import {
@@ -7,10 +8,13 @@ import {
   LiveClassCard,
   TestimonialCard,
 } from "../../components/card";
-import { CategorySlidersettings, Slidersettings } from "../../configurations/SliderConfig";
+import {
+  CategorySlidersettings,
+  Slidersettings,
+} from "../../configurations/SliderConfig";
 import Layout from "../../layout/Layout";
 import { data, data2 } from "../Students/Dashboard";
-import { LiveClassData } from "../AllComponents/liveClasses/UpcomingLiveClass";
+// import { LiveClassData } from "../AllComponents/liveClasses/UpcomingLiveClass";
 import AvatarImg from "../../assets/images/Avatar.png";
 import Logo1 from "../../assets/images/University-logo.png";
 import Logo2 from "../../assets/images/Google-logo.png";
@@ -19,7 +23,13 @@ import Logo4 from "../../assets/images/amazon-logo.png";
 import { Testimonials, categories } from "../../data/mockData";
 
 const Homepage: React.FC = () => {
-  const colors = ['[#FFFEDF]', '[#FFDFDF]', '[#E2FFDF]', '[#DFF4FF]', '[#E0DFFF]'];
+  const colors = [
+    "[#FFFEDF]",
+    "[#FFDFDF]",
+    "[#E2FFDF]",
+    "[#DFF4FF]",
+    "[#E0DFFF]",
+  ];
   let colorIndex = 0;
 
   const getNextColor = () => {
@@ -73,9 +83,11 @@ const Homepage: React.FC = () => {
 
         <section className="mx-auto flex py-10">
           <div className="flex flex-col justify-center items-center w-full">
-            <h3 className="mb-5 font-semibold md:text-2xl text-xl">Explore Categories</h3>
+            <h3 className="mb-5 font-semibold md:text-2xl text-xl">
+              Explore Categories
+            </h3>
             <div className="w-full">
-            <Slider {...CategorySlidersettings}>
+              <Slider {...CategorySlidersettings}>
                 {categories.map((val, index) => (
                   <CategoryCard
                     key={index}
@@ -84,7 +96,7 @@ const Homepage: React.FC = () => {
                     bgColor={`bg-${getNextColor()}`}
                   />
                 ))}
-              </Slider> 
+              </Slider>
             </div>
           </div>
         </section>
@@ -164,13 +176,13 @@ const Homepage: React.FC = () => {
           <section className="py-8">
             <div className="flex justify-between items-center relative mb-4 mx-auto">
               <h1 className="text-xl sm:text-2xl font-semibold tracking-wide ml-5">
-              Live Classes
+                Live Classes
               </h1>
               <a className="">See more</a>
             </div>
 
-            <div className="w-full px-4 gap-6 grid lg:grid-cols-4 grid-cols-2">
-              {LiveClassData.map((val, index) => (
+            {/* <div className="w-full px-4 gap-6 grid lg:grid-cols-4 grid-cols-2">
+              {LiveClassData.map((val: any, index: any) => (
                 <LiveClassCard
                   key={index}
                   title={val.title}
@@ -185,14 +197,16 @@ const Homepage: React.FC = () => {
                   showButton={true}
                 />
               ))}
-            </div>
+            </div> */}
           </section>
         </section>
 
         {/* Testimonial Section */}
         <section className="mx-auto p-8 flex justify-center py-8 bg-white mb-12">
           <div className="xl:max-w-7xl mx-auto lg:p-8">
-            <h3 className="mb-8 text-center text-2xl font-semibold tracking-wide">Testimonials</h3>
+            <h3 className="mb-8 text-center text-2xl font-semibold tracking-wide">
+              Testimonials
+            </h3>
             <div className="grid lg:grid-cols-2 grid-cols-1 gap-6">
               {Testimonials.map((val, index) => (
                 <TestimonialCard
