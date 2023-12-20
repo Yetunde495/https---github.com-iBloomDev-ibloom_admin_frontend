@@ -2,8 +2,6 @@ import { Link, useNavigate, useNavigation } from "react-router-dom";
 import ProgressBar from "../ProgressBar";
 import { IoIosArrowRoundForward } from "react-icons/io";
 import { FaCircle } from "react-icons/fa";
-import { IoIosArrowRoundForward } from "react-icons/io";
-import { FaCircle } from "react-icons/fa";
 
 export const ProgressCourseCard: React.FC<InProgressCourseCardData> = ({
   title,
@@ -11,8 +9,6 @@ export const ProgressCourseCard: React.FC<InProgressCourseCardData> = ({
   progress,
   progress_bookmark,
   progress_url,
-  customBackgroundColor,
-  textColor,
   customBackgroundColor,
   textColor,
 }) => {
@@ -68,7 +64,6 @@ export const CourseCard: React.FC<CourseData> = ({
         className={`md:w-[40%] w-full sm:h-[150px] lg:h-full h-[120px]  `}
         style={cardStyle}
       ></div>
-      ></div>
 
       <div className="px-3 py-3 relative">
         <div className="">
@@ -93,6 +88,57 @@ export const CourseCard: React.FC<CourseData> = ({
             {tag}
           </span>
         </div>
+      </div>
+    </div>
+  );
+};
+
+export const CourseCard2: React.FC<CourseData> = ({
+  title,
+  preview_img_url,
+  duration,
+  creator,
+  course_url,
+  tag,
+}) => {
+  const navigate = useNavigate();
+  const cardStyle = {
+    backgroundImage: `url("${preview_img_url}")`,
+    backgroundSize: "cover", // Adjust this according to your needs
+  };
+  return (
+    <div className=" cursor-pointer w-full flex flex-col md:h-full">
+      <div className={`w-full sm:h-[150px] h-[120px]`} style={cardStyle}></div>
+
+      <div className="px-3 py-3 relative">
+        <div className="mb-2">
+          <h4 className="text-lg font-bold">{title}</h4>
+          {/* <small className="text-sm font-medium">{creator.name}</small> */}
+          <div className="flex gap-2 items-center">
+            <span className="h-8 w-8 rounded-full">
+              <img
+                src={creator.photo}
+                className="rounded-full object-cover h-full w-full "
+              />
+            </span>
+            <small className="text-sm font-medium">{creator.name}</small>
+          </div>
+        </div>
+
+        <div className="mb-3 pb-2 flex justify-between items-center">
+          <p className={`text-lg font-semibold`}>$45.00</p>
+          <p
+            className={`text-sm font-medium text-danger bg-danger/10 rounded-xl px-3 py-1 `}
+          >
+            -15%
+          </p>
+        </div>
+
+        {/* <div className="px-1">
+          <span className={`text-sm py-1 px-4 rounded-sm bg-[#F8A33F]`}>
+            {tag}
+          </span>
+        </div> */}
       </div>
     </div>
   );
@@ -184,5 +230,53 @@ export const LiveClassCard: React.FC<LiveClassCardData> = ({
         </div>
       </div>
     </div>
+  );
+};
+
+export const TestimonialCard: React.FC<TestimonialCardData> = ({
+  text,
+  name,
+  role,
+  image,
+}) => {
+  return (
+    <figure className="md:flex bg-white/90 rounded-xl p-8 md:p-0 ">
+      <img
+        className="w-24 h-24 md:w-48 md:h-auto md:rounded-xl rounded-full mx-auto object-cover"
+        src={image}
+        alt=""
+        width="384"
+        height="512"
+      />
+      <div className="lg:pt-1 md:p-8 text-center md:text-left space-y-4">
+        <blockquote>
+          <p className="text-lg">{text}</p>
+        </blockquote>
+        <figcaption className="font-medium">
+          <div className="text-sky-500 dark:text-sky-400">{name}</div>
+          <div className="text-slate-700 dark:text-slate-500">{role}</div>
+        </figcaption>
+      </div>
+    </figure>
+  );
+};
+
+export const CategoryCard: React.FC<CategoryCardProps> = ({
+  title,
+  link,
+  bgColor,
+}) => {
+  const navigate = useNavigate();
+  return (
+    <figure
+      className="rounded-xl w-64 h-40 "
+      onClick={() => navigate(`${link}`)}
+    >
+      <div className={`w-full  h-2/3 mx-auto object-cover ${bgColor}`}></div>
+
+      <div className="p-3  text-center bg-white flex justify-center items-center">
+        <p>{title}</p>
+      </div>
+    </figure>
   );
 };
