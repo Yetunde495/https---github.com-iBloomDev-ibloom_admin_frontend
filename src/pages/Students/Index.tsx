@@ -8,12 +8,9 @@ import Profile from "./Profile";
 function Index() {}
 
 Index.Dashboard = StudentDashboard;
+Index.Courses = StudentCourses;
+Index.LiveClasses = LiveClasses;
 Index.Profile = Profile;
 Index.Certificates = Certificates;
-Index.LiveClasses = LiveClasses;
-Index.Courses = StudentCourses;
-
-
-
 
 export default Index;

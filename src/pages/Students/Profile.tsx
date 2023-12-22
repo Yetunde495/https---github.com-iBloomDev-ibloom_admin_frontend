@@ -31,7 +31,7 @@ const Profile = () => {
       ...formData,
       gender: selectedValue,
     });
-    console.log(selectedValue);
+    // console.log(selectedValue);
   };
 
   return (

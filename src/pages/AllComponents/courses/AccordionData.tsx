@@ -48,7 +48,12 @@ const AccordionData = () => {
           >
             <Accordion
               items={[
-                { title: data.title, content: data.content, showIcon: true },
+                {
+                  title: data.title,
+                  content: data.content,
+                  showIcon: true,
+                  icon: <MdPlayCircleFilled />,
+                },
               ]}
             />
           </div>

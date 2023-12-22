@@ -2,6 +2,7 @@ import { Link, useNavigate, useNavigation } from "react-router-dom";
 import ProgressBar from "../ProgressBar";
 import { IoIosArrowRoundForward } from "react-icons/io";
 import { FaCircle } from "react-icons/fa";
+import { IoMdMore } from "react-icons/io";
 
 export const ProgressCourseCard: React.FC<InProgressCourseCardData> = ({
   title,
@@ -92,6 +93,7 @@ export const CourseCard: React.FC<CourseData> = ({
     </div>
   );
 };
+
 export const CourseCard2: React.FC<CourseData> = ({
   title,
   preview_img_url,
@@ -154,14 +156,13 @@ export const LiveClassCard: React.FC<LiveClassCardData> = ({
   time,
   liveDuration,
   showIcon,
-  showButton = false,
   stateBtnTextCustomBgColor,
 }) => {
   const navigate = useNavigate();
   return (
     <div className="mx-2 sm:mx-0 w-auto relative rounded-md h-full pb-2 ">
       <div className="w-full relative">
-        <img src={preview_img_url} className="w-full h-30 rounded-md object-cover" />
+        <img src={preview_img_url} className="w-full h-30 rounded-md" />
         {liveDuration ? (
           <div className="absolute right-5 bottom-4 text-zinc-400 text-xs rounded-md bg-white px-2 py-1">
             <p>Started: {liveDuration}</p>
@@ -172,7 +173,7 @@ export const LiveClassCard: React.FC<LiveClassCardData> = ({
       </div>
       <div className="">
         <div className="flex sm:justify-between flex-col px-1 sm:pt-2">
-         {!showButton && <div>
+          <div>
             <button
               className="rounded-full gap-1  py-2 px-3 text-white h-5 text-xs items-center text-center flex justify-center"
               style={{ backgroundColor: stateBtnTextCustomBgColor }}
@@ -181,7 +182,7 @@ export const LiveClassCard: React.FC<LiveClassCardData> = ({
 
               {stateBtnText}
             </button>
-          </div>}
+          </div>
 
           <div className="mt-2">
             <h4 className="lg:text-lg text-base font-bold ">{title}</h4>
@@ -220,22 +221,13 @@ export const LiveClassCard: React.FC<LiveClassCardData> = ({
         </div>
 
         <div className="px-1 w-full">
-          {showButton ? (
-            <button
-              onClick={() => navigate(course_url)}
-              className="w-full py-3 px-4 border border-primary rounded-md mt-3 text-primary font-medium hover:bg-primary hover:text-white"
-            >
-              RSVP Class
-            </button>
-          ) : (
-            <button
-              onClick={() => navigate(course_url)}
-              className="sm:text-base text-sm  flex items-center gap-2  text-primary"
-            >
-              {card_action_text}
-              <IoIosArrowRoundForward />
-            </button>
-          )}
+          <button
+            onClick={() => navigate(course_url)}
+            className="sm:text-base text-sm  flex items-center gap-2  text-primary"
+          >
+            {card_action_text}
+            <IoIosArrowRoundForward />
+          </button>
         </div>
       </div>
     </div>
@@ -269,21 +261,54 @@ export const TestimonialCard: React.FC<TestimonialCardData> = ({
     </figure>
   );
 };
+
 export const CategoryCard: React.FC<CategoryCardProps> = ({
   title,
   link,
-  bgColor
+  bgColor,
 }) => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   return (
-    <figure className="rounded-xl w-64 h-40 " onClick={() => navigate(`${link}`)}>
-      <div className={`w-full  h-2/3 mx-auto object-cover ${bgColor}`}>
+    <figure
+      className="rounded-xl w-64 h-40 "
+      onClick={() => navigate(`${link}`)}
+    >
+      <div className={`w-full  h-2/3 mx-auto object-cover ${bgColor}`}></div>
 
-      </div>
-       
       <div className="p-3  text-center bg-white flex justify-center items-center">
         <p>{title}</p>
       </div>
     </figure>
+  );
+};
+
+export const TutorCourseCard: React.FC<TutorCourseDataProps> = ({
+  title,
+  preview_img_url,
+  course_url,
+  coursePrice,
+}) => {
+  const navigate = useNavigate();
+  const cardStyle = {
+    backgroundImage: `url("${preview_img_url}")`,
+    borderRadius: "6px",
+    backgroundSize: "cover", // Adjust this according to your needs
+  };
+  return (
+    <div className=" cursor-pointer w-full flex flex-col md:h-full hover:bg-white p-4 rounded-lg transition duration-300 ease-in-out transform hover:shadow-lg">
+      <div className={`w-full sm:h-[150px] h-[120px]`} style={cardStyle}></div>
+
+      <div className="px-3 py-3 relative">
+        <div className="mb-2">
+          <div className="pb-2 flex justify-between items-center">
+            <h4 className="text-sm font-medium">{title}</h4>
+            <p className={`text-lg font-medium`}>
+              <IoMdMore />
+            </p>
+          </div>
+          <p className={`text-lg font-semibold`}>{coursePrice}</p>
+        </div>
+      </div>
+    </div>
   );
 };

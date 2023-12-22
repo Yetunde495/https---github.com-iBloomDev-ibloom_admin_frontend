@@ -76,6 +76,13 @@ declare global {
     bgColor?: string;
   }
 
+  interface TutorCourseDataProps {
+    preview_img_url: string;
+    title: string;
+    course_url?: string;
+    coursePrice: string | number;
+  }
+
   interface ForgotPasswordObj {
     email: string;
   }

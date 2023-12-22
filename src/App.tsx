@@ -5,6 +5,7 @@ import "./App.css";
 import Components from "./pages/components";
 import RouteLayout from "./layout/RouteLayout";
 import StudentPages from "./pages/Students/Index";
+import TutorsPages from "./pages/Tutors/Index";
 import CourseProgress from "./pages/AllComponents/courses/CourseProgress";
 import Homepage from "./pages/Landing/Index";
 import LiveComment from "./pages/AllComponents/liveClasses/LiveComment";
@@ -53,6 +54,15 @@ const App = () => {
                 <Route index element={<StudentPages.LiveClasses />} />
                 <Route path="ongoing-class/:id" element={<LiveComment />} />
               </Route>
+              <Route
+                path="tutors/dashboard"
+                element={<TutorsPages.Dashboard />}
+              />
+              <Route path="tutors/courses" element={<TutorsPages.Courses />} />
+              <Route
+                path="tutors/courses/courseupload"
+                element={<TutorsPages.CourseUpload />}
+              />
             </Route>
           </Routes>
         </Router>

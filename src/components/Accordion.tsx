@@ -5,24 +5,22 @@ import { MdPlayCircleFilled } from "react-icons/md";
 
 interface AccordionProps {
   items: {
-    title: string |  React.ReactNode;
+    title: string | React.ReactNode;
     content: React.ReactNode;
     showIcon?: boolean;
     accordionHeaderBg?: string;
   }[];
+  initialOpenIndex?: number | null;
 }
 
-const Accordion: React.FC<AccordionProps> = ({ items }) => {
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
-  // const [openIndex, setOpenIndex] = useState<number | null>(0);
+const Accordion: React.FC<AccordionProps> = ({ items, initialOpenIndex }) => {
+  const [openIndex, setOpenIndex] = useState<number | null>(
+    initialOpenIndex !== undefined ? Number(initialOpenIndex) : null
+  );
 
   const toggleItem = (index: number) => {
     setOpenIndex((prevIndex) => (prevIndex === index ? null : index));
   };
-
-  // const toggleItem = (index: number) => {
-  //   setOpenIndex((prevIndex) => (prevIndex === index ? - 1 : index));
-  // };
 
   return (
     <div className="w-full">

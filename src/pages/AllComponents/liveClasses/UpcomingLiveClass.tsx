@@ -1,22 +1,10 @@
-import PreviewImg from "../../../assets/images/liveClass-img.png";
+import PreviewImg from "../../../assets/images/Image.png";
 import { LiveClassCard } from "../../../components/card";
 import Avatar from "../../../assets/images/Avatar.png";
 import EmptyStateImage from "../../../assets/images/empty-courses.png";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
 export const LiveClassData = [
-  {
-    title: "Intro to Product Design",
-    progress_url: "",
-    preview_img_url: PreviewImg,
-    progress_bookmark: "2. Basics of Product Design",
-    stateBtnText: "Commin Soon",
-    card_action_text: "RSVPClass",
-    course_url: "",
-    liveDuration: "",
-    date: "25th, Nov",
-    time: "16:00PM GMT+1",
-  },
   {
     title: "Intro to Product Design",
     progress_url: "",

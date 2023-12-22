@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from "react";
 import { BsPersonAdd, BsFiletypeXlsx } from "react-icons/bs";
 import { FiFilter, FiDownloadCloud } from "react-icons/fi";
@@ -77,7 +78,7 @@ export const ButtonEvent: React.FC<ButtonEventProps> = ({
       <AiFillDelete />
     ) : variant === "view" ? (
       <AiOutlineFolderView />
-    ) : variant === "" ? (
+    ) : variant === "edit" ? (
       <BiEdit />
     ) : (
       <AiOutlinePlus />
@@ -108,8 +109,8 @@ export default function Button({
   width,
   height,
 }: ButtonProps) {
-  let cls = classNames
-  let bgColor =
+  const cls = classNames
+  const bgColor =
     variant === "primary"
       ? "bg-primary  text-white"
       : variant === "secondary"
