@@ -1,5 +1,5 @@
 //eslint-disable-next-line
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 // import {GrLocation} from 'react-icons/gr'
 import { BiChevronDown } from "react-icons/bi";
 import { AiOutlineSearch } from "react-icons/ai";
@@ -75,18 +75,18 @@ import { AiOutlineSearch } from "react-icons/ai";
 // }
 
 const DropdownSelect = ({ }) => {
-  const [countries, setCountries] = useState([]);
+  // const [countries, setCountries] = useState([]);
   const [inputValue, setInputValue] = useState("");
-  const [selected, setSelected] = useState("");
+  const [selected] = useState("");
   const [open, setOpen] = useState(false);
 
-  useEffect(() => {
-    fetch("https://restcountries.com/v2/all?fields=name")
-      .then((res) => res.json())
-      .then((data) => {
-        setCountries(data);
-      });
-  }, []);
+  // useEffect(() => {
+  //   fetch("https://restcountries.com/v2/all?fields=name")
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       setCountries(data);
+  //     });
+  // }, []);
   return (
     <div className="w-72 font-medium h-80">
       <div
@@ -117,7 +117,7 @@ const DropdownSelect = ({ }) => {
             className="placeholder:text-gray-700 p-2 outline-none"
           />
         </div>
-        {countries !== null && countries?.map((country:any) => (
+        {/* {countries !== null && countries?.map((country:any) => (
           <li
             key={country?.name}
             className={`p-2 text-sm hover:bg-sky-600 hover:text-white
@@ -140,7 +140,7 @@ const DropdownSelect = ({ }) => {
           >
             {country?.name}
           </li>
-        ))}
+        ))} */}
       </ul>
     </div>
   );
