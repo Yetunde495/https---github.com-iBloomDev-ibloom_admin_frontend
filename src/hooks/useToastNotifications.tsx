@@ -1,4 +1,3 @@
-import React from 'react';
 import { toast, ToastContainer, ToastOptions } from 'react-toastify';
 
 // Toast configuration options

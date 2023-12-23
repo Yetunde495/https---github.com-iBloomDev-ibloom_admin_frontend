@@ -13,7 +13,7 @@ import {
   Slidersettings,
 } from "../../configurations/SliderConfig";
 import Layout from "../../layout/Layout";
-import { data, data2 } from "../Students/Dashboard";
+import { data2 } from "../Students/Dashboard";
 import { LiveClassData } from "../AllComponents/liveClasses/UpcomingLiveClass";
 import AvatarImg from "../../assets/images/Avatar.png";
 import Logo1 from "../../assets/images/University-logo.png";

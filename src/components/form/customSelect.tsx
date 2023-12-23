@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React from "react";
-import { Control, FieldValues, useController } from "react-hook-form";
+import { useController } from "react-hook-form";
 
 type SelectProps = {
   label: string;

@@ -1,4 +1,5 @@
-import React, { useState, useRef, useEffect } from 'react'
+//eslint-disable-next-line
+import { useState, useRef, useEffect } from 'react'
 import userSeven from '../images/user/user-07.png'
 import userEight from '../images/user/user-08.png'
 import userNine from '../images/user/user-09.png'
@@ -8,35 +9,43 @@ import userTen from '../images/user/user-10.png'
 const TaskHeader = () => {
   const [popupOpen, setPopupOpen] = useState(false);
 
-  const trigger = useRef(null)
-  const popup = useRef(null)
+  // const trigger = useRef(null)
+  // const popup = useRef(null)
 
-  // close on click outside
+  const trigger = useRef<HTMLButtonElement | null>(null);
+  const popup = useRef<HTMLDivElement | null>(null);
+
+ 
+  
   useEffect(() => {
-    const clickHandler = ({ target }) => {
-      if (!popup.current) return
-      if (
-        !popupOpen ||
-        popup.current.contains(target) ||
-        trigger.current.contains(target)
-      )
-        return
-      setPopupOpen(false)
-    }
-    document.addEventListener('click', clickHandler)
-    return () => document.removeEventListener('click', clickHandler)
-  }, [])
+    const clickHandler = ({ target }: any) => {
+      if (!popup.current) return;
+      if (trigger.current && trigger.current.contains(target)) {
+        // Handle trigger click
+        return;
+      }
+      if (popup.current.contains(target)) return;
+      setPopupOpen(false);
+    };
+
+    document.addEventListener("click", clickHandler);
+
+    return () => {
+      if (trigger.current) {
+        document.removeEventListener("click", clickHandler);
+      }
+    };
+  }, [setPopupOpen]);
 
   // close if the esc key is pressed
   useEffect(() => {
-    const keyHandler = ({ keyCode }) => {
-      if (!popupOpen || keyCode !== 27) return
-      setPopupOpen(false)
-    }
-    document.addEventListener('keydown', keyHandler)
-    return () => document.removeEventListener('keydown', keyHandler)
-  }, [])
-
+    const keyHandler = ({ keyCode }: any) => {
+      if (!popupOpen || keyCode !== 27) return;
+      setPopupOpen(false);
+    };
+    document.addEventListener("keydown", keyHandler);
+    return () => document.removeEventListener("keydown", keyHandler);
+  }, []);
   return (
     <div className='flex flex-col gap-y-4 rounded-sm border border-stroke bg-white p-3 shadow-default dark:border-strokedark dark:bg-boxdark sm:flex-row sm:items-center sm:justify-between'>
       <div>

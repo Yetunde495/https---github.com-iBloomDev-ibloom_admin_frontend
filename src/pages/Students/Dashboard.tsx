@@ -2,7 +2,6 @@ import { ProgressCourseCard, CourseCard } from "../../components/card";
 import DashboardCard from "../../components/card/dashboardCards";
 import DefaultLayout from "../../layout/DefaultLayout";
 import PreviewImg from "../../assets/images/Image.png";
-import CourseSlider from "../../components/Slider";
 import Slider from "react-slick";
 import {
   ProgressCourseSlidersettings,

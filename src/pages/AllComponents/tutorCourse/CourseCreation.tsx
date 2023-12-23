@@ -1,9 +1,10 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import Button from "../../../components/button";
 import EmptyStateImage from "../../../assets/images/empty-courses.png";
 import Accordion from "../../../components/Accordion";
 import { InputField } from "../../../components/form";
-import { HiOutlineDocumentText } from "react-icons/hi2";
-import { RxCross2 } from "react-icons/rx";
+// import { HiOutlineDocumentText } from "react-icons/hi2";
+// import { RxCross2 } from "react-icons/rx";
 import { SingleFileUploadWithProgress } from "./FileUpload";
 
 const CourseCreation = () => {
@@ -20,7 +21,7 @@ const CourseCreation = () => {
                 <div className="pb-10">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-y-5 gap-x-15 mt-10 pb-10">
                     <InputField
-                      onChange={function (value: string): void {
+                      onChange={function (): void {
                         throw new Error("Function not implemented.");
                       }}
                       label="Video Name"
@@ -29,7 +30,7 @@ const CourseCreation = () => {
                     />
 
                     <InputField
-                      onChange={function (value: string): void {
+                      onChange={function (): void {
                         throw new Error("Function not implemented.");
                       }}
                       label="Duration"
@@ -55,7 +56,7 @@ const CourseCreation = () => {
                 <div className="pb-10">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-y-5 gap-x-15 mt-10 pb-10">
                     <InputField
-                      onChange={function (value: string): void {
+                      onChange={function (): void {
                         throw new Error("Function not implemented.");
                       }}
                       label="Video Name"
@@ -64,7 +65,7 @@ const CourseCreation = () => {
                     />
 
                     <InputField
-                      onChange={function (value: string): void {
+                      onChange={function (): void {
                         throw new Error("Function not implemented.");
                       }}
                       label="Duration"

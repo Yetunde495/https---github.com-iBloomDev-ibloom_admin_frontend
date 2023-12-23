@@ -1,6 +1,6 @@
-import { useState, Fragment } from "react";
+import { Fragment } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { AppProvider, useApp } from "./context/AppContext";
+import { AppProvider } from "./context/AppContext";
 import "./App.css";
 import Components from "./pages/components";
 import RouteLayout from "./layout/RouteLayout";

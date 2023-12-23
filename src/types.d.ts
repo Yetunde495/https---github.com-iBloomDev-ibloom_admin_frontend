@@ -6,6 +6,29 @@ export {};
 declare global {
   type UserType = "patients" | "consultants";
 
+  
+interface User {
+  id: string;
+  username: string;
+  first_name: string;
+  last_name: string;
+  role: string;
+  email: string;
+  user_type: string;
+  last_login: string;
+  is_o2auth: boolean;
+  auth_provider: string;
+  is_verified: boolean;
+  account_is_suspended: boolean;
+  account_suspension_date: string;
+  account_is_deleted: boolean;
+  status: string;
+  organisation_id: string;
+  token: string;
+  refresh_token: string;
+  photo: string;
+}
+
   interface SharedUserInfo {
     first_name: string;
     last_name: string;

@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React from "react";
 import { BsPersonAdd, BsFiletypeXlsx } from "react-icons/bs";
-import { FiFilter, FiDownloadCloud } from "react-icons/fi";
+import { FiDownloadCloud } from "react-icons/fi";
 import { FaFilter } from "react-icons/fa6";
 import {
   AiOutlinePlus,
@@ -101,15 +101,12 @@ export default function Button({
   text,
   disabled,
   onClick,
-  size,
   variant = "primary",
-  classNames,
   btnProps,
   elevation,
   width,
   height,
 }: ButtonProps) {
-  const cls = classNames
   const bgColor =
     variant === "primary"
       ? "bg-primary  text-white"

@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React from "react";
 
 export const EditIcon = () => (
   <span className="absolute left-4.5 top-4">
@@ -54,7 +53,7 @@ type TextAreaProps = {
 
 const TextArea = ({
   label,
-  value,
+  // value,
   onChange,
   id,
   name,

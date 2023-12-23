@@ -18,7 +18,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: { sidebarOpen: any, setSidebar
 
   const trigger = useRef<any>(null);
   const sidebar = useRef<any>(null);
-  const [mini, setMini] = useState(false);
+  const [mini] = useState(false);
 
   const storedSidebarExpanded = localStorage.getItem('sidebar-expanded');
   const [sidebarExpanded, setSidebarExpanded] = useState(

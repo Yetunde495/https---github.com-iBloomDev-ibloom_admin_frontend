@@ -141,12 +141,12 @@ export interface HeaderViewItemProps {
 
 export const HeaderViewItem: React.FC<HeaderViewItemProps> = ({
   children,
-  isRight,
+  // isRight,
   classNames,
 }) => <div className={classNames}>{children}</div>;
 
 //NOTE: not in use
-export const TableRowWithSearch: React.FC<any> = ({ children }) => (
+export const TableRowWithSearch: React.FC<any> = () => (
   <div className="datatable-top">
     <div className="datatable-dropdown">
       <label>
