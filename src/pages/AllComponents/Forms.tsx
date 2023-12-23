@@ -2,7 +2,6 @@ import { useNavigate } from "react-router-dom";
 import React from "react";
 import { Header, Section } from "../../components/container";
 import { FormProvider, useForm } from "react-hook-form";
-import stateData from "../../data/states.json";
 import ReactDatePicker from "react-datepicker";
 import MultiSelect, { Option } from "../../components/MultiSelect";
 import  { AutoInput } from "../../components/form/customInput";
@@ -35,7 +34,6 @@ type FormData = {
 export default function FormExample() {
   const [startDate, setStartDate] = React.useState(new Date());
   const navigate = useNavigate();
-  const [options] = React.useState<string[]>(stateData);
 
   const [togglePassword, setTogglePassword] = React.useState(false);
 
@@ -189,17 +187,7 @@ export default function FormExample() {
 
               {/*  state and city of residence */}
               <FormGroup>
-                <Select
-                  label="State of Residence"
-                  name="state_of_residence"
-                  rules={{ required: false }}
-                >
-                  {options.map((item, index) => (
-                    <option key={index} value={item}>
-                      {item}
-                    </option>
-                  ))}
-                </Select>
+               
                 <AutoInput
                   label="City"
                   name="city"
