@@ -2,10 +2,7 @@
 import React, { useImperativeHandle, useState } from 'react';
 import '../css/utils.css'
 
-interface GLoadingType {
-  show: () => void;
-  hide: () => void;
-}
+
 
 export const Loader = ({show, useWhiteBg}:any) => show ? 
 <div className={`dc-loader-main${useWhiteBg ? ' dc-loader-white' : ''}`}>
@@ -14,7 +11,7 @@ export const Loader = ({show, useWhiteBg}:any) => show ?
 
 export const globalLoadingRef = React.createRef();
 
-export const gloading: GLoadingType = {
+export const gloading = {
   show: () => {
       // @ts-ignore
     globalLoadingRef?.current?.show();

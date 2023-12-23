@@ -53,6 +53,11 @@ export default {
         success: '#219653',
         danger: '#D34053',
         warning: '#FFA70B',
+        'cc1': '#FFFEDF',
+        'cc2': '#FFDFDF',
+        'cc3': '#E2FFDF',
+        'cc4': '#DFF4FF',
+        'cc5': '#E0DFFF',
       },
       spacing: {
         4.5: '1.125rem',

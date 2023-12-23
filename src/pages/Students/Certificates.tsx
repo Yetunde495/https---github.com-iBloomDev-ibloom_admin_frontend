@@ -1,4 +1,3 @@
-"use client";
 import { useState } from "react";
 import Button, { ButtonEvent } from "../../components/button";
 import Modal from "../../components/modal";

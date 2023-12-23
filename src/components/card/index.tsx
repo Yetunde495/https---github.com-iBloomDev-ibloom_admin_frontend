@@ -273,7 +273,7 @@ export const CategoryCard: React.FC<CategoryCardProps> = ({
       className="rounded-xl w-64 h-40 "
       onClick={() => navigate(`${link}`)}
     >
-      <div className={`w-full  h-2/3 mx-auto object-cover ${bgColor}`}></div>
+      <div className={`w-full  h-2/3 mx-auto object-cover bg-${bgColor}`}></div>
 
       <div className="p-3  text-center bg-white flex justify-center items-center">
         <p>{title}</p>

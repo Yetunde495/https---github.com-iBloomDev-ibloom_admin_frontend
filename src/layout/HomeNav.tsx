@@ -64,7 +64,7 @@ export default function Navbar() {
   
             </div>
 
-            <div className='relative mx-auto'>
+            <div className='relative mx-auto md:block hidden'>
             <input
               type="email"
               placeholder="Search..."
@@ -115,7 +115,7 @@ export default function Navbar() {
                     </Link>
                   </li>
                   <li>
-                    <Link to="/login" className="bg-primary/90 text-white/90 hover:text-white px-5 py-2 rounded-md">Get Started
+                    <Link to="/app/students/dashboard" className="bg-primary/90 text-white/90 hover:text-white px-5 py-2 rounded-md">Get Started
                     </Link>
                   </li>
                 </ul>

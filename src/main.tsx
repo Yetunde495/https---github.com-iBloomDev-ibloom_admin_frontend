@@ -9,7 +9,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import 'react-datepicker/dist/react-datepicker.css';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import AppLoader, { globalLoadingRef } from './components/Loader.tsx';
+// import AppLoader, { globalLoadingRef } from './components/Loader.tsx';
 
 const queryClient = new QueryClient()
 
@@ -21,6 +21,6 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         <App />
         <ReactQueryDevtools />
       </QueryClientProvider>
-      <AppLoader ref={globalLoadingRef} />
+      {/* <AppLoader ref={globalLoadingRef} /> */}
   </React.StrictMode>,
 )

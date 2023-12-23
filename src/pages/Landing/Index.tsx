@@ -21,14 +21,17 @@ import Logo2 from "../../assets/images/Google-logo.png";
 import Logo3 from "../../assets/images/Microsoft-logo.png";
 import Logo4 from "../../assets/images/amazon-logo.png";
 import { Testimonials, categories } from "../../data/mockData";
+import { useNavigate } from "react-router-dom";
 
 const Homepage: React.FC = () => {
+
+  const navigate = useNavigate()
   const colors = [
-    "[#FFFEDF]",
-    "[#FFDFDF]",
-    "[#E2FFDF]",
-    "[#DFF4FF]",
-    "[#E0DFFF]",
+    "cc1",
+    "cc2",
+    "cc3",
+    "cc4",
+    "cc5",
   ];
   let colorIndex = 0;
 
@@ -51,20 +54,20 @@ const Homepage: React.FC = () => {
               Purus congue suscipit, pretium habitasse, leo nisi adipiscing
               condimentum fringilla fames.
             </p>
-            <Button onClick={() => {}}>Get Started</Button>
+            <Button onClick={() => navigate("/app/students/dashboard")}>Get Started</Button>
           </div>
           <div className="relative h-full flex lg:justify-end justify-center">
             <video
               width="560px"
               height="315px"
               controls
-              className="rounded-lg right-12 relative z-[99]"
+              className="rounded-lg lg:right-12 right-2 relative z-[99]"
             >
               <source src="your-video-file.mp4" type="video/mp4" />
               Your browser does not support the video tag.
             </video>
-            <div className="bg-primary h-[70px] w-18 rounded-lg absolute right-3 -top-3"></div>
-            <div className="bg-[#F8A33F] h-[70px] w-18 rounded-lg absolute right-3 -bottom-3 "></div>
+            <div className="bg-primary h-[70px] w-18 rounded-lg absolute md:right-3 right-5 -top-3"></div>
+            <div className="bg-[#F8A33F] h-[70px] w-18 rounded-lg absolute md:right-3 right-3 -bottom-3 "></div>
           </div>
         </section>
 
@@ -93,7 +96,7 @@ const Homepage: React.FC = () => {
                     key={index}
                     title={val}
                     link="#"
-                    bgColor={`bg-${getNextColor()}`}
+                    bgColor={getNextColor()}
                   />
                 ))}
               </Slider>
