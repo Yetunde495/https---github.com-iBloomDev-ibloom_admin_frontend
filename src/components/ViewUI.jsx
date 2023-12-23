@@ -19,3 +19,17 @@ export const LayoutViewCard = ({children}) => (
         {children}
     </div>
 )
+
+export const FakeC = () => (
+    <div className='mx-auto max-w-270 bg-cc3'>
+       <div className='mx-auto max-w-270 bg-cc2'>
+       <div className='mx-auto max-w-270 bg-cc1'>
+       <div className='mx-auto max-w-270 bg-cc4'>
+       <div className='mx-auto max-w-270 bg-cc5'>
+
+</div>
+</div>
+</div>
+       </div>
+    </div>
+)
