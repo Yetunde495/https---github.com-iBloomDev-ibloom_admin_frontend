@@ -1,4 +1,4 @@
-import { Link, useNavigate, useNavigation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import ProgressBar from "../ProgressBar";
 import { IoIosArrowRoundForward } from "react-icons/io";
 import { FaCircle } from "react-icons/fa";
@@ -10,8 +10,8 @@ export const ProgressCourseCard: React.FC<InProgressCourseCardData> = ({
   progress,
   progress_bookmark,
   progress_url,
-  customBackgroundColor,
-  textColor,
+  // customBackgroundColor,
+  // textColor,
 }) => {
   const navigate = useNavigate();
   return (
@@ -51,10 +51,10 @@ export const CourseCard: React.FC<CourseData> = ({
   preview_img_url,
   duration,
   creator,
-  course_url,
+  // course_url,
   tag,
 }) => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const cardStyle = {
     backgroundImage: `url("${preview_img_url}")`,
     backgroundSize: "cover", // Adjust this according to your needs
@@ -97,12 +97,12 @@ export const CourseCard: React.FC<CourseData> = ({
 export const CourseCard2: React.FC<CourseData> = ({
   title,
   preview_img_url,
-  duration,
+  // duration,
   creator,
-  course_url,
-  tag,
+  // course_url,
+  // tag,
 }) => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const cardStyle = {
     backgroundImage: `url("${preview_img_url}")`,
     backgroundSize: "cover", // Adjust this according to your needs
@@ -285,10 +285,10 @@ export const CategoryCard: React.FC<CategoryCardProps> = ({
 export const TutorCourseCard: React.FC<TutorCourseDataProps> = ({
   title,
   preview_img_url,
-  course_url,
+  // course_url,
   coursePrice,
 }) => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const cardStyle = {
     backgroundImage: `url("${preview_img_url}")`,
     borderRadius: "6px",

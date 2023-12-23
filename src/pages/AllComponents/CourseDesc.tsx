@@ -24,29 +24,7 @@ const data = {
   total_points: "100",
 };
 
-const data2 = [
-  {
-    title: "Intro to Product Design",
-    progress: 60,
-    progress_url: "",
-    preview_img_url: PreviewImg,
-    progress_bookmark: "6-8 weeks",
-  },
-  {
-    title: "Intro to Product Design",
-    progress: 40,
-    progress_url: "",
-    preview_img_url: PreviewImg,
-    progress_bookmark: "8-10 weeks",
-  },
-  {
-    title: "Intro to Product Design",
-    progress: 30,
-    progress_url: "",
-    preview_img_url: PreviewImg,
-    progress_bookmark: "22 hours",
-  },
-];
+
 
 const AssessmentData = [
   {
@@ -100,7 +78,7 @@ const items = [
                     title: data.title,
                     content: data.content,
                     showIcon: true,
-                    icon: <HiMiniDocument />,
+                    // icon: <HiMiniDocument />,
                   },
                 ]}
               />

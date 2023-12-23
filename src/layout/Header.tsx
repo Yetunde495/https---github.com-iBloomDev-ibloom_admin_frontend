@@ -1,6 +1,6 @@
 // import { Link } from 'react-router-dom';
 import { NavLink } from "react-router-dom";
-import DarkModeSwitcher from "./DarkModeSwitcher";
+// import DarkModeSwitcher from "./DarkModeSwitcher";
 import DropdownNotification from "./DropdownNotification";
 // import DropdownMessage from './DropdownMessage';
 import DropdownUser from "./DropdownUser";

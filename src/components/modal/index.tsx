@@ -16,12 +16,12 @@ type WarningProps = {
 const Modal: React.FC<WarningProps> = ({
   show,
   onHide,
-  onProceed,
+  // onProceed,
   title,
   children,
-  cancelText,
-  okText,
-  size,
+  // cancelText,
+  // okText,
+  // size,
 }) => {
   const modalRef = React.useRef<HTMLDivElement | null>(null);
   React.useEffect(() => {

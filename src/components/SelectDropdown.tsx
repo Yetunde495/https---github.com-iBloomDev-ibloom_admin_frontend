@@ -1,5 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react';
-import {GrLocation} from 'react-icons/gr'
+//eslint-disable-next-line
+import { useState, useEffect } from 'react';
+// import {GrLocation} from 'react-icons/gr'
 import { BiChevronDown } from "react-icons/bi";
 import { AiOutlineSearch } from "react-icons/ai";
 // const DropdownSelect = ({list, active, onSelect}) => {
@@ -74,7 +75,7 @@ import { AiOutlineSearch } from "react-icons/ai";
 // }
 
 const DropdownSelect = ({ }) => {
-  const [countries, setCountries] = useState(null);
+  const [countries, setCountries] = useState([]);
   const [inputValue, setInputValue] = useState("");
   const [selected, setSelected] = useState("");
   const [open, setOpen] = useState(false);
@@ -116,7 +117,7 @@ const DropdownSelect = ({ }) => {
             className="placeholder:text-gray-700 p-2 outline-none"
           />
         </div>
-        {countries?.map((country) => (
+        {countries !== null && countries?.map((country:any) => (
           <li
             key={country?.name}
             className={`p-2 text-sm hover:bg-sky-600 hover:text-white

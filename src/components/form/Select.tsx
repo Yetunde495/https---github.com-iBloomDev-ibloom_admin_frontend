@@ -1,6 +1,5 @@
-import React from "react";
 
-export const SelectOption = ({ value, isDefault, children, disabled }) => (
+export const SelectOption = ({ value, isDefault, children, disabled }:any) => (
   <option
     defaultChecked={isDefault}
     disabled={disabled}
@@ -13,9 +12,9 @@ export const SelectOption = ({ value, isDefault, children, disabled }) => (
 
 const Select = ({
   label,
-  value,
+  // value,
   onChange,
-  id,
+  // id,
   name,
   classNames,
   isRequired,
@@ -24,7 +23,7 @@ const Select = ({
   defaultValue,
   children,
   selectProps,
-}) => {
+}:any) => {
   const containerClass = classNames ? "w-full" + classNames : "w-full";
   const requiredField = isRequired ? (
     <span className="text-danger">&#42;</span>

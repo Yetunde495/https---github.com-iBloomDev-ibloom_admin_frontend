@@ -1,23 +1,27 @@
-import React, { useContext, useReducer, ReactNode } from "react";
+import React, { PropsWithChildren, useContext, useReducer } from "react";
 
-export const DATA_CENTER_USER = "";
-export const DATA_CENTER_TOKEN = "@urdct";
+export const DATA_CENTER_USER = "@https://user.bi.finitbyte.com";
+export const DATA_CENTER_TOKEN = "https://token.bi.finitbyte.com";
 
-interface ContextType {
-  user: any;
-  isAdmin: boolean;
+const defaultContext = {
+  user: null,
+  isLoggedIn: false,
+  signIn: (_data: any) => {},
+  signOut: () => {},
+  updateUser: (_user: any) => {},
+  loadData: () => {},
+} as any;
+
+interface AppContextInterface {
+  user: User | null;
+  isLoggedIn: boolean;
+  signIn: (data: any) => void;
+  signOut: () => void;
+  updateUser: (data: User) => void;
+  loadData: () => void;
 }
 
-const defaultContext: ContextType = {
-  user: null,
-  isAdmin: false,
-};
-
-type ActionType =
-  | { type: "update"; payload: Partial<ContextType> }
-  | { type: "reset" };
-
-function reducer(state: ContextType, action: ActionType): ContextType {
+function reducer(state: any, action: any) {
   switch (action.type) {
     case "update":
       return { ...state, ...action.payload };
@@ -28,39 +32,27 @@ function reducer(state: ContextType, action: ActionType): ContextType {
   }
 }
 
-export const AppContext = React.createContext<ContextType>(defaultContext);
+export const AppContext =
+  React.createContext<AppContextInterface>(defaultContext);
 
 export const useApp = () => {
   return useContext(AppContext);
 };
 
-interface AppProviderProps {
-  children: ReactNode;
-}
-
-export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
+export const AppProvider = ({ children }: PropsWithChildren) => {
   const [state, dispatch] = useReducer(reducer, defaultContext);
 
-  const update = (payload: Partial<ContextType>) => {
+  const update = (payload: any) => {
     dispatch({ type: "update", payload });
   };
 
   const signIn = (data: any) => {
-    const isAdmin = /^(admin|superadmin)$/.test(data?.user_type);
-    data.isAdmin = isAdmin;
     update({
       user: data,
-      isAdmin,
+      isLoggedIn: true,
     });
     localStorage.setItem(DATA_CENTER_TOKEN, data.token);
-    localStorage.setItem(
-      DATA_CENTER_USER,
-      JSON.stringify({
-        username: data.username,
-        isAdmin,
-        id: data?.id,
-      })
-    );
+    localStorage.setItem(DATA_CENTER_USER, JSON.stringify(data));
   };
 
   const signOut = () => {
@@ -68,17 +60,15 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
     localStorage.removeItem(DATA_CENTER_USER);
     update({
       user: null,
-      isAdmin: false,
+      isLoggedIn: false,
     });
   };
 
   const loadData = () => {
     let d = localStorage.getItem(DATA_CENTER_USER);
     if (d) {
-      update({
-        user: d,
-        isAdmin: d?.isAdmin,
-      });
+      signIn(JSON.parse(d));
+      // update({ user: JSON.parse(d), isLoggedIn: true });
     }
   };
 
@@ -86,9 +76,9 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
     update({ user: data });
   };
 
-  let value = {
+  let value: AppContextInterface = {
     user: state?.user,
-    isAdmin: state?.isAdmin,
+    isLoggedIn: state?.isLoggedIn,
     signIn,
     signOut,
     updateUser,

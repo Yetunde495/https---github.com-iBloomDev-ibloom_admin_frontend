@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import DefaultLayout from "../../layout/DefaultLayout";
 import StreakImg from "../../assets/images/streak.png";
 import ImgPlaceholder from "../../assets/images/Image.png";
@@ -21,10 +21,10 @@ const Profile = () => {
     console.log("Form submitted:", formData);
   };
 
-  const handleSubmit = (e: any) => {
-    e.preventDefault();
-    console.log("Form submitted:", formData);
-  };
+  // const handleSubmit = (e: any) => {
+  //   e.preventDefault();
+  //   console.log("Form submitted:", formData);
+  // };
 
   const handleGenderSelectChange = (selectedValue: any) => {
     setFormData({

@@ -1,5 +1,5 @@
 import Button from "../../../components/button";
-import { InputField, Select, TextArea } from "../../../components/form";
+import { Select, TextArea } from "../../../components/form";
 
 const Assessment = () => {
   return (

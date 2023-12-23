@@ -52,7 +52,6 @@ const AccordionData = () => {
                   title: data.title,
                   content: data.content,
                   showIcon: true,
-                  icon: <MdPlayCircleFilled />,
                 },
               ]}
             />

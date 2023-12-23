@@ -1,15 +1,15 @@
 import { useNavigate } from "react-router-dom";
 import React from "react";
-import { Container, Header, Section } from "../../components/container";
+import { Header, Section } from "../../components/container";
 import { FormProvider, useForm } from "react-hook-form";
 import stateData from "../../data/states.json";
 import ReactDatePicker from "react-datepicker";
 import MultiSelect, { Option } from "../../components/MultiSelect";
-import Input, { AutoInput } from "../../components/form/customInput";
+import  { AutoInput } from "../../components/form/customInput";
 import {
   Button,
   FormGroup,
-  InputField,
+  // InputField,
   Textarea,
   InputWithIcon,
 } from "../../components/form";
@@ -39,8 +39,8 @@ export default function FormExample() {
 
   const [togglePassword, setTogglePassword] = React.useState(false);
 
-  const [success, setSuccess] = React.useState(false);
-  const [isLoading, setIsLoading] = React.useState(false);
+  const [success] = React.useState(false);
+  const [isLoading] = React.useState(false);
   const [selectedCategory, setSelectedCategory] = React.useState<any>(null);
   const methods = useForm<FormData>();
 

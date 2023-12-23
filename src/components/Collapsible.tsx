@@ -1,7 +1,6 @@
 // Collapsible.tsx
 import React from "react";
 import { FaAngleDown, FaAngleRight } from "react-icons/fa";
-import { Header } from "./container";
 
 // CollapsibleProps.ts
 type CollapsibleProps = {

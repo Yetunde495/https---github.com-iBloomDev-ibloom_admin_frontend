@@ -9,7 +9,7 @@ const CourseDetails = () => {
           label="Course Name"
           name="courseName"
           placeholder="Course Name"
-          onChange={function (value: string): void {
+          onChange={function (): void {
             throw new Error("Function not implemented.");
           }}
           id={""}
@@ -18,7 +18,7 @@ const CourseDetails = () => {
           label="Price"
           name="coursePrice"
           placeholder="Price"
-          onChange={function (value: string): void {
+          onChange={function (): void {
             throw new Error("Function not implemented.");
           }}
           id={""}
@@ -30,7 +30,7 @@ const CourseDetails = () => {
         value=""
         height="200px"
         placeholder="Course Description"
-        onChange={(e) => {
+        onChange={() => {
           // e.target.value;
         }}
         id=""
@@ -64,7 +64,7 @@ const CourseDetails = () => {
           label="Price"
           name="coursePrice"
           placeholder="Price"
-          onChange={function (value: string): void {
+          onChange={function (): void {
             throw new Error("Function not implemented.");
           }}
           id={""}

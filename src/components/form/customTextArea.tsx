@@ -14,7 +14,7 @@ type TextareaProps = {
   OnChange?: (value: string) => void;
 };
 
-const Textarea: React.FC<TextareaProps> = ({ label, name, rules, OnChange, classNames, defaultValue, placeholder, row, cols, formatValue }) => {
+const Textarea: React.FC<TextareaProps> = ({ label, name, rules, OnChange, classNames, defaultValue, placeholder, }) => {
   const { field, fieldState } = useController({ name, rules, defaultValue });
   const { onChange, onBlur, value, ref } = field;
   const { error } = fieldState;

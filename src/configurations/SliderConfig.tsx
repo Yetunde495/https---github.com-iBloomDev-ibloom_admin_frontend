@@ -89,16 +89,16 @@ export const Slidersettings = {
     ]
   };
 
-  function NoArrow(props:any) {
-    const { className, style, onClick } = props;
-    return (
-      <div
-        className={className}
-        style={{ ...style, display: "hidden" }}
-        onClick={onClick}
-      />
-    );
-  }
+  // function NoArrow(props:any) {
+  //   const { className, style, onClick } = props;
+  //   return (
+  //     <div
+  //       className={className}
+  //       style={{ ...style, display: "hidden" }}
+  //       onClick={onClick}
+  //     />
+  //   );
+  // }
   export const CategorySlidersettings = {
     // speed: 700,
     className: "center",
