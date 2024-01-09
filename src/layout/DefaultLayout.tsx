@@ -1,9 +1,19 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Sidebar from './Sidebar';
 import Header from './Header';
+import { useApp } from '../context/AppContext';
+import { useNavigate } from 'react-router-dom';
 
 const DefaultLayout = ({children}:{children: React.ReactNode}) => {
+  const { user, isLoggedIn } = useApp();
+  const navigate = useNavigate()
   const [sidebarOpen, setSidebarOpen] = useState(false)
+
+  useEffect(() => {
+    if (!user && !isLoggedIn) {
+      navigate("/")
+    }
+  }, [user, isLoggedIn])
 
   return (
     <div className='dark:bg-boxdark-2 dark:text-bodydark'>

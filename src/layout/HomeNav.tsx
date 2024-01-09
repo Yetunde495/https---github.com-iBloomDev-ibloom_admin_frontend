@@ -3,8 +3,10 @@ import { BsSearch } from "react-icons/bs";
 import { Link } from "react-router-dom";
 
 export default function Navbar() {
-    const [navbar, setNavbar] = useState(false); 
+    const [navbar, setNavbar] = useState(false);
    
+ 
+
     return (
       <header className={`sticky top-0 z-[999] dark:bg-slate-800/80 ${navbar ? "dark:bg-slate-900" : ''}`}>
         <nav className={`shadow backdrop-blur-md bg-white/80 dark:bg-neutral-1000/80 dark:text-white w-full`}>
@@ -110,7 +112,7 @@ export default function Navbar() {
               >
                 <ul className="items-center justify-center space-y-8 md:flex md:space-x-6 md:space-y-0">
                   <li>
-                    <Link to="/signup">
+                    <Link to="/signin">
                       Sign in
                     </Link>
                   </li>

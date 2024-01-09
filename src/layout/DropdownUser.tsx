@@ -1,15 +1,25 @@
 import { useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import UserOne from '../images/user/user-01.png';
+import { useApp } from '../context/AppContext';
 
 const DropdownUser = () => {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
+  const {user, signOut}= useApp()
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
 
   const trigger = useRef<HTMLAnchorElement | null>(null);
   const dropdown = useRef<HTMLDivElement | null>(null);
+
+  const handleSignout = async () => {
+    //send request to API for logout
+    signOut();
+    if (!user) {
+      navigate("/")
+    }
+  }
 
   useEffect(() => {
     const clickHandler = ({ target }: any) => {
@@ -166,7 +176,7 @@ const DropdownUser = () => {
           </li>
         </ul>
         <button
-          onClick={() => {}}
+          onClick={handleSignout}
           className="flex items-center gap-3.5 py-4 px-6 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base">
           <svg
             className="fill-current"

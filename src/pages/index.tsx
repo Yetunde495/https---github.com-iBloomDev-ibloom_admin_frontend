@@ -1,52 +1,65 @@
-import SuccessModal from "../components/modal/Success";
-import Warning from "../components/modal/Warning";
-import DefaultLayout from "../layout/DefaultLayout";
-import { useState } from "react";
-import Delete from "../components/modal/Delete";
+import { Route, Routes } from "react-router-dom";
+import RouteLayout from "../layout/RouteLayout";
+import Homepage from "./Landing/Index";
+import StudentPages from "./Students/Index";
+import AuthPages from "./Authentication/Index";
+import TutorsPages from "./Tutors/Index";
+import LiveComment from "./AllComponents/liveClasses/LiveComment";
+import CourseDesc from "./AllComponents/CourseDesc";
+import Components from "./components";
+import CourseProgress from "./AllComponents/courses/CourseProgress";
 
-export default function HomePage() {
-  const [error, setError] = useState(false);
-  const [success, setSuccess] = useState(false);
-  const [deleteModal, setDeleteModal] = useState(false);
+//AUTHENTICATED ROUTES
 
-  return (
-    <DefaultLayout>
-      <h1 className="text-red-700 font-sans">Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setSuccess(true)}>Success Modal</button>
-        <button onClick={() => setError(true)}>Warning Modal</button>
-        <button onClick={() => setDeleteModal(true)}>Delete Modal</button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-      <SuccessModal
-        show={success}
-        size="md:w-[400px] w-[350px]"
-        title="Successful!"
-        desc="This is a success modal"
-        onProceed={() => setSuccess(false)}
-      ></SuccessModal>
+export const AuthenticatedRoutes = () => (
+  <Routes>
+    <Route path="/" element={<Homepage />} />
+    <Route path="/app" element={<RouteLayout />}>
+      <Route path="/app/home" element={<Homepage />} />
+      <Route path="/app/course-description" element={<CourseDesc />} />
+    </Route>
+    <Route path="app" element={<RouteLayout children={null} />}>
+      <Route path="students/dashboard" element={<StudentPages.Dashboard />} />
+      <Route path="students/courses" element={<StudentPages.Courses />} />
+      <Route path="students/courses/:id" element={<CourseProgress />} />
+      <Route path="students/profile" element={<StudentPages.Profile />} />
+      <Route
+        path="students/certificates"
+        element={<StudentPages.Certificates />}
+      />
+      <Route path="students/live-classes">
+        <Route index element={<StudentPages.LiveClasses />} />
+        <Route path="ongoing-class/:id" element={<LiveComment />} />
+      </Route>
+      <Route path="tutors/dashboard" element={<TutorsPages.Dashboard />} />
+      <Route path="tutors/courses" element={<TutorsPages.Courses />} />
+      <Route
+        path="tutors/courses/courseupload"
+        element={<TutorsPages.CourseUpload />}
+      />
+    </Route>
+  </Routes>
+);
 
-      <Warning
-        show={error}
-        onHide={() => setError(false)}
-        onProceed={() => setError(false)}
-        size="md:w-[400px] w-[350px]"
-        title={`Error?`}
-        desc="An error occured while processing your transaction?"
-      ></Warning>
-      <Delete
-        show={deleteModal}
-        onHide={() => setDeleteModal(false)}
-        onProceed={() => setDeleteModal(false)}
-        size="md:w-[400px] w-[350px]"
-        title={`Delete Course?`}
-        desc="Are you sure you want to delete this course?"
-      ></Delete>
-    </DefaultLayout>
-  );
-}
+//UNAUTHENTICATED ROUTES
+export const UnAuthenticatedRoutes = () => (
+  <Routes>
+    <Route path="/" element={<Homepage />} />
+    <Route path="*" element={<Homepage />} />
+    <Route path="/signup" element={<AuthPages.StudentSignup />} />
+    <Route path="/signin" element={<AuthPages.Signin />} />
+    <Route
+      path="/email-verification"
+      element={<AuthPages.EmailVerification />}
+    />
+    <Route path="/email-return" element={<AuthPages.EmailReturn />} />
+    <Route path="/forgot-password" element={<AuthPages.ResetPassword />} />
+    <Route
+      path="/reset-verification"
+      element={<AuthPages.ResetPasswordVerification />}
+    />
+    <Route path="/reset-password" element={<AuthPages.ResetPasswordForm />} />
+
+    <Route path="/components" element={<Components />} />
+  </Routes>
+);

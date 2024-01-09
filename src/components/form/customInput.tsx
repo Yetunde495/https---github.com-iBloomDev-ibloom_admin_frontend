@@ -35,13 +35,13 @@ export const AutoInput: React.FC<TextInputProps> = ({ type, disabled=false, defV
   const { onBlur, value, ref, onChange } = field;
   const { error } = fieldState;
 
-  const errorData = error ? ' border-danger' : '';
+  const errorData = error ? ' border-danger' : ' border-slate-300';
   const containerClass = classNames ? 'w-full ' + classNames : 'w-full';
 
   
   return (
     <div className={containerClass}>
-      <label htmlFor={name} className="mb-3 block text-black dark:text-white">
+      <label htmlFor={name} className="mb-[0.4rem] block text-black dark:text-white">
         {label}
       </label>
       <input
@@ -53,9 +53,9 @@ export const AutoInput: React.FC<TextInputProps> = ({ type, disabled=false, defV
         placeholder={placeholder}
         onBlur={onBlur}
         onChange={onChange}
-        className={`w-full rounded border border-stroke bg-gray py-3 px-4.5 
+        className={`w-full rounded border  bg-gray py-3 px-4.5 
         text-black focus:border-primary focus-visible:outline-none dark:border-strokedark 
-        dark:bg-meta-4 dark:text-white dark:focus:border-primary${errorData}`}
+        dark:bg-meta-4 dark:text-white dark:focus:border-primary ${errorData}`}
       
       />
       {error && <small className='text-danger'>{error.message}</small>}
@@ -95,7 +95,7 @@ const Input: React.FC<InputProps> = ({ label, name, rules, classNames, defaultVa
         ref={ref}
         type={type}
         placeholder={placeholder}
-        className={`w-full rounded border border-stroke bg-gray py-3 px-4.5 
+        className={`w-full rounded border border-slate-300 bg-gray py-3 px-4.5 
         text-black focus:border-primary focus-visible:outline-none dark:border-strokedark 
         dark:bg-meta-4 dark:text-white dark:focus:border-primary${errorData}`}
       />

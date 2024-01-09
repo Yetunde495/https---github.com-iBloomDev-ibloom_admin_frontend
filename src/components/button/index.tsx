@@ -15,7 +15,8 @@ interface ButtonProps {
   text?: string;
   disabled?: boolean;
   size?: "xsm" | "sm" | "md" | "lg";
-  variant?: "primary" | "secondary" | "danger" | "light" | "link";
+  type?: "submit" | "button" | "reset";
+  variant?: "primary" | "secondary" | "danger" | "light" | "link" | "transparent";
   classNames?: string;
   btnProps?: any;
   elevation?: number;
@@ -101,6 +102,7 @@ export default function Button({
   text,
   disabled,
   onClick,
+  type = "button",
   variant = "primary",
   btnProps,
   elevation,
@@ -116,8 +118,10 @@ export default function Button({
       ? "bg-meta-1 text-white"
       : variant === "link"
       ? "bg-transparent text-black border-b-2 border-primary rounded-none py-0"
+      : variant === "transparent"
+      ? "bg-transparent text-black hover:bg-slate-200 border border-slate-300"
       : "bg-gray text-black";
-  let btnCls = `flex justify-center transition disabled:opacity-65 opacity-95 hover:opacity-100 ${bgColor} rounded-md py-2 px-6 font-medium `;
+  let btnCls = `flex justify-center transition disabled:opacity-65 opacity-95 hover:opacity-100 ${bgColor} rounded-md py-3 px-6 font-medium `;
   // btnCls = size === 'xsm' ? btnCls +' w-10' : size === 'sm' ? btnCls +' w-32' : size === 'md' ? btnCls + ' w-64' : size === 'lg' ? btnCls + ' w-128': btnCls + ' w-100';
   btnCls = elevation ? btnCls + " hover:shadow-" + elevation : btnCls;
   btnCls = width ? btnCls + " w-" + width : btnCls;
@@ -129,7 +133,7 @@ export default function Button({
         aria-disabled={disabled}
         onClick={onClick}
         className={btnCls}
-        type="submit"
+        type={type}
         {...btnProps}
       >
         {text || children}
