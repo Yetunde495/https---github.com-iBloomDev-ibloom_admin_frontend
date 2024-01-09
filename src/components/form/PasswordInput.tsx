@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from "react";
 import { FieldValues, useController } from "react-hook-form";
 import { BsEye, BsEyeSlash } from "react-icons/bs";
@@ -13,9 +14,10 @@ type PasswordInputProps = {
   defaultValue?: string;
   togglePassword: boolean;
   onTogglePassword: (val: boolean) => void;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
-const PasswordInput: React.FC<PasswordInputProps> = ({
+export const PasswordInput: React.FC<PasswordInputProps> = ({
   label,
   name,
   rules,
@@ -24,16 +26,17 @@ const PasswordInput: React.FC<PasswordInputProps> = ({
   placeholder,
   togglePassword,
   onTogglePassword,
+  onChange,
 }) => {
   const { field, fieldState } = useController({ name, defaultValue, rules });
-  const { value, ref, onChange } = field;
+  const { value, ref } = field;
   const { error } = fieldState;
   const containerClass = classNames ? "w-full mb-3 " + classNames : "w-full mb-3";
 
   return (
     <div className={containerClass}>
       <label
-        className="mb-3 block text-sm font-medium text-[#344054] dark:text-slate-100"
+        className="mb-[0.4rem] pl-1 block text-base font-bold font-cabin text-[#344054] dark:text-slate-100"
         htmlFor="password"
       >
         {label}
@@ -42,16 +45,16 @@ const PasswordInput: React.FC<PasswordInputProps> = ({
         <input
           {...field}
           ref={ref}
-          className={`w-full dark:bg-meta-4 border border-stroke bg-gray focus-visible:outline-none focus:ring-2 rounded-md placeholder:text-slate-400 placeholder:text-sm py-3  px-4 text-black  ${
+          className={`w-full dark:bg-white border rounded  focus-visible:outline-none focus:border-primary bg-gray text-[15px] placeholder:text-slate-400  placeholder:text-sm py-3 pl-4.5  pr-3 text-black/90  ${
             error
-              ? "border-[#fda29b] focus:border-[#fda29b] focus:ring-[#fee4e2]"
-              : "border-[#d0d5dd] focus:ring-[#d4d7ec70]"
+              ? "border-danger focus:border-[#fda29b] focus:ring-[#fee4e2]"
+              : "border-slate-300 focus:ring-[#d4d7ec70]"
           }`}
           type={togglePassword ? "text" : "password"}
           value={value}
-          onChange={onChange}
+          onChange={onChange ? onChange : field.onChange}
           name={name || "password"}
-          placeholder={placeholder || "*******"}
+          placeholder={placeholder || "************"}
         />
         <span className="absolute right-4 top-4 dark:text-primary">
           {togglePassword ? (
@@ -79,5 +82,3 @@ const PasswordInput: React.FC<PasswordInputProps> = ({
     </div>
   );
 };
-
-export default PasswordInput;

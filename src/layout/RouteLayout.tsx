@@ -1,11 +1,11 @@
-import React from 'react'
-import { Outlet } from 'react-router-dom'
+import { PropsWithChildren } from "react";
+import { Outlet } from "react-router-dom";
 
-export default function RouteLayout({children}:{children: React.ReactNode}) {
+export default function RouteLayout({ children }: PropsWithChildren) {
   return (
     <div>
-        <Outlet />
-        {children}
+      <Outlet />
+      {children}
     </div>
-  )
+  );
 }

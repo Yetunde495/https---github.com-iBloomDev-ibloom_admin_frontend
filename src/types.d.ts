@@ -165,7 +165,7 @@ interface User {
     registerUser: (obj: RegisterObj, userType: UserType) => Promise<boolean>;
     googleSignIn: (
       userType: null | UserType
-    ) => Promise<false | "patients" | "consultants">;
+    ) => Promise<false | "student" | "tutor">;
     updatePassword: (obj: UpdatePasswordObj) => Promise<boolean>;
     updateUser: (obj: UpdateUserObj) => Promise<boolean>;
     logoutUser: () => Promise<boolean>;

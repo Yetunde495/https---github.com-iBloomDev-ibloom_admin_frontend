@@ -11,10 +11,10 @@ import {
   // InputField,
   Textarea,
   InputWithIcon,
+  PasswordInput,
 } from "../../components/form";
 import Select from "../../components/form/customSelect";
 import SuccessModal from "../../components/modal/Success";
-import PasswordInput from "../../components/form/PasswordInput";
 import { BsEnvelopeAt } from "react-icons/bs";
 
 type FormData = {
