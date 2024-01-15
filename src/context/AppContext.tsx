@@ -1,7 +1,7 @@
 import React, { PropsWithChildren, useContext, useReducer } from "react";
 
-export const DATA_CENTER_USER = "@https://user.bi.finitbyte.com";
-export const DATA_CENTER_TOKEN = "https://token.bi.finitbyte.com";
+export const DATA_CENTER_USER = "@user";
+export const DATA_CENTER_TOKEN = "@token";
 
 const defaultContext = {
   user: null,

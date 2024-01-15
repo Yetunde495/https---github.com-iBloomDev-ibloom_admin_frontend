@@ -44,7 +44,7 @@ const Homepage: React.FC = () => {
     <Layout>
       <section className="">
         {/* Hero Section */}
-        <section className="p-8 md:py-22 text grid lg:grid-cols-2 grid-cols-1 gap-12 xl:max-w-7xl w-full mx-auto">
+        <section className="p-8 md:py-22 text grid lg:grid-cols-2 grid-cols-1 gap-12 xl:max-w-7xl 2xl:max-w-full 2xl:px-[12rem] w-full mx-auto">
           <div className="lg:max-w-[30rem]">
             <h1 className="md:text-5xl sm:text-4xl text-3xl tracking-wide font-semibold mb-5">
               At ByteDegree, Learn at your own pace
@@ -73,7 +73,7 @@ const Homepage: React.FC = () => {
 
         <section className="mx-auto flex py-14 bg-white">
           <div className="flex flex-col justify-center items-center w-full">
-            <h3 className="mb-5 font-bold md:text-xl text-lg">Our Partners</h3>
+            <h3 className="mb-5 font-semibold md:text-2xl xl:text-[32px] text-xl">Our Partners</h3>
             <div className="grid md:grid-cols-4 grid-cols-2 lg:gap-x-20 md:gap-x-16 gap-x-10 gap-y-4">
               <img src={Logo1} className="w-[150px]" />
               <img src={Logo3} className="w-[150px]" />
@@ -86,7 +86,7 @@ const Homepage: React.FC = () => {
 
         <section className="mx-auto flex py-10">
           <div className="flex flex-col justify-center items-center w-full">
-            <h3 className="mb-5 font-semibold md:text-2xl text-xl">
+            <h3 className="mb-5 font-semibold md:text-2xl xl:text-[32px] text-xl">
               Explore Categories
             </h3>
             <div className="w-full">
@@ -104,7 +104,7 @@ const Homepage: React.FC = () => {
           </div>
         </section>
 
-        <section className="md:pl-8 px-4 flex flex-col md:py-14  gap-y-8 w-full xl:max-w-7xl mx-auto tracking-wide">
+        <section className="md:pl-8 px-4 flex flex-col md:py-14  gap-y-8 w-full xl:max-w-7xl 2xl:max-w-full 2xl:px-[12rem] mx-auto tracking-wide">
           <section className="py-8">
             <div className="flex justify-between items-center relative">
               <h1 className="text-xl sm:text-2xl font-semibold tracking-wide ml-8 mb-3">
@@ -206,7 +206,7 @@ const Homepage: React.FC = () => {
 
         {/* Testimonial Section */}
         <section className="mx-auto p-8 flex justify-center py-8 bg-white mb-12">
-          <div className="xl:max-w-7xl mx-auto lg:p-8">
+          <div className="mx-auto lg:p-8 2xl:px-[12rem]">
             <h3 className="mb-8 text-center text-2xl font-semibold tracking-wide">
               Testimonials
             </h3>

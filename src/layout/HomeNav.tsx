@@ -10,8 +10,8 @@ export default function Navbar() {
     return (
       <header className={`sticky top-0 z-[999] dark:bg-slate-800/80 ${navbar ? "dark:bg-slate-900" : ''}`}>
         <nav className={`shadow backdrop-blur-md bg-white/80 dark:bg-neutral-1000/80 dark:text-white w-full`}>
-          <div className="relative mx-auto w-full max-w-screen-2xl p-2">
-          <div className=" gap-4 px-2 mx-auto lg:max-w-7xl md:items-center md:flex md:px-8">
+          <div className="relative mx-auto w-full max-w-screen-2xl 2xl:px-[10rem] 2xl:max-w-full p-2">
+          <div className=" gap-4 px-2 mx-auto lg:max-w-7xl 2xl:max-w-full md:items-center md:flex md:px-8">
             <div className="text-slate-900 dark:text-white">
               <div className="flex items-center justify-between py-3 md:block">
                 <a href="/">
