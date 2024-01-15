@@ -82,16 +82,16 @@ const Signin: React.FC = () => {
         <div className="lg:w-1/2 grid justify-center pt-18 pb-14">
           <div className="lg:min-w-[420px]">
             <div className="mb-14 text-center">
-              <h1 className="lg:text-3xl font-bold  sm:text-[30px] text-[25px] dark:text-white leading-[1.4]">
+              <h1 className="lg:text-3xl font-bold mb-3 sm:text-[30px] text-[25px] dark:text-white leading-[1.4]">
                 Sign In
               </h1>
-              <div className="flex items-center mb-3 mt-1">
+              {/* <div className="flex items-center mb-3 mt-1">
                 <hr className="border-t-2  w-[80%] border-zinc-300" />
                 <span className="mx-2 text-lg text-center rounded-md py-1 px-2 text-slate-400">
                   or
                 </span>
                 <hr className="border-t-2  w-[80%] border-zinc-300" />
-              </div>
+              </div> */}
 
               <Button
                 variant="transparent"

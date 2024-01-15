@@ -15,7 +15,7 @@ const Layout = ({children}:{children: React.ReactNode}) => {
         <div className='relative'>
          <Navbar />
           <main className='overflow-y-auto overflow-x-hidden'>
-            <div className='mx-auto max-w-screen-2xl'>
+            <div className='mx-auto lg:max-w-screen-2xl 2xl:max-w-full'>
               {children}
             </div>
           </main>

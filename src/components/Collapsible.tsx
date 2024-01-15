@@ -54,7 +54,7 @@ export const FilterCollapsible: React.FC<CollapsibleProps> = ({
         className="flex cursor-pointer items-center justify-start gap-2 py-2 px-4"
       >
         <span>{isOpen ? <FaAngleDown /> : <FaAngleRight />}</span>
-        <p>{title}</p>
+        <p className="text-[15px]">{title}</p>
       </div>
 
       {isOpen && <div className="py-2 px-4">{children}</div>}

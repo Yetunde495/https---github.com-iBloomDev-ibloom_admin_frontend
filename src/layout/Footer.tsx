@@ -1,7 +1,7 @@
 const Footer: React.FC = () => {
     return (
       <footer className="bg-white text-slate-500 px-10 py-10 border-t-gray-400">
-        <section className="container mx-auto">
+        <section className="container mx-auto lg:max-w-7xl 2xl:max-w-full max-w-screen-2xl 2xl:px-[12rem]">
 
         
         <div className="mb-6">

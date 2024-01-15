@@ -1,11 +1,12 @@
 import { Fragment, useEffect, useState } from "react";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
-// import { useApp } from "./context/AppContext";
+import { useApp } from "./context/AppContext";
 
 import "./App.css";
 // import { AuthenticatedRoutes, UnAuthenticatedRoutes } from "./pages";
 import { Loader } from "./components/Loader";
 import Homepage from "./pages/Landing/Index";
+import GeneralPages from "./pages/General/Index";
 import StudentPages from "./pages/Students/Index";
 import AuthPages from "./pages/Authentication/Index";
 import TutorsPages from "./pages/Tutors/Index";
@@ -14,11 +15,45 @@ import CourseDesc from "./pages/AllComponents/CourseDesc";
 import Components from "./pages/components";
 import CourseProgress from "./pages/AllComponents/courses/CourseProgress";
 import RouteLayout from "./layout/RouteLayout";
+import axios from "axios";
+import { DATA_CENTER_TOKEN } from "./context/AppContext";
+
+axios.defaults.baseURL = "http://35.196.158.216/api/v1";
 
 const App = () => {
-  // const { user, isLoggedIn, loadData } = useApp();
+  const {  signOut } = useApp();
   const [loading, setLoading] = useState(true);
   const preloader = document.getElementById("preloader");
+
+  axios.interceptors.request.use(
+    (axiosConfig) => {
+      const token = localStorage.getItem(DATA_CENTER_TOKEN);
+      axiosConfig.headers.Authorization = `Bearer ${token}`;
+      return axiosConfig;
+    },
+    (error) => {
+      return Promise.reject(error);
+    }
+  );
+
+  axios.interceptors.response.use(
+    function (response) {
+      return response;
+    },
+    function (error) {
+      if (error.response) {
+        if (error?.response?.status === 401) {
+          signOut();
+        } else {
+        }
+      } else if (error.request) {
+      } else {
+        // flash error message
+      }
+
+      return Promise.reject(error);
+    }
+  );
 
   useEffect(() => {
     // loadData();
@@ -55,15 +90,13 @@ const App = () => {
                 element={<AuthPages.ResetPassword />}
               />
               <Route
-                path="/reset-verification"
-                element={<AuthPages.ResetPasswordVerification />}
-              />
-              <Route
                 path="/reset-password"
                 element={<AuthPages.ResetPasswordForm />}
               />
 
               <Route path="/components" element={<Components />} />
+
+              <Route path="/search" element={<GeneralPages.SearchPage />} />
             </>
 
             <>
