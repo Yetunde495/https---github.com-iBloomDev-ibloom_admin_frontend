@@ -93,6 +93,19 @@ const App = () => {
                 path="/reset-password"
                 element={<AuthPages.ResetPasswordForm />}
               />
+              
+              <Route
+                path="/account-setup/student"
+                element={<AuthPages.StudentAccountSetup />}
+              />
+               <Route
+                path="/account-setup/tutor"
+                element={<AuthPages.TutorAccountSetup />}
+              />
+               <Route
+                path="/account-setup/organisation"
+                element={<AuthPages.OrganisationAccountSetup />}
+              />
 
               <Route path="/components" element={<Components />} />
 

@@ -7,6 +7,7 @@ import Button from '../../components/button'
 import { Section } from '../../components/container'
 import useToastNotifications from '../../hooks/useToastNotifications'
 import Accordion from '../../components/Accordion'
+import Modal from '../../components/modal'
 
 const accordionItems = [
     {
@@ -29,6 +30,8 @@ export default function BasicComponents() {
     const [warning, setWarning] = useState(false)
     const [success, setSuccess] = useState(false)
     const [deleteModal, setDeleteModal] = useState(false)
+
+    const [normalModal, setNormalModal] = useState(false)
 
     const [errorToast, setErrorToast] = useState(false)
     const [infoToast, setInfoToast] = useState(false)
@@ -80,6 +83,7 @@ export default function BasicComponents() {
          <Button variant='light' onClick={() => setError(true)}>Error Modal</Button>
          <Button variant='light' onClick={() => setWarning(true)}>Warning Modal</Button>
          <Button variant='light' onClick={() => setDeleteModal(true)}>Delete Modal</Button>
+         <Button variant='light' onClick={() => setNormalModal(true)}>Normal Modal</Button>
         
          </div>
          </section>
@@ -150,6 +154,16 @@ export default function BasicComponents() {
         >
 
         </Delete>
+
+        <Modal
+        show={normalModal}
+        onHide={() => setNormalModal(false)}
+        onProceed={() => setNormalModal(false)}
+        size="md:w-[400px] w-[350px]"
+        title={`Modal`}
+        >
+        <p>This is a regular modal</p>
+        </Modal>
 
     </div>
   )

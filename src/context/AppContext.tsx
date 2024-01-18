@@ -8,16 +8,16 @@ const defaultContext = {
   isLoggedIn: false,
   signIn: (_data: any) => {},
   signOut: () => {},
-  updateUser: (_user: any) => {},
+  updateUser: (_user: Student | Tutor | Organisation) => {},
   loadData: () => {},
 } as any;
 
 interface AppContextInterface {
-  user: User | null;
+  user: Student | User | any | null;
   isLoggedIn: boolean;
   signIn: (data: any) => void;
   signOut: () => void;
-  updateUser: (data: User) => void;
+  updateUser: (data:  Student | Tutor | Organisation) => void;
   loadData: () => void;
 }
 
