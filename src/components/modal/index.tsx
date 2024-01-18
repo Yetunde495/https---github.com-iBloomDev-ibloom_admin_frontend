@@ -4,6 +4,7 @@ import { RxCross2 } from "react-icons/rx";
 
 type WarningProps = {
   show?: boolean;
+  closeButton?: boolean;
   title?: string;
   cancelText?: string;
   okText?: string;
@@ -19,9 +20,10 @@ const Modal: React.FC<WarningProps> = ({
   // onProceed,
   title,
   children,
+  closeButton=true,
   // cancelText,
   // okText,
-  // size,
+  size,
 }) => {
   const modalRef = React.useRef<HTMLDivElement | null>(null);
   React.useEffect(() => {
@@ -57,19 +59,22 @@ const Modal: React.FC<WarningProps> = ({
   return ReactDOM.createPortal(
     <div className="w-screen h-screen bg-black bg-opacity-50 fixed top-0 z-50 flex items-center justify-center text-[#444444] overflow-x-auto">
       <div
-        className="w-[40%] bg-white px-10 py-5 rounded-2xl flex flex-col mt-20  justify-center"
+        className={`${
+          size ? size : "min-w-[50%]"
+        } bg-white py-5 rounded-2xl flex flex-col  justify-center`}
         ref={modalRef}
       >
-        <div className="flex flex-col justify-center">
-          <div className="flex justify-end">
-            <button onClick={onHide}>
-              <RxCross2 size={25} className="text-zinc-400" />
-            </button>
+        <div className="flex flex-col justify-center relative">
+          <div className="flex justify-center text-center items-center border-b-4 border-[#EBECFA]">
+            <h3 className="pb-2 text-xl font-bold text-center text-black dark:text-white sm:text-2xl">
+              {title}
+            </h3>
+           {closeButton && <button onClick={onHide} className="absolute -top-[12px] text-zinc-400 right-2 hover:bg-slate-400 hover:text-white rounded-full p-[2px]">
+              <RxCross2 size={22} className="" />
+            </button> }
           </div>
-          <h3 className="mt-5 pb-2 text-xl font-bold text-black dark:text-white sm:text-2xl">
-            {title}
-          </h3>
-          {children}
+
+          <div className="px-10 py-5">{children}</div>
         </div>
       </div>
     </div>,

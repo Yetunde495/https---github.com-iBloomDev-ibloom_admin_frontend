@@ -1,6 +1,10 @@
+import { useNavigate } from "react-router-dom";
+import { useApp } from "../../context/AppContext";
 import MailCheckmark from "../../images/auth/mail-checkmark.svg";
 
 function EmailReturn() {
+  const { user } = useApp();
+  const navigate = useNavigate();
   return (
     <section className="w-full min-h-screen flex justify-center items-center">
       <h4 className="fixed left-6 font-semibold text-[15px] top-4 w-30 text-primary">
@@ -13,12 +17,21 @@ function EmailReturn() {
             Email Confirmed
           </h1>
           <p className="text-lg dark:text-white">
-            You’ve successfully confirmed you email address. You can now access
+            You’ve successfully confirmed your email address. You can now access
             your dashboard
           </p>
         </div>
 
-        <button className="border-primary border w-full rounded-lg py-2 px-6 text-white opacity-95 hover:opacity-100 bg-primary">
+        <button
+          className="border-primary border w-full rounded-lg py-2 px-6 text-white opacity-95 hover:opacity-100 bg-primary"
+          onClick={() => {
+            if (user?.category === "organisation" || "tutors") {
+              navigate(`/app/tutors/dashboard`);
+            } else {
+              navigate(`/app/students/dashboard`);
+            }
+          }}
+        >
           Go to Dashboard
         </button>
       </div>

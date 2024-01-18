@@ -54,10 +54,7 @@ export const UnAuthenticatedRoutes = () => (
     />
     <Route path="/email-return" element={<AuthPages.EmailReturn />} />
     <Route path="/forgot-password" element={<AuthPages.ResetPassword />} />
-    <Route
-      path="/reset-verification"
-      element={<AuthPages.ResetPasswordVerification />}
-    />
+   
     <Route path="/reset-password" element={<AuthPages.ResetPasswordForm />} />
 
     <Route path="/components" element={<Components />} />

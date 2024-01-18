@@ -4,45 +4,93 @@
 export {};
 
 declare global {
-  type UserType = "patients" | "consultants";
+  type UserType = "student" | "tutor" | "organisation";
+
+  interface userSignupData {
+    user_name: string;
+    email: string;
+    password: string;
+    category: string;
+    email_verified: boolean;
+    account_setup:boolean;
+  };
 
   
+  
 interface User {
-  id: string;
-  username: string;
+  user_id: string;
+  user_name: string;
   first_name: string;
   last_name: string;
   role: string;
   email: string;
-  user_type: string;
-  last_login: string;
-  is_o2auth: boolean;
-  auth_provider: string;
+  category: string;
   is_verified: boolean;
-  account_is_suspended: boolean;
-  account_suspension_date: string;
-  account_is_deleted: boolean;
   status: string;
   organisation_id: string;
   token: string;
   refresh_token: string;
-  photo: string;
+  photo_url: string;
+  email_verified: boolean;
 }
+
+  
 
   interface SharedUserInfo {
     first_name: string;
     last_name: string;
     email: string;
-    userid: string;
+    user_id: string;
     phone_number?: string;
-    photo?: string;
-    role: UserType;
+    photo_url?: string;
+    category: UserType | string | undefined;
     created_at: null | string;
-    modified_at: null | string;
+    email_verified: boolean;
+    account_setup:boolean;
   }
 
-  interface Student extends SharedUserInfo {
+   interface Student extends SharedUserInfo {
+   highest_edu: string;
+    dob: string;
+    title: string;
+    enrolled_courses: Array<string>;
+    interested_fields: Array<string>;
     total_courses: number | null;
+  }
+
+  interface Tutor extends SharedUserInfo {
+     highest_edu: string;
+     dob: string;
+     title: string;
+     courses: Array<string>;
+     organisations: {
+      org_id: string;
+      name: string;
+      photo_url: string;
+     }[];
+     total_courses: number | null;
+   }
+
+   interface Organisation extends SharedUserInfo {
+    admin_id: string;
+    name: string;
+    courses: Array<string>;
+    contact: string;
+    tutors: Array<string>;
+    programs: Array<string>;
+    total_courses: number | null;
+    admin: {
+      highest_edu: string;
+      dob: string;
+      title: string;
+      courses: Array<string>;
+      organisations: {
+       org_id: string;
+       name: string;
+       photo_url: string;
+      }[];
+      total_courses: number | null;
+    }
   }
 
   interface CourseCardData {}
