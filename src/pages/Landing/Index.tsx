@@ -5,34 +5,48 @@ import {
   CategoryCard,
   CourseCard,
   CourseCard2,
-  LiveClassCard,
+  LiveClassCard2,
   TestimonialCard,
 } from "../../components/card";
 import {
   CategorySlidersettings,
+  ResponsiveCardSlidersettings,
+  ResponsiveCardSlidersettings2,
   Slidersettings,
 } from "../../configurations/SliderConfig";
 import Layout from "../../layout/Layout";
 import { data2 } from "../Students/Dashboard";
-import { LiveClassData } from "../AllComponents/liveClasses/UpcomingLiveClass";
 import AvatarImg from "../../assets/images/Avatar.png";
 import Logo1 from "../../assets/images/University-logo.png";
 import Logo2 from "../../assets/images/Google-logo.png";
 import Logo3 from "../../assets/images/Microsoft-logo.png";
 import Logo4 from "../../assets/images/amazon-logo.png";
-import { Testimonials, categories } from "../../data/mockData";
+import { LiveClassData2, Testimonials, categories } from "../../data/mockData";
 import { useNavigate } from "react-router-dom";
+// import { useRef, useState } from "react";
+// import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
 
 const Homepage: React.FC = () => {
+  const navigate = useNavigate();
 
-  const navigate = useNavigate()
-  const colors = [
-    "cc1",
-    "cc2",
-    "cc3",
-    "cc4",
-    "cc5",
-  ];
+  // const [, setSlideIndex] = useState(0);
+  // const [, setUpdateCount] = useState(0);
+  // const sliderRef = useRef(null);
+  // const newlyAddedConfig = {
+  //   ...Slidersettings,
+  //   afterChange: () => setUpdateCount((prevCount) => prevCount + 1),
+  //   beforeChange: (_current: number, next: number) => setSlideIndex(next),
+  // };
+  // const goToPrev = () => {
+  //   // @ts-ignore
+  //   sliderRef.current?.slickPrev();
+  // };
+
+  // const goToNext = () => {
+  //   // @ts-ignore
+  //   sliderRef.current?.slickNext();
+  // };
+  const colors = ["cc1", "cc2", "cc3", "cc4", "cc5"];
   let colorIndex = 0;
 
   const getNextColor = () => {
@@ -54,7 +68,9 @@ const Homepage: React.FC = () => {
               Purus congue suscipit, pretium habitasse, leo nisi adipiscing
               condimentum fringilla fames.
             </p>
-            <Button onClick={() => navigate("/app/students/dashboard")}>Get Started</Button>
+            <Button onClick={() => navigate("/app/students/dashboard")}>
+              Get Started
+            </Button>
           </div>
           <div className="relative h-full flex lg:justify-end justify-center">
             <video
@@ -73,7 +89,9 @@ const Homepage: React.FC = () => {
 
         <section className="mx-auto flex py-14 bg-white">
           <div className="flex flex-col justify-center items-center w-full">
-            <h3 className="mb-5 font-semibold md:text-2xl xl:text-[32px] text-xl">Our Partners</h3>
+            <h3 className="mb-5 font-semibold md:text-2xl xl:text-[32px] text-xl">
+              Our Partners
+            </h3>
             <div className="grid md:grid-cols-4 grid-cols-2 lg:gap-x-20 md:gap-x-16 gap-x-10 gap-y-4">
               <img src={Logo1} className="w-[150px]" />
               <img src={Logo3} className="w-[150px]" />
@@ -90,6 +108,7 @@ const Homepage: React.FC = () => {
               Explore Categories
             </h3>
             <div className="w-full">
+               
               <Slider {...CategorySlidersettings}>
                 {categories.map((val, index) => (
                   <CategoryCard
@@ -107,13 +126,17 @@ const Homepage: React.FC = () => {
         <section className="md:pl-8 px-4 flex flex-col md:py-14  gap-y-8 w-full xl:max-w-7xl 2xl:max-w-full 2xl:px-[12rem] mx-auto tracking-wide">
           <section className="py-8">
             <div className="flex justify-between items-center relative">
-              <h1 className="text-xl sm:text-2xl font-semibold tracking-wide ml-8 mb-3">
+              <h1 className="text-xl sm:text-2xl font-semibold tracking-wide ml-5 mb-3">
                 Newly added courses
               </h1>
-              <a className="font-bold dark:text-slate-200 mr-10">See All</a>
+              <a className=" dark:text-slate-200">See All</a>
             </div>
 
-            <div className="lg:w-full px-4">
+            <div className="lg:w-full">
+            {/* <div className="flex justify-end gap-2 items-center mb-2">
+              <button onClick={goToPrev} className="bg-primary text-white text-sm p-1.5 rounded-full"><FaArrowLeft /></button>
+              <button onClick={goToNext} className="bg-primary text-white text-sm p-1.5 rounded-full"><FaArrowRight /></button>
+              </div> */}
               <Slider {...Slidersettings}>
                 {data2.map((val, index) => (
                   <CourseCard
@@ -131,14 +154,14 @@ const Homepage: React.FC = () => {
           </section>
 
           <section className="py-8">
-            <div className="flex justify-between items-center relative mb-4">
+            <div className="flex justify-between items-center mb-4">
               <h1 className="text-xl sm:text-2xl font-semibold tracking-wide ml-5">
                 Newly added courses
               </h1>
               <a className="">See more</a>
             </div>
 
-            <div className="w-full px-4 gap-4 grid  sm:grid-cols-2 md:grid-cols-4 grid-cols-1">
+            <div className="w-full px-4 gap-4 hidden md:grid  sm:grid-cols-2 lg:grid-cols-4 md:grid-cols-3">
               {data2.slice(0, 4).map((val, index) => (
                 <CourseCard2
                   key={index}
@@ -151,17 +174,35 @@ const Homepage: React.FC = () => {
                 />
               ))}
             </div>
+
+            <div className="w-full block md:hidden">
+             
+          
+              <Slider {...ResponsiveCardSlidersettings}>
+                {data2.slice(0, 12).map((val, index) => (
+                  <CourseCard2
+                    key={index}
+                    title={val.title}
+                    preview_img_url={val.preview_img_url}
+                    duration={val.progress_bookmark}
+                    course_url=""
+                    creator={val.creator}
+                    tag={val.tag}
+                  />
+                ))}
+              </Slider>
+            </div>
           </section>
 
           <section className="py-8">
-            <div className="flex justify-between items-center w-full mb-4">
+            <div className="flex justify-between items-center mb-4 mx-auto">
               <h1 className="sm:text-2xl text-xl font-semibold ml-5">
                 Recommended Courses
               </h1>
               <a className="">See more</a>
             </div>
 
-            <div className="w-full px-4 gap-5 grid  sm:grid-cols-2 md:grid-cols-4 grid-cols-1">
+            <div className="w-full px-4 gap-6 md:grid hidden lg:grid-cols-4 md:grid-cols-3">
               {data2.slice(0, 4).map((val, index) => (
                 <CourseCard2
                   key={index}
@@ -173,6 +214,23 @@ const Homepage: React.FC = () => {
                   tag={val.tag}
                 />
               ))}
+            </div>
+
+            <div className="w-full block md:hidden">
+            
+              <Slider {...ResponsiveCardSlidersettings}>
+                {data2.slice(0, 12).map((val, index) => (
+                  <CourseCard2
+                    key={index}
+                    title={val.title}
+                    preview_img_url={val.preview_img_url}
+                    duration={val.progress_bookmark}
+                    course_url=""
+                    creator={val.creator}
+                    tag={val.tag}
+                  />
+                ))}
+              </Slider>
             </div>
           </section>
 
@@ -184,9 +242,9 @@ const Homepage: React.FC = () => {
               <a className="">See more</a>
             </div>
 
-            <div className="w-full px-4 gap-6 grid lg:grid-cols-4 grid-cols-2">
-              {LiveClassData.map((val: any, index: any) => (
-                <LiveClassCard
+            <div className="w-full  md:grid hidden px-4 gap-6 lg:grid-cols-4 md:grid-cols-3">
+              {LiveClassData2.map((val: any, index: any) => (
+                <LiveClassCard2
                   key={index}
                   title={val.title}
                   preview_img_url={val.preview_img_url}
@@ -195,11 +253,32 @@ const Homepage: React.FC = () => {
                   course_url=""
                   date={val.date}
                   time="16:00PM GMT+1"
-                  creator={[{ name: "Angela", photo: AvatarImg }]}
+                  creator={[{ name: "Angela", photo: AvatarImg }, { name: "Jack Smith", photo: AvatarImg },{ name: "Natalie", photo: AvatarImg }]}
                   stateBtnTextCustomBgColor="#f8a33f"
                   showButton={true}
                 />
               ))}
+            </div>
+
+            <div className="w-full block md:hidden">
+            
+              <Slider {...ResponsiveCardSlidersettings2}>
+              {LiveClassData2.map((val: any, index: any) => (
+                <LiveClassCard2
+                  key={index}
+                  title={val.title}
+                  preview_img_url={val.preview_img_url}
+                  stateBtnText={val.stateBtnText}
+                  card_action_text={val.card_action_text}
+                  course_url=""
+                  date={val.date}
+                  time="16:00PM GMT+1"
+                  creator={[{ name: "Angela", photo: AvatarImg }, { name: "Jack Smith", photo: AvatarImg }, { name: "Natalie", photo: AvatarImg }]}
+                  stateBtnTextCustomBgColor="#f8a33f"
+                  showButton={true}
+                />
+              ))}
+              </Slider>
             </div>
           </section>
         </section>

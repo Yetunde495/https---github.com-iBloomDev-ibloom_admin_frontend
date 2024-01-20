@@ -96,6 +96,18 @@ export const data2 = [
       photo: PreviewImg,
     },
   },
+  {
+    title: "Intro to Product Design5",
+    progress: 20,
+    progress_url: "",
+    preview_img_url: PreviewImg,
+    progress_bookmark: "22 hours",
+    tag: "Fresh",
+    creator: {
+      name: "Angela Yu",
+      photo: PreviewImg,
+    },
+  },
 ];
 
 export default function StudentDashboard() {

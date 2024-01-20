@@ -109,7 +109,7 @@ export const CourseCard2: React.FC<CourseData> = ({
     backgroundSize: "cover", // Adjust this according to your needs
   };
   return (
-    <div className=" cursor-pointer w-full flex flex-col md:h-full">
+    <div className="w-[17.5rem] mx-8 sm:mx-0 cursor-pointer md:w-full flex flex-col md:h-full">
       <div className={`w-full sm:h-[150px] h-[120px]`} style={cardStyle}></div>
 
       <div className="px-3 py-3 relative">
@@ -381,6 +381,86 @@ export const LiveClassCard: React.FC<LiveClassCardData> = ({
     </div>
   );
 };
+
+export const LiveClassCard2: React.FC<LiveClassCardData> = ({
+  card_action_text,
+  preview_img_url,
+  title,
+  date,
+  course_url,
+  creator,
+  time,
+  showButton = false,
+}) => {
+  const navigate = useNavigate();
+  return (
+    <div className="mx-11 w-[17.5rem] sm:mx-0 sm:w-auto relative rounded-md h-full pb-2 ">
+      <div className="w-full relative">
+        <img src={preview_img_url} className="w-full h-30 rounded-md object-cover" />
+      </div>
+      <div className="">
+        <div className="flex sm:justify-between flex-col sm:pt-2">
+        
+
+          <div className="mt-1">
+            <h4 className="lg:text-xl text-base font-semibold ">{title}</h4>
+            <div className="flex w-full">
+              {/* First loop for images */}
+              <div className="flex ">
+                {creator.map((creatorItem, index) => (
+                  <div
+                    key={index}
+                    className={`flex items-center my-1 ${
+                      index > 0 ? "-ml-3" : ""
+                    }`}
+                  >
+                    <img src={creatorItem?.photo} className="w-8 h-8" />
+                  </div>
+                ))}
+              </div>
+
+              {/* Second loop for names */}
+              <div className="ml-3 flex gap-1">
+                {creator.map((creatorItem, index) => (
+                  <div key={index} className="flex items-center gap-2 my-2 ">
+                    <p className="text-sm">
+                      {creatorItem?.name}
+                      {index < creator.length - 1 && ","}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="divide-x flex text-xs text-slate-400">
+              <p className="mr-1">{date} </p>
+              <p className="pl-1">{time} </p>
+            </div>
+          </div>
+        </div>
+
+        <div className="px-1 w-full">
+          {showButton ? (
+            <button
+              onClick={() => navigate(course_url)}
+              className="w-full py-1.5 px-4 border border-primary rounded-md mt-3 text-primary font-medium hover:bg-primary hover:text-white"
+            >
+              RSVP Class
+            </button>
+          ) : (
+            <button
+              onClick={() => navigate(course_url)}
+              className="sm:text-base text-sm  flex items-center gap-2  text-primary"
+            >
+              {card_action_text}
+              <IoIosArrowRoundForward />
+            </button>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};
+
 
 
 export const TestimonialCard: React.FC<TestimonialCardData> = ({

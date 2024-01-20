@@ -1,5 +1,5 @@
 import { AutoInput } from "../../components/form/customInput";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import Button from "../../components/button";
 import { FormProvider, useForm } from "react-hook-form";
 import { toast } from "react-toastify";
@@ -21,6 +21,10 @@ const StudentAccountSetup: React.FC<any> = () => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [categoryModal, setCategoryModal] = useState(false);
+
+  const hiddenFileInput = useRef<HTMLInputElement>(null);
+  const [logoUrl, setLogoUrl] = useState<string>(user?.photo || "");
+
   const [data, setData] = useState<any>(null);
   const [stage, setStage] = useState<number>(1);
 
@@ -30,10 +34,36 @@ const StudentAccountSetup: React.FC<any> = () => {
     setSelectedCourses(selectedCategories);
   };
 
-  const [user1] = useState({
-    photo: "",
-    user_name: "Test",
-  });
+  const handleClick = () => {
+    const input = (hiddenFileInput.current as HTMLInputElement) || null;
+    if (input) {
+      input.click();
+    }
+  };
+
+  const photoUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    const target = e.target as HTMLInputElement;
+    if (target) {
+      if (target.files?.length) {
+        const file = target.files[0];
+        setLogoUrl(URL.createObjectURL(file) || "");
+        //uploading the image
+        // const url = await uploading ima
+
+        //catching error
+        // if (res) {
+        //   toast.success("Photo upload successful");
+        // } else {
+        //   setLogoUrl(user.photo || "");
+        //   toast.error("Photo upload failed");
+        // }
+      }
+    } else {
+      setLogoUrl(user.photo || "");
+    }
+  };
+
 
   const methods = useForm<Student>();
 
@@ -138,7 +168,7 @@ const StudentAccountSetup: React.FC<any> = () => {
           <div className="px-12 py-6">
             <div className="mb-8">
               <h4 className="text-2xl font-semibold">
-                What courses are you interested in?
+               {stage === 1 ? 'Personal Details' : 'What courses are you interested in?' }
               </h4>
               <p className="text-sm">
                 {stage === 2
@@ -155,17 +185,32 @@ const StudentAccountSetup: React.FC<any> = () => {
                 >
                   <div>
                     <div>
-                      <div className="mb-6 flex gap-9 items-center">
-                        <Avatar
-                          size="xl"
-                          initials={
-                            user1?.photo === ""
-                              ? getUserInitials(user?.user_name || "User", "")
-                              : undefined
-                          }
-                          src={user1?.photo === "" ? undefined : user1?.photo}
+                      <label className="mb-9 flex gap-9 items-center">
+                        <div className="cursor-pointer">
+                          <Avatar
+                            size="xl"
+                            initials={
+                              logoUrl === ""
+                                ? getUserInitials(user?.user_name || "User", "")
+                                : undefined
+                            }
+                            src={logoUrl === "" ? undefined : logoUrl}
+                          />
+                        </div>
+
+                        <input
+                          type="file"
+                          className="hidden"
+                          ref={hiddenFileInput}
+                          onChange={photoUpload}
                         />
-                      </div>
+                        <button
+                          onClick={handleClick}
+                          className="py-3 px-6 bg-primary/10 text-primary rounded opacity-95 hover:opacity-100"
+                        >
+                          Upload Photo
+                        </button>
+                      </label>
                       <div className="grid gap-6">
                         <FormGroup>
                           <Select
