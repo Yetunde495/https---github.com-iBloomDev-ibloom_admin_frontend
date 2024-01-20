@@ -89,17 +89,19 @@ const OrganisationAccountSetup: React.FC<any> = () => {
       return;
     }
     const updatedData = {
-      ...user,
-      category: user?.category,
-      email: user?.email,
-      user_id: user?.user_id,
-      email_verified: false,
-      admin_id: user?.user_id || user?.admin_id,
-      name: data?.name,
-      contact: data?.contact,
-
-      tutors: [],
-      programs: [],
+      organisation: {
+        ...user,
+        category: user?.category,
+        email: user?.email,
+        user_id: user?.user_id,
+        email_verified: false,
+        admin_id: user?.user_id || user?.admin_id,
+        name: data?.name,
+        contact: data?.contact,
+  
+        tutors: [],
+        programs: [],
+      },
       admin: {
         ...data1,
         organisations: [
