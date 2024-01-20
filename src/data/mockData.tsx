@@ -1,5 +1,6 @@
 import Image1 from "../assets/images/testimonial-1.png";
 import Image2 from "../assets/images/testimonial-2.png";
+import LiveClassImg from "../assets/images/liveClass-img.png"
 
 export const Testimonials = [
   {
@@ -26,3 +27,54 @@ export const categories = [
   'Web Develoment',
   'Linguistics',
 ]
+
+export const LiveClassData2 = [
+  {
+    title: "Intro to Product Design",
+    progress_url: "",
+    preview_img_url: LiveClassImg,
+    progress_bookmark: "2. Basics of Product Design",
+    stateBtnText: "Commin Soon",
+    card_action_text: "RSVPClass",
+    course_url: "",
+    liveDuration: "",
+    date: "25th, Nov",
+    time: "16:00PM GMT+1",
+  },
+  {
+    title: "Intro to Product Design",
+    progress_url: "",
+    preview_img_url: LiveClassImg,
+    progress_bookmark: "2. Basics of Product Design",
+    stateBtnText: "Commin Soon",
+    card_action_text: "RSVPClass",
+    course_url: "",
+    liveDuration: "",
+    date: "25th, Nov",
+    time: "16:00PM GMT+1",
+  },
+  {
+    title: "Intro to Product Design",
+    progress_url: "",
+    preview_img_url: LiveClassImg,
+    progress_bookmark: "2. Basics of Product Design",
+    stateBtnText: "Commin Soon",
+    card_action_text: "RSVPClass",
+    course_url: "",
+    liveDuration: "",
+    date: "25th, Nov",
+    time: "16:00PM GMT+1",
+  },
+  {
+    title: "Intro to Product Design",
+    progress_url: "",
+    preview_img_url: LiveClassImg,
+    progress_bookmark: "2. Basics of Product Design",
+    stateBtnText: "Commin Soon",
+    card_action_text: "RSVPClass",
+    course_url: "",
+    liveDuration: "",
+    date: "25th, Nov",
+    time: "16:00PM GMT+1",
+  },
+];
