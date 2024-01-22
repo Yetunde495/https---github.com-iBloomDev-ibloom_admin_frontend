@@ -11,8 +11,8 @@ import { FormProvider, useForm } from "react-hook-form";
 import { PasswordInput } from "../../components/form/PasswordInput";
 import { Checkbox } from "../../components/form";
 import { useApp } from "../../context/AppContext";
-import { toast } from "react-toastify";
-import axios from "axios";
+// import { toast } from "react-toastify";
+// import axios from "axios";
 
 type userSignupData = {
   email: string;
@@ -53,6 +53,7 @@ const Signin: React.FC = () => {
       console.log("Validation errors:", errors);
       return;
     }
+    console.log(data)
    login()
 
     // try {
