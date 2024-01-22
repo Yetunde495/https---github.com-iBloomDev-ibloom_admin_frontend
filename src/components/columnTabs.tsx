@@ -6,7 +6,7 @@ interface TabsProps {
     onChange?: (item: any)=> void; 
     activeTab?: string;
     children?: React.ReactNode;
-    flexColumnOnMidBreakpoint?: boolean;
+    noStyles?: boolean;
 }
 
 interface TabProps {
@@ -22,8 +22,8 @@ export const ColumnTab: React.FC<TabProps> = ({children, tab, activeTab, onChang
 
   
 
-    let classNames = " rounded-md py-1 px-2 text-sm font-medium hover:text-primary hover:bg-[#3c50e030] md:text-base";
-    let clsN = val === activeTab ? classNames+' flex flex-row text-primary bg-[#3c50e030]' : classNames+' flex flex-row border-transparent';
+    let classNames = " rounded-sm p-2 text-[14px] hover:text-primary hover:bg-[#3c50e030]";
+    let clsN = val === activeTab ? classNames+' flex flex-row text-primary bg-[#3c50e030] border-l-2 border-primary' : classNames+' text-slate-600 flex flex-row border-transparent';
     
     return (
         <a onClick={() => onChange(val)} className={clsN} href="#/">
@@ -32,15 +32,13 @@ export const ColumnTab: React.FC<TabProps> = ({children, tab, activeTab, onChang
     )  
 }
 
-export default function ColumnTabs({tabs, onChange, activeTab, children, flexColumnOnMidBreakpoint = false}: TabsProps) {
+export default function ColumnTabs({tabs, onChange, activeTab, children, noStyles = false}: TabsProps) {
     let baseClassNames = "border-b-2 py-2 text-sm font-medium hover:text-primary md:text-base text-primary";
-    const commonClass = "mb-3 flex flex-wrap border-b border-stroke dark:border-strokedark"
-    const classNames = flexColumnOnMidBreakpoint
-    ? `md:flex-col sm:gap-3 gap-3 ${commonClass}`
-    : `sm:gap-10 gap-5 ${commonClass}`;
+    const classNames = "mb-3 flex flex-col sm:gap-3 gap-3"
+
     return (
         <div 
-        className="rounded-sm h-full border-stroke bg-white px-2 py-3 shadow-default dark:border-strokedark dark:bg-boxdark">
+        className="rounded-sm h-full bg-white px-2 py-3">
             <div className={classNames}>
 
                 {

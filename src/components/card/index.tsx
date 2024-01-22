@@ -194,94 +194,9 @@ export const SearchCourseCard: React.FC<CourseData> = ({
   );
 };
 
-// export const LiveClassCard: React.FC<LiveClassCardData> = ({
-//   stateBtnText,
-//   card_action_text,
-//   preview_img_url,
-//   title,
-//   date,
-//   course_url,
-//   creator,
-//   time,
-//   liveDuration,
-//   showIcon,
-//   stateBtnTextCustomBgColor,
-// }) => {
-//   const navigate = useNavigate();
-//   return (
-//     <div className="mx-2 sm:mx-0 w-auto relative rounded-md h-full pb-2 ">
-//       <div className="w-full relative">
-//         <img src={preview_img_url} className="w-full h-30 rounded-md" />
-//         {liveDuration ? (
-//           <div className="absolute right-5 bottom-4 text-zinc-400 text-xs rounded-md bg-white px-2 py-1">
-//             <p>Started: {liveDuration}</p>
-//           </div>
-//         ) : (
-//           ""
-//         )}
-//       </div>
-//       <div className="">
-//         <div className="flex sm:justify-between flex-col px-1 sm:pt-2">
-//           <div>
-//             <button
-//               className="rounded-full gap-1  py-2 px-3 text-white h-5 text-xs items-center text-center flex justify-center"
-//               style={{ backgroundColor: stateBtnTextCustomBgColor }}
-//             >
-//               {showIcon ? <FaCircle className="text-white" /> : ""}
 
-//               {stateBtnText}
-//             </button>
-//           </div>
 
-//           <div className="mt-2">
-//             <h4 className="lg:text-lg text-base font-bold ">{title}</h4>
-//             <div className="flex w-full">
-//               {/* First loop for images */}
-//               <div className="flex ">
-//                 {creator.map((creatorItem, index) => (
-//                   <div
-//                     key={index}
-//                     className={`flex items-center my-1 ${
-//                       index > 0 ? "-ml-3" : ""
-//                     }`}
-//                   >
-//                     <img src={creatorItem?.photo} className="w-8 h-8" />
-//                   </div>
-//                 ))}
-//               </div>
 
-//               {/* Second loop for names */}
-//               <div className="ml-3 flex gap-1">
-//                 {creator.map((creatorItem, index) => (
-//                   <div key={index} className="flex items-center gap-2 my-2 ">
-//                     <p className="text-zinc-400 text-xs">
-//                       {creatorItem?.name}
-//                       {index < creator.length - 1 && ","}
-//                     </p>
-//                   </div>
-//                 ))}
-//               </div>
-//             </div>
-//             <div className="divide-x flex text-xs text-zinc-400">
-//               <p className="mr-1">{date} </p>
-//               <p className="pl-1">{time} </p>
-//             </div>
-//           </div>
-//         </div>
-
-//         <div className="px-1 w-full">
-//           <button
-//             onClick={() => navigate(course_url)}
-//             className="sm:text-base text-sm  flex items-center gap-2  text-primary"
-//           >
-//             {card_action_text}
-//             <IoIosArrowRoundForward />
-//           </button>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
 
 export const LiveClassCard: React.FC<LiveClassCardData> = ({
   stateBtnText,
@@ -542,3 +457,5 @@ export const TutorCourseCard: React.FC<TutorCourseDataProps> = ({
     </div>
   );
 };
+
+
