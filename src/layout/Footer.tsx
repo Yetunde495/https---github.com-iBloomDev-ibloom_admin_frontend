@@ -40,7 +40,7 @@ const Footer: React.FC = () => {
             <h3 className="font-bold mb-2 text-black">Resources</h3>
             <ul className="space-y-2">
               <li><a href="#" className="text-slate-500">Blog</a></li>
-              <li><a href="#" className="text-slate-500">FAQ</a></li>
+              <li><a href="/faq" className="text-slate-500">FAQ</a></li>
               <li><a href="#" className="text-slate-500">Contact</a></li>
               <li><a href="#" className="text-slate-500">Services</a></li>
               <li><a href="#" className="text-slate-500">Services</a></li>
@@ -52,7 +52,7 @@ const Footer: React.FC = () => {
             <h3 className="font-bold mb-2 text-black">Legal</h3>
             <ul className="space-y-2">
               <li><a href="#" className="text-slate-500">Blog</a></li>
-              <li><a href="#" className="text-slate-500">FAQ</a></li>
+              <li><a href="/faq" className="text-slate-500">FAQ</a></li>
               <li><a href="#" className="text-slate-500">Contact</a></li>
               <li><a href="#" className="text-slate-500">Services</a></li>  
               <li><a href="#" className="text-slate-500">Services</a></li>

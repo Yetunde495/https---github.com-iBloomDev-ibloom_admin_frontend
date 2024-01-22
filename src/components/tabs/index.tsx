@@ -7,6 +7,7 @@ interface TabsProps {
     activeTab?: string;
     children?: React.ReactNode;
     flexColumnOnMidBreakpoint?: boolean;
+    noStyles?: boolean;
 }
 
 interface TabProps {
@@ -34,12 +35,12 @@ export const Tab: React.FC<TabProps> = ({children, tab, activeTab, onChange,}) =
 
 export default function Tabs({tabs, onChange, activeTab, children, flexColumnOnMidBreakpoint = false}: TabsProps) {
     let baseClassNames = "border-b-2 py-4 text-sm font-medium hover:text-primary md:text-base text-primary";
-    const commonClass = "mb-3 flex flex-wrap border-b border-stroke dark:border-strokedark"
+    const commonClass = "mb-3 flex flex-wrap"
     const classNames = flexColumnOnMidBreakpoint
     ? `md:flex-col sm:gap-3 gap-3 ${commonClass}`
     : `sm:gap-10 gap-5 ${commonClass}`;
     return (
-        <div className="rounded-sm h-full border-stroke bg-white p-2 shadow-default dark:border-strokedark dark:bg-boxdark">
+        <div className="rounded-sm h-full border-stroke bg-white pt-2 px-4 shadow-default dark:border-strokedark dark:bg-boxdark">
             <div className={classNames}>
 
                 {

@@ -89,7 +89,9 @@ const StudentAccountSetup: React.FC<any> = () => {
   const sendOTP = async () => {
     try {
       const response: any = await axios
-        .post("/emailverify", user?.email)
+        .post("/emailverify", {
+          email: user?.email
+        })
         .catch((e) => ({ error: e }));
 
       //when API respond with an error
@@ -168,7 +170,7 @@ const StudentAccountSetup: React.FC<any> = () => {
           <div className="px-12 py-6">
             <div className="mb-8">
               <h4 className="text-2xl font-semibold">
-               {stage === 1 ? 'Personal Details' : 'What courses are you interested in?' }
+               {stage === 1 ? 'Personal Details' : 'What courses are you interested in?'}
               </h4>
               <p className="text-sm">
                 {stage === 2

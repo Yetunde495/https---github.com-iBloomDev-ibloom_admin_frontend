@@ -59,7 +59,7 @@ const Homepage: React.FC = () => {
       <section className="">
         {/* Hero Section */}
         <section className="p-8 md:py-22 text grid lg:grid-cols-2 grid-cols-1 gap-12 xl:max-w-7xl 2xl:max-w-full 2xl:px-[12rem] w-full mx-auto">
-          <div className="lg:max-w-[30rem]">
+          <div className="lg:max-w-[30rem] lg:text-start md:text-center flex flex-col lg:items-start md:items-center sm:items-start">
             <h1 className="md:text-5xl sm:text-4xl text-3xl tracking-wide font-semibold mb-5">
               At ByteDegree, Learn at your own pace
             </h1>
@@ -68,7 +68,7 @@ const Homepage: React.FC = () => {
               Purus congue suscipit, pretium habitasse, leo nisi adipiscing
               condimentum fringilla fames.
             </p>
-            <Button onClick={() => navigate("/app/students/dashboard")}>
+            <Button onClick={() => navigate("/app/students/dashboard")} width="32">
               Get Started
             </Button>
           </div>

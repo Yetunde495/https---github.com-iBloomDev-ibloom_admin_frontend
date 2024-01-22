@@ -11,6 +11,8 @@ import { FormProvider, useForm } from "react-hook-form";
 import { PasswordInput } from "../../components/form/PasswordInput";
 import { Checkbox } from "../../components/form";
 import { useApp } from "../../context/AppContext";
+// import { toast } from "react-toastify";
+// import axios from "axios";
 
 type userSignupData = {
   email: string;
@@ -51,8 +53,38 @@ const Signin: React.FC = () => {
       console.log("Validation errors:", errors);
       return;
     }
-    console.log(data);
-    login()
+    console.log(data)
+   login()
+
+    // try {
+    //   const response: any = await axios
+    //     .post("/register", data)
+    //     .catch((e) => ({ error: e }));
+
+    //   //when API respond with an error
+    //   if (response && response?.error) {
+    //     toast.error(response?.error?.response?.data?.message);
+    //     return;
+    //   }
+
+    //   //when account is created successfully
+    //   if (response?.status === 200) {
+      
+    //     //toast account created
+    //     toast.success("Successfull!");
+    //   //   navigate(`/account-setup/${category}`)
+    //   } else {
+    //     //when an unknown error occurs
+    //     toast.error(
+    //       "Could not create the account! This may be an issue with our service, or your network. Please, try again"
+    //     );
+    //     return;
+    //   }
+    // } catch (err) {
+    //   console.log(err);
+    // } finally {
+    //   setIsLoading(false);
+    // }
   };
  
 

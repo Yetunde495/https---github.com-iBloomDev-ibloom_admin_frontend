@@ -110,6 +110,7 @@ const App = () => {
               <Route path="/components" element={<Components />} />
 
               <Route path="/search" element={<GeneralPages.SearchPage />} />
+              <Route path="/faq" element={<GeneralPages.FaqPage />} />
             </>
 
             <>

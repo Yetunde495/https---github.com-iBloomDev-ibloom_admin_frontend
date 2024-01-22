@@ -66,11 +66,11 @@ export default function Navbar() {
   
             </div>
 
-            <div className='relative mx-auto md:block hidden'>
+            <div className='relative mx-auto md:block hidden shrink lg:w-[350px] md:w-[250px] w-[200px]'>
             <input
               type="email"
               placeholder="Search..."
-              className="w-full py-2 px-3 pl-8 md:w-[350px]  bg-gray-200 border-stroke border-2  dark:bg-gray-700 rounded-lg text-slate-800 focus:outline-none focus:ring-1 focus:ring-primary/90"
+              className="w-full py-2 px-3 pl-8   bg-gray-200 border-stroke border-2  dark:bg-gray-700 rounded-lg text-slate-800 focus:outline-none focus:ring-1 focus:ring-primary/90"
             />
             <button className="absolute left-1 top-2/4 -translate-y-1/2 disabled:bg-primary/60  dark:bg-slate-100 hover:bg-primary py-1 px-2 rounded-md text-slate-400 focus:outline-none">
               <BsSearch />
@@ -88,11 +88,8 @@ export default function Navbar() {
                     <Link to="/signup" className="">All Courses
                     </Link>
                   </li>
-                  <li>
-                    <Link to="/login"className="text-slate-600" >Categories
-                    </Link>
-                  </li>
-                  <li>
+                  
+                  <li className="lg:block hidden">
                     <Link to="/login" className="text-slate-600">About
                     </Link>
                   </li>
@@ -117,7 +114,7 @@ export default function Navbar() {
                     </Link>
                   </li>
                   <li>
-                    <Link to="/app/students/dashboard" className="bg-primary/90 text-white/90 hover:text-white px-5 py-2 rounded-md">Get Started
+                    <Link to="/app/students/dashboard" className="bg-primary/90 lg:block hidden text-white/90 hover:text-white px-5 py-2 rounded-md">Get Started
                     </Link>
                   </li>
                 </ul>
