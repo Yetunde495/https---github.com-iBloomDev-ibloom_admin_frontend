@@ -114,7 +114,7 @@ export default function Navbar() {
                     </Link>
                   </li>
                   <li>
-                    <Link to="/app/students/dashboard" className="bg-primary/90 lg:block hidden text-white/90 hover:text-white px-5 py-2 rounded-md">Get Started
+                    <Link to="/signup" className="bg-primary/90 lg:block hidden text-white/90 hover:text-white px-5 py-2 rounded-md">Get Started
                     </Link>
                   </li>
                 </ul>
