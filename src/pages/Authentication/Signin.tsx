@@ -3,7 +3,7 @@ import Img1 from "../../images/auth/auth-img-1.jpg";
 import Img2 from "../../images/auth/auth-img-3.jpg";
 import Img3 from "../../images/auth/auth-img-2.jpg";
 import { AutoInput } from "../../components/form/customInput";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import ImageCarousel from "../../components/ImageSlider";
 import Button from "../../components/button";
 import { Link, useNavigate} from "react-router-dom";
@@ -11,16 +11,16 @@ import { FormProvider, useForm } from "react-hook-form";
 import { PasswordInput } from "../../components/form/PasswordInput";
 import { Checkbox } from "../../components/form";
 import { useApp } from "../../context/AppContext";
-// import { toast } from "react-toastify";
-// import axios from "axios";
+import { toast } from "react-toastify";
+import { signInUser, verifyEmail } from "../../services/authServices";
 
-type userSignupData = {
+type signinData = {
   email: string;
   password: string
 };
 
 const Signin: React.FC = () => {
-  const { signIn, isLoggedIn } = useApp();
+  const { signIn } = useApp();
   const navigate = useNavigate()
   const [isLoading, setIsLoading] = useState(false);
 
@@ -33,19 +33,22 @@ const Signin: React.FC = () => {
 
   const methods = useForm<userSignupData>();
   const [togglePassword, setTogglePassword] = React.useState(false);
+  
+  const sendOTP = async (email:string) => {
+    try {
+    const response = await verifyEmail({
+        email: email
+      })
+      toast.success(response.message)
+      navigate("/email-verification");
 
-  const login = async() => {
+    } catch (err:any) {
+     toast.error(err.message)
+    }
+  };
+
+  const onSubmit = async (data: signinData) => {
     setIsLoading(true)
-    await signIn({
-       token: "123",
-       name: "yetty"
-     }) 
-     if (isLoggedIn) {
-       navigate("/app/students/dashboard")
-     }
-  }
-
-  const onSubmit = async (data: userSignupData) => {
     const { errors } = methods.formState;
 
     // Check if there are any validation errors
@@ -53,50 +56,36 @@ const Signin: React.FC = () => {
       console.log("Validation errors:", errors);
       return;
     }
-    console.log(data)
-   login()
+   
 
-    // try {
-    //   const response: any = await axios
-    //     .post("/register", data)
-    //     .catch((e) => ({ error: e }));
-
-    //   //when API respond with an error
-    //   if (response && response?.error) {
-    //     toast.error(response?.error?.response?.data?.message);
-    //     return;
-    //   }
-
-    //   //when account is created successfully
-    //   if (response?.status === 200) {
-      
-    //     //toast account created
-    //     toast.success("Successfull!");
-    //   //   navigate(`/account-setup/${category}`)
-    //   } else {
-    //     //when an unknown error occurs
-    //     toast.error(
-    //       "Could not create the account! This may be an issue with our service, or your network. Please, try again"
-    //     );
-    //     return;
-    //   }
-    // } catch (err) {
-    //   console.log(err);
-    // } finally {
-    //   setIsLoading(false);
-    // }
+    try {
+      const response = await signInUser(data);
+      if (response?.account_setup === false) {
+        toast.warning("Account Setup is not complete")
+        signIn({
+          category: response?.category,
+          user_id: response?.user_id,
+          email: data?.email
+        })
+        navigate(`/account-setup/${response.category}`)
+      } else if (response?.data?.email_verified === false) {
+        signIn(response.data);
+        sendOTP(response?.data.email)
+      } else {
+        toast.success(response.message)
+        signIn(response.data);
+        navigate(`/app/${response?.data?.category}s/dashboard`)
+      }
+      // console.log(response.data)
+    } catch (err:any) {
+      toast.error(err.message);
+    } finally {
+      setIsLoading(false);
+    }
   };
  
 
-  useEffect(() => {
 
-    if (isLoading) {
-      setTimeout(() => {
-        setIsLoading(false);
-      }, 3000);
-    }
-    //
-  }, [isLoading, isLoggedIn]);
 
   return (
     <section className="w-full">

@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import Button from "../../components/button";
 import { FormProvider, useForm } from "react-hook-form";
 import { toast } from "react-toastify";
-import axios from "axios";
 import getUserInitials from "../../utils/getUserInitials";
 import Avatar from "../../components/Avatar2";
 import { useApp } from "../../context/AppContext";
@@ -12,6 +11,7 @@ import { FormGroup } from "../../components/form";
 import Select from "../../components/form/customSelect";
 import { BsArrowRight } from "react-icons/bs";
 import EduLevels from "../../data/eduLevels.json";
+import { updateOrganization, verifyEmail } from "../../services/authServices";
 
 interface OrgData {
   org_id: string;
@@ -55,28 +55,13 @@ const OrganisationAccountSetup: React.FC<any> = () => {
 
   const sendOTP = async () => {
     try {
-      const response: any = await axios
-        .post("/emailverify", user?.email)
-        .catch((e) => ({ error: e }));
-
-      //when API respond with an error
-      if (response && response?.error) {
-        toast.error(response?.error?.response?.data?.message);
-        return;
-      }
-
-      //when account is created successfully
-      if (response?.status === 200) {
-        navigate("/email-verification");
-      } else {
-        //when an unknown error occurs
-        toast.error(
-          "An error occurred while processing this request! This may be an issue with our service, or your network. Please, try again"
-        );
-        return;
-      }
-    } catch (err) {
-      console.log(err);
+      const response = await verifyEmail({
+        email: user?.email,
+      });
+      toast.success(response.message);
+      navigate("/email-verification");
+    } catch (err: any) {
+      toast.error(err.message);
     }
   };
 
@@ -98,7 +83,7 @@ const OrganisationAccountSetup: React.FC<any> = () => {
         admin_id: user?.user_id || user?.admin_id,
         name: data?.name,
         contact: data?.contact,
-  
+
         tutors: [],
         programs: [],
       },
@@ -114,30 +99,15 @@ const OrganisationAccountSetup: React.FC<any> = () => {
     };
 
     try {
-      const response: any = await axios
-        .post("/organisations", updatedData)
-        .catch((e) => ({ error: e }));
-
-      //when API respond with an error
-      if (response && response?.error) {
-        toast.error(response?.error?.response?.data?.message);
-        return;
-      }
-
-      //when account is created successfully
-      if (response?.status === 200) {
-        toast.success(response?.data.message + "");
-        updateUser(response?.data.data);
-        sendOTP();
-      } else {
-        //when an unknown error occurs
-        toast.error(
+      const response = await updateOrganization(updatedData);
+      toast.success(response?.message);
+      updateUser(response?.data);
+      sendOTP();
+    } catch (err: any) {
+      toast.error(
+        err.message ||
           "Could not finish setting up the account! This may be an issue with our service, or your network. Please, try again"
-        );
-        return;
-      }
-    } catch (err) {
-      console.log(err);
+      );
     } finally {
       setIsLoading(false);
     }

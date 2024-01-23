@@ -32,7 +32,7 @@ export const ColumnTab: React.FC<TabProps> = ({children, tab, activeTab, onChang
     )  
 }
 
-export default function ColumnTabs({tabs, onChange, activeTab, children, noStyles = false}: TabsProps) {
+export default function ColumnTabs({tabs, onChange, activeTab, children}: TabsProps) {
     let baseClassNames = "border-b-2 py-2 text-sm font-medium hover:text-primary md:text-base text-primary";
     const classNames = "mb-3 flex flex-col sm:gap-3 gap-3"
 

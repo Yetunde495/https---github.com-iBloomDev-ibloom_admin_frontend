@@ -10,11 +10,9 @@ import { Link, useNavigate } from "react-router-dom";
 import { FormProvider, useForm } from "react-hook-form";
 import { PasswordInput } from "../../components/form/PasswordInput";
 import { toast } from "react-toastify";
-import axios from "axios";
 import Modal from "../../components/modal";
 import { useApp } from "../../context/AppContext";
-
-
+import { registerUser } from "../../services/authServices";
 
 const Signup: React.FC = () => {
   const navigate = useNavigate();
@@ -41,46 +39,32 @@ const Signup: React.FC = () => {
       console.log("Validation errors:", errors);
       return;
     }
-    
+
     const updatedData = {
       ...data,
       account_setup: false,
       email_verified: false,
       category: category,
-    }
+    };
 
     try {
-      const response: any = await axios
-        .post("/register", updatedData)
-        .catch((e) => ({ error: e }));
-
-      //when API respond with an error
-      if (response && response?.error) {
-        toast.error(response?.error?.response?.data?.message);
-        return;
-      }
-
-      //when account is created successfully
-      if (response?.status === 200) {
-        signIn({
-          email: data?.email,
-          category: category,
-          user_name: data?.user_name,
-          user_id: response?.data.data,
-          token: response?.data.token
-        })
-        //toast account created
-        toast.success("Successfull!");
-        navigate(`/account-setup/${category}`)
-      } else {
-        //when an unknown error occurs
-        toast.error(
+      const response = await registerUser(updatedData);
+      //  console.log(response)
+      signIn({
+        email: data?.email,
+        category: category,
+        user_name: data?.user_name,
+        user_id: response?.data,
+        token: response?.token,
+      });
+      //toast account created
+      toast.success("Successfull!");
+      navigate(`/account-setup/${category}`);
+    } catch (err: any) {
+      toast.error(
+        err ||
           "Could not create the account! This may be an issue with our service, or your network. Please, try again"
-        );
-        return;
-      }
-    } catch (err) {
-      console.log(err);
+      );
     } finally {
       setIsLoading(false);
     }
@@ -105,9 +89,20 @@ const Signup: React.FC = () => {
           <div className="max-w-[450px] lg:max-w-[425px] xl:max-w-[450px] xl:min-w-[370px] 2xl:min-w-[450px]">
             <div className="mb-14 text-center">
               <h1 className="text-2xl mb-4 font-semibold dark:text-white">
-                Sign Up <span className="text-success text-base font-normal bg-success/10 px-3 py-1.5 rounded-xl">as a {category}</span>
+                Sign Up{" "}
+                <span className="text-success text-base font-normal bg-success/10 px-3 py-1.5 rounded-xl">
+                  as a {category}
+                </span>
               </h1>
-              <p className="mb-4 ml-3">Want to change what you are Signing up as? <span className="text-primary/90 hover:text-primary cursor-pointer" onClick={() => setCategoryModal(true)}>Click here</span> </p>
+              <p className="mb-4 ml-3">
+                Want to change what you are Signing up as?{" "}
+                <span
+                  className="text-primary/90 hover:text-primary cursor-pointer"
+                  onClick={() => setCategoryModal(true)}
+                >
+                  Click here
+                </span>{" "}
+              </p>
               {/* <div className="flex items-center mb-3 mt-1">
                 <hr className="border-t-2  w-[80%] border-zinc-300" />
                 <span className="mx-2 text-lg text-center rounded-md py-1 px-2 text-slate-400">
@@ -206,7 +201,11 @@ const Signup: React.FC = () => {
       </div>
       <Modal
         show={categoryModal}
-        onHide={() => setCategoryModal(false)}
+        onHide={() => {
+          if (category !== "") {
+            setCategoryModal(false);
+          }
+        }}
         onProceed={() => {}}
         closeButton={false}
         title={`Get Started`}
@@ -249,7 +248,7 @@ const Signup: React.FC = () => {
             </div>
           </div>
 
-        {/* Tutor Category */}
+          {/* Tutor Category */}
           <div
             className={`flex gap-2 items-start ${
               category === "tutor"
@@ -278,7 +277,7 @@ const Signup: React.FC = () => {
             </div>
           </div>
 
-      {/* Organization Category */}
+          {/* Organization Category */}
           <div
             className={`flex gap-2 items-start ${
               category === "organization"

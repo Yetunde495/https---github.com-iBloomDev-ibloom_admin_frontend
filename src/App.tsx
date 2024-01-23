@@ -21,7 +21,7 @@ import { DATA_CENTER_TOKEN } from "./context/AppContext";
 axios.defaults.baseURL = "http://35.196.158.216/api/v1";
 
 const App = () => {
-  const {  signOut } = useApp();
+  const { signOut } = useApp();
   const [loading, setLoading] = useState(true);
   const preloader = document.getElementById("preloader");
 
@@ -67,7 +67,8 @@ const App = () => {
 
     //
   }, [preloader]);
-
+ 
+  
   return (
     <Fragment>
       {loading ? (
@@ -90,7 +91,7 @@ const App = () => {
                 element={<AuthPages.ResetPassword />}
               />
               <Route
-                path="/reset-password"
+                path="/reset-password/:email"
                 element={<AuthPages.ResetPasswordForm />}
               />
               

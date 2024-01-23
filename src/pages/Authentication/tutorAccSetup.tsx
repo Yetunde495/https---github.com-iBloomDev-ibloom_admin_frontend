@@ -3,15 +3,15 @@ import React, { useState } from "react";
 import Button from "../../components/button";
 import { FormProvider, useForm } from "react-hook-form";
 import { toast } from "react-toastify";
-import axios from "axios";
 import getUserInitials from "../../utils/getUserInitials";
 import Avatar from "../../components/Avatar2";
 import { FormGroup } from "../../components/form";
-import { BsArrowRight } from "react-icons/bs";
+// import { BsArrowRight } from "react-icons/bs";
 import Select from "../../components/form/customSelect";
 import EduLevels from "../../data/eduLevels.json";
 import { useApp } from "../../context/AppContext";
 import { useNavigate } from "react-router-dom";
+import { updateTutor, verifyEmail } from "../../services/authServices";
 
 const TutorAccountSetup: React.FC<any> = () => {
   const { user, updateUser } = useApp();
@@ -27,28 +27,14 @@ const TutorAccountSetup: React.FC<any> = () => {
 
   const sendOTP = async () => {
     try {
-      const response: any = await axios
-        .post("/emailverify", user?.email)
-        .catch((e) => ({ error: e }));
+    const response = await verifyEmail({
+        email: user?.email
+      })
+      toast.success(response.message)
+      navigate("/email-verification");
 
-      //when API respond with an error
-      if (response && response?.error) {
-        toast.error(response?.error?.response?.data?.message);
-        return;
-      }
-
-      //when account is created successfully
-      if (response?.status === 200) {
-        navigate("/email-verification");
-      } else {
-        //when an unknown error occurs
-        toast.error(
-          "An error occurred while processing this request! This may be an issue with our service, or your network. Please, try again"
-        );
-        return;
-      }
-    } catch (err) {
-      console.log(err);
+    } catch (err:any) {
+     toast.error(err.message)
     }
   };
 
@@ -71,30 +57,14 @@ const TutorAccountSetup: React.FC<any> = () => {
     };
 
     try {
-      const response: any = await axios
-        .post("/tutors", updatedData)
-        .catch((e) => ({ error: e }));
+      const response = await updateTutor(updatedData)
+      toast.success(response?.message)
+      updateUser(response?.data);
+      sendOTP();
 
-      //when API respond with an error
-      if (response && response?.error) {
-        toast.error(response?.error?.response?.data?.message);
-        return;
-      }
-
-      //when account is created successfully
-      if (response?.status === 200) {
-        toast.success(response?.data.message + "");
-        updateUser(response?.data.data);
-        sendOTP();
-      } else {
-        //when an unknown error occurs
-        toast.error(
-          "Could not finish setting up the account! This may be an issue with our service, or your network. Please, try again"
-        );
-        return;
-      }
-    } catch (err) {
-      console.log(err);
+    
+    } catch (err:any) {
+      toast.error(err.message || "Could not finish setting up the account! This may be an issue with our service, or your network. Please, try again")
     } finally {
       setIsLoading(false);
     }
@@ -219,7 +189,8 @@ const TutorAccountSetup: React.FC<any> = () => {
                         onClick={() => {}}
                       >
                         <span className="flex items-center gap-3">
-                          Next <BsArrowRight />
+                          {/* Next <BsArrowRight /> */}
+                          {isLoading ? 'Loading' : 'Submit'}
                         </span>
                       </Button>
                     </div>
