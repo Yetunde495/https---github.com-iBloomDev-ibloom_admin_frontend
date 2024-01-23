@@ -3,9 +3,9 @@ import { useApp } from "../../context/AppContext";
 import classNames from "classnames";
 import lockImg from "../../images/auth/lock.svg";
 import { useRef, useState } from "react";
-import axios from "axios";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { verifyEmail, verifyEmailOtp } from "../../services/authServices";
 
 function EmailVerification() {
   const { user, updateUser } = useApp();
@@ -20,31 +20,21 @@ function EmailVerification() {
   const [loading, setLoading] = useState(false);
 
   const ResendOTP = async () => {
+    setLoading(true)
     try {
-      const response: any = await axios
-        .post("/emailverify", user?.email)
-        .catch((e) => ({ error: e }));
-
-      //when API respond with an error
-      if (response && response?.error) {
-        toast.error(response?.error?.response?.data?.message);
-        return;
-      }
-
-      //when account is created successfully
-      if (response?.status === 200) {
-        toast(
-          `OTP has been resent to your email ${user?.email}. Check your spam folder if it doesn't show up in your inbox`
-        );
-      } else {
-        //when an unknown error occurs
-        toast.error(
+      await verifyEmail({
+        email: user?.email,
+      });
+      toast.success(
+        `OTP has been resent to your email ${user?.email}. Check your spam folder if it doesn't show up in your inbox`
+      );
+    } catch (err: any) {
+      toast.error(
+        err.message ||
           "An error occurred while processing this request! This may be an issue with our service, or your network. Please, try again"
-        );
-        return;
-      }
-    } catch (err) {
-      console.log(err);
+      );
+    } finally{
+      setLoading(false)
     }
   };
 
@@ -56,36 +46,18 @@ function EmailVerification() {
     };
 
     try {
-      const response: any = await axios
-        .post("/veriy-token", data)
-        .catch((e) => ({ error: e }));
-
-      //when API respond with an error
-      if (response && response?.error) {
-        toast.error(response?.error?.response?.data?.message);
-        setIsValid(false);
-        return;
-      }
-
-      //when account is verified successfully
-      if (response?.status === 200) {
-        setIsValid(true);
-        updateUser({
-          ...user,
-          email_verified: true,
-        });
-        //toast account verified
-        toast.success("Account verification Successfull!");
-        navigate(`/email-return`);
-      } else {
-        //when an unknown error occurs
-        toast.error(
-          "Could not create the account! This may be an issue with our service, or your network. Please, try again"
-        );
-        return;
-      }
-    } catch (err) {
-      console.log(err);
+      await verifyEmailOtp(data);
+      setIsValid(true);
+      updateUser({
+        ...user,
+        email_verified: true,
+      });
+      //toast account verified
+      toast.success("Email verification Successfull!");
+      navigate(`/email-return`);
+    } catch (err: any) {
+      toast.error(err?.message);
+      setIsValid(false);
     } finally {
       setLoading(false);
     }
@@ -173,7 +145,7 @@ function EmailVerification() {
             className="text-primary/95 hover:text-primary cursor-pointer"
             onClick={() => ResendOTP()}
           >
-            Resend OTP
+            {loading ? 'Resending' : 'Resend'} OTP
           </span>
         </p>
       </div>

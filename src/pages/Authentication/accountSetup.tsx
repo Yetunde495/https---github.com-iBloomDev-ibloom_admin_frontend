@@ -3,7 +3,6 @@ import React, { useRef, useState } from "react";
 import Button from "../../components/button";
 import { FormProvider, useForm } from "react-hook-form";
 import { toast } from "react-toastify";
-import axios from "axios";
 import Modal from "../../components/modal";
 import getUserInitials from "../../utils/getUserInitials";
 import Avatar from "../../components/Avatar2";
@@ -15,6 +14,7 @@ import Categories from "../../data/courseCategories.json";
 import { useApp } from "../../context/AppContext";
 import CourseCategories from "./categorySelection";
 import { useNavigate } from "react-router-dom";
+import { updateStudent, verifyEmail } from "../../services/authServices";
 
 const StudentAccountSetup: React.FC<any> = () => {
   const { user, updateUser } = useApp();
@@ -64,7 +64,6 @@ const StudentAccountSetup: React.FC<any> = () => {
     }
   };
 
-
   const methods = useForm<Student>();
 
   const onSubmit = (data: Student) => {
@@ -88,30 +87,13 @@ const StudentAccountSetup: React.FC<any> = () => {
 
   const sendOTP = async () => {
     try {
-      const response: any = await axios
-        .post("/emailverify", {
-          email: user?.email
-        })
-        .catch((e) => ({ error: e }));
-
-      //when API respond with an error
-      if (response && response?.error) {
-        toast.error(response?.error?.response?.data?.message);
-        return;
-      }
-
-      //when account is created successfully
-      if (response?.status === 200) {
-        navigate("/email-verification");
-      } else {
-        //when an unknown error occurs
-        toast.error(
-          "An error occurred while processing this request! This may be an issue with our service, or your network. Please, try again"
-        );
-        return;
-      }
-    } catch (err) {
-      console.log(err);
+      const response = await verifyEmail({
+        email: user?.email,
+      });
+      toast.success(response.message);
+      navigate("/email-verification");
+    } catch (err: any) {
+      toast.error(err.message);
     }
   };
 
@@ -123,30 +105,15 @@ const StudentAccountSetup: React.FC<any> = () => {
     };
 
     try {
-      const response: any = await axios
-        .post("/students", completeData)
-        .catch((e) => ({ error: e }));
-
-      //when API respond with an error
-      if (response && response?.error) {
-        toast.error(response?.error?.response?.data?.message);
-        return;
-      }
-
-      //when account is created successfully
-      if (response?.status === 200) {
-        toast.success("Your profile Setup was successful");
-        updateUser(response?.data.data);
-        sendOTP();
-      } else {
-        //when an unknown error occurs
-        toast.error(
-          "An error occurred while processing this request! This may be an issue with our service, or your network. Please, try again"
-        );
-        return;
-      }
-    } catch (err) {
-      console.log(err);
+      const response = await updateStudent(completeData);
+      toast.success(response?.message);
+      updateUser(response?.data);
+      sendOTP();
+    } catch (err: any) {
+      toast.error(
+        err.message ||
+          "Could not finish setting up the account! This may be an issue with our service, or your network. Please, try again"
+      );
     } finally {
       setIsLoading(false);
     }
@@ -170,7 +137,9 @@ const StudentAccountSetup: React.FC<any> = () => {
           <div className="px-12 py-6">
             <div className="mb-8">
               <h4 className="text-2xl font-semibold">
-               {stage === 1 ? 'Personal Details' : 'What courses are you interested in?'}
+                {stage === 1
+                  ? "Personal Details"
+                  : "What courses are you interested in?"}
               </h4>
               <p className="text-sm">
                 {stage === 2
@@ -181,38 +150,38 @@ const StudentAccountSetup: React.FC<any> = () => {
 
             {stage === 1 ? (
               <FormProvider {...methods}>
+                <label className="mb-9 flex gap-9 items-center">
+                  <div className="cursor-pointer">
+                    <Avatar
+                      size="xl"
+                      initials={
+                        logoUrl === ""
+                          ? getUserInitials(user?.user_name || "User", "")
+                          : undefined
+                      }
+                      src={logoUrl === "" ? undefined : logoUrl}
+                    />
+                  </div>
+
+                  <input
+                    type="file"
+                    className="hidden"
+                    ref={hiddenFileInput}
+                    onChange={photoUpload}
+                  />
+                  <button
+                    onClick={handleClick}
+                    className="py-3 px-6 bg-primary/10 text-primary rounded opacity-95 hover:opacity-100"
+                  >
+                    Upload Photo
+                  </button>
+                </label>
                 <form
                   onSubmit={methods.handleSubmit(onSubmit)}
                   // className="max-w-[480px]"
                 >
                   <div>
                     <div>
-                      <label className="mb-9 flex gap-9 items-center">
-                        <div className="cursor-pointer">
-                          <Avatar
-                            size="xl"
-                            initials={
-                              logoUrl === ""
-                                ? getUserInitials(user?.user_name || "User", "")
-                                : undefined
-                            }
-                            src={logoUrl === "" ? undefined : logoUrl}
-                          />
-                        </div>
-
-                        <input
-                          type="file"
-                          className="hidden"
-                          ref={hiddenFileInput}
-                          onChange={photoUpload}
-                        />
-                        <button
-                          onClick={handleClick}
-                          className="py-3 px-6 bg-primary/10 text-primary rounded opacity-95 hover:opacity-100"
-                        >
-                          Upload Photo
-                        </button>
-                      </label>
                       <div className="grid gap-6">
                         <FormGroup>
                           <Select
@@ -306,7 +275,7 @@ const StudentAccountSetup: React.FC<any> = () => {
                   </Button>
                   <Button
                     type="button"
-                    disabled={isLoading || selectedCourses.length < 1}
+                    disabled={isLoading || selectedCourses.length < 5}
                     onClick={() => updateData()}
                   >
                     <span className="flex items-center gap-3">

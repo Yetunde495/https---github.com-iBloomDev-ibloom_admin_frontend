@@ -1,12 +1,13 @@
 import { FormProvider, useForm } from "react-hook-form";
 
 import Button from "../../components/button";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { PasswordInput } from "../../components/form/PasswordInput";
 import { BsCheckCircleFill } from "react-icons/bs";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import lockImg from "../../images/auth/lock.svg";
+import { ResetPassword } from "../../services/authServices";
 
 type resetPasswordData = {
   password: string;
@@ -14,6 +15,7 @@ type resetPasswordData = {
 };
 
 function ResetPasswordForm() {
+  const { email } = useParams();
   const navigate = useNavigate();
   const methods = useForm<resetPasswordData>();
   const [isLoading, setIsLoading] = useState(false);
@@ -22,8 +24,6 @@ function ResetPasswordForm() {
   const [hasNumeric, setHasNumeric] = React.useState(false);
   const [hasMinLength, setHasMinLength] = React.useState(false);
   const [confirmPassword, setConfirmPassword] = React.useState(false);
-  const [searchParams] = useSearchParams();
-  const code = searchParams.get("code");
   const [isConfirmed, setIsConfirmed] = React.useState<boolean | null>(null);
 
   const [isSuccess, setIsSuccess] = React.useState<boolean>(false);
@@ -57,37 +57,21 @@ function ResetPasswordForm() {
       !hasUppercase ||
       !confirmPassword
     ) {
-      console.log("Validation errors:", errors);
       return;
     }
-
-    if (!code) {
-      toast.error("Reset code not found");
-
-      setTimeout(() => {
-        toast.warn("Navigating to forgot password page");
-      }, 500);
-
-      setTimeout(() => {
-        navigate("/forgot-password");
-      }, 2000);
-    } else {
-      // const res = await completePasswordReset({code, new_password: data.password});
-
-      // if (res) {
+    setIsLoading(true);
+    try {
+      await ResetPassword({
+        email: email,
+        password: data.password,
+      });
       setIsSuccess(true);
-      // }
+    } catch (err: any) {
+      toast.error(err.message);
+    } finally {
+      setIsLoading(false);
     }
   };
-
-  useEffect(() => {
-    if (isLoading) {
-      setTimeout(() => {
-        setIsLoading(false);
-      }, 3000);
-    }
-    //
-  }, [isLoading]);
 
   return (
     <section className="w-full min-h-screen flex justify-center items-center overflow-y-auto">
@@ -98,10 +82,15 @@ function ResetPasswordForm() {
         <img src={lockImg} alt="lock-img" className="mb-3" />
 
         <h1 className="mb-3 text-[25px] text-center font-semibold dark:text-white leading-[1.4]">
-          {isSuccess ? 'Password Reset Successful' : 'Create New Password' }
+          {isSuccess ? "Password Reset Successful" : "Create New Password"}
         </h1>
 
-        {isSuccess && <p className="text-[16px] text-center mb-8">You’ve successfully reset your password. You can now <br />login with your new password</p>}
+        {isSuccess && (
+          <p className="text-[16px] text-center mb-8">
+            You’ve successfully reset your password. You can now <br />
+            login with your new password
+          </p>
+        )}
 
         {!isSuccess ? (
           <div>
@@ -179,15 +168,15 @@ function ResetPasswordForm() {
             </FormProvider>
           </div>
         ) : (
-            <Button
-              onClick={() => {
-                navigate("/signin", { replace: true });
-              }}
-              width="full"
-              height="20"
-            >
-              Go to Login
-            </Button>
+          <Button
+            onClick={() => {
+              navigate("/signin", { replace: true });
+            }}
+            width="full"
+            height="20"
+          >
+            Go to Login
+          </Button>
         )}
       </div>
     </section>
