@@ -18,7 +18,7 @@ import RouteLayout from "./layout/RouteLayout";
 import axios from "axios";
 import { DATA_CENTER_TOKEN } from "./context/AppContext";
 
-axios.defaults.baseURL = "http://35.196.158.216/api/v1";
+axios.defaults.baseURL = "https://api.bytedegrees.com/api/v1";
 
 const App = () => {
   const { signOut } = useApp();
