@@ -3,8 +3,6 @@ import React, { useState } from "react";
 import Button from "../../components/button";
 import { FormProvider, useForm } from "react-hook-form";
 import { toast } from "react-toastify";
-import getUserInitials from "../../utils/getUserInitials";
-import Avatar from "../../components/Avatar2";
 import { FormGroup } from "../../components/form";
 // import { BsArrowRight } from "react-icons/bs";
 import Select from "../../components/form/customSelect";
@@ -12,29 +10,30 @@ import EduLevels from "../../data/eduLevels.json";
 import { useApp } from "../../context/AppContext";
 import { useNavigate } from "react-router-dom";
 import { updateTutor, verifyEmail } from "../../services/authServices";
+import UploadProfilePhoto from "./uploadProfilephoto";
 
 const TutorAccountSetup: React.FC<any> = () => {
   const { user, updateUser } = useApp();
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
+  const [url, setUrl] = useState("");
 
-  const [user1] = useState({
-    photo: "",
-    user_name: "Test",
-  });
+  // const [user1] = useState({
+  //   photo: "",
+  //   user_name: "Test",
+  // });
 
   const methods = useForm<Tutor>();
 
   const sendOTP = async () => {
     try {
-    const response = await verifyEmail({
-        email: user?.email
-      })
-      toast.success(response.message)
+      const response = await verifyEmail({
+        email: user?.email,
+      });
+      toast.success(response.message);
       navigate("/email-verification");
-
-    } catch (err:any) {
-     toast.error(err.message)
+    } catch (err: any) {
+      toast.error(err.message);
     }
   };
 
@@ -52,19 +51,21 @@ const TutorAccountSetup: React.FC<any> = () => {
       email: user?.email,
       user_id: user?.user_id,
       email_verified: false,
+      photo_url: url,
       programs: [],
       courses: [],
     };
 
     try {
-      const response = await updateTutor(updatedData)
-      toast.success(response?.message)
+      const response = await updateTutor(updatedData);
+      toast.success(response?.message);
       updateUser(response?.data);
       sendOTP();
-
-    
-    } catch (err:any) {
-      toast.error(err.message || "Could not finish setting up the account! This may be an issue with our service, or your network. Please, try again")
+    } catch (err: any) {
+      toast.error(
+        err.message ||
+          "Could not finish setting up the account! This may be an issue with our service, or your network. Please, try again"
+      );
     } finally {
       setIsLoading(false);
     }
@@ -94,106 +95,94 @@ const TutorAccountSetup: React.FC<any> = () => {
               </p>
             </div>
 
+            <UploadProfilePhoto user={user} setUrl={setUrl} />
             <FormProvider {...methods}>
               <form
                 onSubmit={methods.handleSubmit(onSubmit)}
                 // className="max-w-[480px]"
               >
                 <div>
-                  <div>
-                    <div className="mb-6 flex gap-9 items-center">
-                      <Avatar
-                        size="xl"
-                        initials={
-                          user1?.photo === ""
-                            ? getUserInitials(user?.user_name || "User", "")
-                            : undefined
-                        }
-                        src={user1?.photo === "" ? undefined : user1?.photo}
-                      />
-                    </div>
-                    <div className="grid gap-6">
-                      <FormGroup>
-                        <Select
-                          label="Gender"
-                          name="gender"
-                          rules={{ required: false }}
-                        >
-                          <option value="">Select a gender...</option>
-                          <option>Male</option>
-                          <option>Female</option>
-                          <option value="Others">Others</option>
-                        </Select>
-
-                        <Select
-                          label="Title"
-                          name="title"
-                          rules={{ required: false }}
-                        >
-                          <option value="">Mr/Mrs/Miss</option>
-                          <option>Mr</option>
-                          <option>Mrs</option>
-                          <option>Miss</option>
-                          <option>Others</option>
-                        </Select>
-                      </FormGroup>
-
-                      <FormGroup>
-                        <AutoInput
-                          label="First Name"
-                          name="first_name"
-                          placeholder="Enter first name"
-                          rules={{
-                            required: "Username is required",
-                          }}
-                        />
-
-                        <AutoInput
-                          label="Last Name"
-                          name="last_name"
-                          placeholder="Enter last name"
-                          rules={{
-                            required: "Username is required",
-                          }}
-                        />
-                      </FormGroup>
-
-                      <FormGroup>
-                        <Select
-                          label="Level of Education"
-                          name="highest_edu"
-                          rules={{ required: "This field is required" }}
-                        >
-                          <option value="">Select...</option>
-                          {EduLevels.map((val: string, index: number) => (
-                            <option key={index}>{val}</option>
-                          ))}
-                        </Select>
-
-                        <AutoInput
-                          type="date"
-                          label="Date of Birth"
-                          name="dob"
-                          // placeholder="Enter a preferred username"
-                          rules={{
-                            required: "This field is required",
-                          }}
-                        />
-                      </FormGroup>
-                    </div>
-
-                    <div className="mt-10 flex justify-end">
-                      <Button
-                        type="submit"
-                        disabled={isLoading}
-                        onClick={() => {}}
+                  <div className="grid gap-6">
+                    <FormGroup>
+                      <Select
+                        label="Gender"
+                        name="gender"
+                        rules={{ required: false }}
                       >
-                        <span className="flex items-center gap-3">
-                          {/* Next <BsArrowRight /> */}
-                          {isLoading ? 'Loading' : 'Submit'}
-                        </span>
-                      </Button>
-                    </div>
+                        <option value="">Select a gender...</option>
+                        <option>Male</option>
+                        <option>Female</option>
+                        <option value="Others">Others</option>
+                      </Select>
+
+                      <Select
+                        label="Title"
+                        name="title"
+                        rules={{ required: false }}
+                      >
+                        <option value="">Mr/Mrs/Miss</option>
+                        <option>Mr</option>
+                        <option>Mrs</option>
+                        <option>Miss</option>
+                        <option>Others</option>
+                      </Select>
+                    </FormGroup>
+
+                    <FormGroup>
+                      <AutoInput
+                        label="First Name"
+                        name="first_name"
+                        placeholder="Enter first name"
+                        rules={{
+                          required: "Username is required",
+                        }}
+                      />
+
+                      <AutoInput
+                        label="Last Name"
+                        name="last_name"
+                        placeholder="Enter last name"
+                        rules={{
+                          required: "Username is required",
+                        }}
+                      />
+                    </FormGroup>
+
+                    <FormGroup>
+                      <Select
+                        label="Level of Education"
+                        name="highest_edu"
+                        rules={{ required: "This field is required" }}
+                      >
+                        <option value="">Select...</option>
+                        {EduLevels.map((val: string, index: number) => (
+                          <option key={index}>{val}</option>
+                        ))}
+                      </Select>
+
+                      <AutoInput
+                        type="date"
+                        label="Date of Birth"
+                        name="dob"
+                        // placeholder="Enter a preferred username"
+                        rules={{
+                          required: "This field is required",
+                        }}
+                      />
+                    </FormGroup>
+                  </div>
+
+                  <div className="mt-10 flex justify-end">
+                    <Button
+                      type="submit"
+                      disabled={isLoading}
+                      onClick={() => {}}
+                    >
+                      <span className="flex items-center gap-3">
+                        {/* Next <BsArrowRight /> */}
+                        {isLoading ? "Loading" : "Submit"}
+                      </span>
+                    </Button>
                   </div>
                 </div>
               </form>
