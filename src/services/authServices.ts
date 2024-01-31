@@ -27,6 +27,23 @@ export const registerUser = async (data: any) => {
   
     return response?.data;
 };
+export const uploadProfilePhoto = async (data: any) => {
+  const response: any = await axios
+    .post(`/save-file`, data, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      }, 
+    })
+    .catch((e) => ({ error: e }));
+  //check error
+  if (response && response?.error) {
+    const err = response?.error?.response;
+    const msg = err?.data?.message || err?.statusText;
+    throw new Error(msg);
+  }
+
+  return response?.data;
+};
 export const updateTutor = async (data: any) => {
   const response: any = await axios
     .post(`/tutors`, data)

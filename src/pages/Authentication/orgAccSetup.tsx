@@ -3,8 +3,6 @@ import React, { useState } from "react";
 import Button from "../../components/button";
 import { FormProvider, useForm } from "react-hook-form";
 import { toast } from "react-toastify";
-import getUserInitials from "../../utils/getUserInitials";
-import Avatar from "../../components/Avatar2";
 import { useApp } from "../../context/AppContext";
 import { useNavigate } from "react-router-dom";
 import { FormGroup } from "../../components/form";
@@ -12,6 +10,7 @@ import Select from "../../components/form/customSelect";
 import { BsArrowRight } from "react-icons/bs";
 import EduLevels from "../../data/eduLevels.json";
 import { updateOrganization, verifyEmail } from "../../services/authServices";
+import UploadProfilePhoto from "./uploadProfilephoto";
 
 interface OrgData {
   org_id: string;
@@ -26,11 +25,8 @@ const OrganisationAccountSetup: React.FC<any> = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [data1, setData] = useState<any>(null);
   const [stage, setStage] = useState<number>(1);
-
-  const [user1] = useState({
-    photo: "",
-    user_name: "Test",
-  });
+  const [url, setUrl] = useState("");
+  const [orgUrl, setOrgUrl] = useState("");
 
   const methods = useForm<Tutor>();
   const methods2 = useForm<OrgData>();
@@ -48,6 +44,7 @@ const OrganisationAccountSetup: React.FC<any> = () => {
       email: user?.email,
       user_id: user?.user_id,
       email_verified: false,
+      photo_url: url,
     };
     setData(updatedData);
     setStage(2);
@@ -83,7 +80,7 @@ const OrganisationAccountSetup: React.FC<any> = () => {
         admin_id: user?.user_id || user?.admin_id,
         name: data?.name,
         contact: data?.contact,
-
+        photo_url: orgUrl,
         tutors: [],
         programs: [],
       },
@@ -151,24 +148,14 @@ const OrganisationAccountSetup: React.FC<any> = () => {
               )}
             </div>
             {stage === 1 ? (
-              <FormProvider {...methods}>
-                <form
-                  onSubmit={methods.handleSubmit(onSubmit)}
-                  // className="max-w-[480px]"
-                >
-                  <div>
+              <>
+                <UploadProfilePhoto user={user} setUrl={setUrl} />
+                <FormProvider {...methods}>
+                  <form
+                    onSubmit={methods.handleSubmit(onSubmit)}
+                    // className="max-w-[480px]"
+                  >
                     <div>
-                      <div className="mb-6 flex gap-9 items-center">
-                        <Avatar
-                          size="xl"
-                          initials={
-                            user1?.photo === ""
-                              ? getUserInitials(user?.user_name || "User", "")
-                              : undefined
-                          }
-                          src={user1?.photo === "" ? undefined : user1?.photo}
-                        />
-                      </div>
                       <div className="grid gap-6">
                         <FormGroup>
                           <Select
@@ -247,63 +234,55 @@ const OrganisationAccountSetup: React.FC<any> = () => {
                         </Button>
                       </div>
                     </div>
-                  </div>
-                </form>
-              </FormProvider>
+                  </form>
+                </FormProvider>
+              </>
             ) : (
-              <FormProvider {...methods2}>
-                <form
-                  onSubmit={methods2.handleSubmit(onSubmit2)}
-                  // className="max-w-[480px]"
-                >
-                  <div>
+              <>
+                <UploadProfilePhoto user={user} setUrl={setOrgUrl} />
+                <FormProvider {...methods2}>
+                  <form
+                    onSubmit={methods2.handleSubmit(onSubmit2)}
+                    // className="max-w-[480px]"
+                  >
                     <div>
-                      <div className="mb-6 flex gap-9 items-center">
-                        <Avatar
-                          size="xl"
-                          initials={
-                            user1?.photo === ""
-                              ? getUserInitials(user?.user_name || "User", "")
-                              : undefined
-                          }
-                          src={user1?.photo === "" ? undefined : user1?.photo}
-                        />
-                      </div>
-                      <div className="grid gap-6">
-                        <AutoInput
-                          label="Organisation Name"
-                          name="name"
-                          placeholder="Enter name of organisation"
-                          rules={{
-                            required: "This field is required",
-                          }}
-                        />
+                      <div>
+                        <div className="grid gap-6">
+                          <AutoInput
+                            label="Organisation Name"
+                            name="name"
+                            placeholder="Enter name of organisation"
+                            rules={{
+                              required: "This field is required",
+                            }}
+                          />
 
-                        <AutoInput
-                          label="Contact"
-                          name="contact"
-                          placeholder="Enter organization's primary contact"
-                          rules={{
-                            required: "This field is required",
-                          }}
-                        />
-                      </div>
+                          <AutoInput
+                            label="Contact"
+                            name="contact"
+                            placeholder="Enter organization's primary contact"
+                            rules={{
+                              required: "This field is required",
+                            }}
+                          />
+                        </div>
 
-                      <div className="mt-10 flex justify-end">
-                        <Button
-                          type="submit"
-                          disabled={isLoading}
-                          onClick={() => {}}
-                        >
-                          <span className="flex items-center gap-3">
-                            Complete Profile
-                          </span>
-                        </Button>
+                        <div className="mt-10 flex justify-end">
+                          <Button
+                            type="submit"
+                            disabled={isLoading}
+                            onClick={() => {}}
+                          >
+                            <span className="flex items-center gap-3">
+                              Complete Profile
+                            </span>
+                          </Button>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </form>
-              </FormProvider>
+                  </form>
+                </FormProvider>
+              </>
             )}
           </div>
         </div>

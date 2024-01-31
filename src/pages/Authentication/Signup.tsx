@@ -62,7 +62,7 @@ const Signup: React.FC = () => {
       navigate(`/account-setup/${category}`);
     } catch (err: any) {
       toast.error(
-        err ||
+        err.message ||
           "Could not create the account! This may be an issue with our service, or your network. Please, try again"
       );
     } finally {
@@ -227,7 +227,8 @@ const Signup: React.FC = () => {
               category === "student"
                 ? "border-primary bg-primary/10"
                 : "border-slate-300"
-            } border  px-4 py-2 rounded-xl`}
+            } border cursor-pointer px-4 py-2 rounded-xl`}
+            onClick={() => setCategory("student")}
           >
             <input
               type="radio"
@@ -254,7 +255,8 @@ const Signup: React.FC = () => {
               category === "tutor"
                 ? "border-primary bg-primary/10"
                 : "border-slate-300"
-            } border  px-4 py-2 rounded-xl`}
+            } border cursor-pointer px-4 py-2 rounded-xl`}
+            onClick={() => setCategory("tutor")}
           >
             <input
               type="radio"
@@ -280,10 +282,11 @@ const Signup: React.FC = () => {
           {/* Organization Category */}
           <div
             className={`flex gap-2 items-start ${
-              category === "organization"
+              category === "organisation"
                 ? "border-primary bg-primary/10"
                 : "border-slate-300"
-            } border  px-4 py-2 rounded-xl`}
+            } border cursor-pointer  px-4 py-2 rounded-xl`}
+            onClick={() => setCategory("organisation")}
           >
             <input
               type="radio"

@@ -1,11 +1,10 @@
 import { AutoInput } from "../../components/form/customInput";
-import React, { useRef, useState } from "react";
+import React, {useState } from "react";
 import Button from "../../components/button";
 import { FormProvider, useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import Modal from "../../components/modal";
-import getUserInitials from "../../utils/getUserInitials";
-import Avatar from "../../components/Avatar2";
+
 import { FormGroup } from "../../components/form";
 import { BsArrowRight } from "react-icons/bs";
 import Select from "../../components/form/customSelect";
@@ -15,15 +14,14 @@ import { useApp } from "../../context/AppContext";
 import CourseCategories from "./categorySelection";
 import { useNavigate } from "react-router-dom";
 import { updateStudent, verifyEmail } from "../../services/authServices";
+import UploadProfilePhoto from "./uploadProfilephoto";
 
 const StudentAccountSetup: React.FC<any> = () => {
   const { user, updateUser } = useApp();
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [categoryModal, setCategoryModal] = useState(false);
-
-  const hiddenFileInput = useRef<HTMLInputElement>(null);
-  const [logoUrl, setLogoUrl] = useState<string>(user?.photo || "");
+  const [url, setUrl] = useState('');
 
   const [data, setData] = useState<any>(null);
   const [stage, setStage] = useState<number>(1);
@@ -34,35 +32,7 @@ const StudentAccountSetup: React.FC<any> = () => {
     setSelectedCourses(selectedCategories);
   };
 
-  const handleClick = () => {
-    const input = (hiddenFileInput.current as HTMLInputElement) || null;
-    if (input) {
-      input.click();
-    }
-  };
-
-  const photoUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    e.preventDefault();
-    const target = e.target as HTMLInputElement;
-    if (target) {
-      if (target.files?.length) {
-        const file = target.files[0];
-        setLogoUrl(URL.createObjectURL(file) || "");
-        //uploading the image
-        // const url = await uploading ima
-
-        //catching error
-        // if (res) {
-        //   toast.success("Photo upload successful");
-        // } else {
-        //   setLogoUrl(user.photo || "");
-        //   toast.error("Photo upload failed");
-        // }
-      }
-    } else {
-      setLogoUrl(user.photo || "");
-    }
-  };
+ 
 
   const methods = useForm<Student>();
 
@@ -80,6 +50,7 @@ const StudentAccountSetup: React.FC<any> = () => {
       user_id: user?.user_id,
       email_verified: false,
       interested_fields: selectedCourses,
+      photo_url: url
     };
     setData(updatedData);
     setStage(2);
@@ -118,10 +89,11 @@ const StudentAccountSetup: React.FC<any> = () => {
       setIsLoading(false);
     }
   };
+ 
 
   return (
     <section className="flex w-full relative min-h-screen justify-center items-center">
-      <h4 className="fixed left-6 font-semibold text-[15px] top-4 w-30 text-primary">
+      <h4 className="fixed left-6 font-semibold text-[15px] top-4 w-30 text-primary" >
         ByteDegree
       </h4>
       <div className="flex flex-col justify-center md:mx-0 mx-6 bg-white my-24 py-5 rounded-2xl max-w-[45rem]">
@@ -149,33 +121,9 @@ const StudentAccountSetup: React.FC<any> = () => {
             </div>
 
             {stage === 1 ? (
-              <FormProvider {...methods}>
-                <label className="mb-9 flex gap-9 items-center">
-                  <div className="cursor-pointer">
-                    <Avatar
-                      size="xl"
-                      initials={
-                        logoUrl === ""
-                          ? getUserInitials(user?.user_name || "User", "")
-                          : undefined
-                      }
-                      src={logoUrl === "" ? undefined : logoUrl}
-                    />
-                  </div>
-
-                  <input
-                    type="file"
-                    className="hidden"
-                    ref={hiddenFileInput}
-                    onChange={photoUpload}
-                  />
-                  <button
-                    onClick={handleClick}
-                    className="py-3 px-6 bg-primary/10 text-primary rounded opacity-95 hover:opacity-100"
-                  >
-                    Upload Photo
-                  </button>
-                </label>
+              <>
+              <UploadProfilePhoto user={user} setUrl={setUrl} />
+              <FormProvider {...methods}>              
                 <form
                   onSubmit={methods.handleSubmit(onSubmit)}
                   // className="max-w-[480px]"
@@ -263,6 +211,7 @@ const StudentAccountSetup: React.FC<any> = () => {
                   </div>
                 </form>
               </FormProvider>
+              </>
             ) : (
               <div>
                 <CourseCategories
