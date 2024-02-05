@@ -34,7 +34,7 @@ const UploadProfilePhoto: React.FC<UploadProfilePhotoProps> = ({
 
         const formData = new FormData();
         formData.append("file", file);
-        formData.append("folder", `UserProfile/${user?.id}`);
+        formData.append("folder", `UserProfile/${user?.user_id}`);
 
         //uploading the image
 
@@ -53,7 +53,7 @@ const UploadProfilePhoto: React.FC<UploadProfilePhotoProps> = ({
         }
       }
     } else {
-      setLogoUrl(user.photo || "");
+      setLogoUrl(user.photo_url || "");
     }
   };
   return (

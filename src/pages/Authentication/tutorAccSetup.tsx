@@ -71,6 +71,8 @@ const TutorAccountSetup: React.FC<any> = () => {
     }
   };
 
+  // console.log(user)
+
   return (
     <section className="flex w-full relative min-h-screen justify-center items-center">
       <h4 className="fixed left-6 font-semibold text-[15px] top-4 w-30 text-primary">

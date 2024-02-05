@@ -20,4 +20,32 @@ const DashboardCard: React.FC<DashboardCardProps> = ({ title, number }) => {
   );
 };
 
+interface DashboardCard2Props {
+  title?: string;
+  number?: number | string;
+  color?: string;
+  icon?: React.ReactNode;
+}
+
+export const DashboardCard2: React.FC<DashboardCard2Props> = ({ title, number, color, icon }) => {
+  return (
+    <div className="relative border bg-white shadow-sm  border-stroke flex gap-5 py-3 px-4 w-full">
+      <div className="">
+        <div className="flex justify-center items-center gap-2 mb-5">
+         {icon}
+          <h4 className="font-semibold dark:text-black text-[#070a0ff8] font-cabin">
+          {title}
+        </h4>
+        </div>
+       
+        
+        <p className={`text-[${color}] font-semibold text-2xl mb-2 ml-2`}>
+          {number}
+        </p>
+      </div>
+    </div>
+  );
+};
+
+
 export default DashboardCard;

@@ -112,6 +112,10 @@ const App = () => {
 
               <Route path="/search" element={<GeneralPages.SearchPage />} />
               <Route path="/faq" element={<GeneralPages.FaqPage />} />
+              <Route
+                  path="tutors"
+                  element={<TutorsPages.Dashboard />}
+                />
             </>
 
             <>
