@@ -1,8 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { TutorCourseCard } from "../../components/card";
-import DashboardCard from "../../components/card/dashboardCards";
+import Chart from "react-apexcharts";
+import { earningsChartConfig } from "../AllComponents/Charts/chartConfig";
+import { DashboardCard2 } from "../../components/card/dashboardCards";
 import DefaultLayout from "../../layout/DefaultLayout";
 import PreviewImg from "../../assets/images/Image.png";
+import { useApp } from "../../context/AppContext";
+import { RiMoneyDollarCircleFill } from "react-icons/ri";
+import { IoBookSharp, IoPeople } from "react-icons/io5";
 
 export const data2 = [
   {
@@ -44,38 +48,63 @@ export const data2 = [
 ];
 
 export default function TutorDashboard() {
+  const { user } = useApp();
   return (
     <DefaultLayout>
       <section className="py-3 px-6 dark:bg-boxdark">
         <h1 className="text-2xl font-bold dark:text-slate-200 mb-3">
-          Welcome, Thomas
+          Welcome, {user?.username || user?.first_name || 'User'}
         </h1>
 
-        <div className="py-4 bg-white grid md:grid-cols-3 grid-cols-2 gap-6 w-[80%]">
-          <DashboardCard title="Amount Earned" number="$15,000" />
+        <div className="py-4 grid md:grid-cols-3 grid-cols-2 gap-6 w-[80%]">
+          <DashboardCard2
+            title="Amount Earned"
+            number="$15,000"
+            color="#027A48"
+            icon={<div className="p-1.5 rounded-full bg-[#027A48]/10 text-xl"><RiMoneyDollarCircleFill className="text-[#027A48]" /></div>}
+          />
 
-          <DashboardCard title="My Courses" number={10} />
+          <DashboardCard2
+            title="My Courses"
+            number={15}
+            color="#3843D0"
+            icon={<div className="p-1.5 rounded-full bg-[#3843D0]/10 text-lg"><IoBookSharp className="text-[#3843D0]" /></div>}
+          />
 
-          <DashboardCard title="Completed Courses" number={5} />
+          <DashboardCard2
+            title="Students"
+            number={150}
+            color="#F88D3F"
+            icon={<div className="p-1.5 rounded-full bg-[#F88D3F]/10 text-lg"><IoPeople className="text-[#F88D3F]" /></div>}
+          />
         </div>
-
         <section className="sm:block py-8">
-          <div className="flex justify-between items-center relative mb-3">
-            <h1 className="text-xl font-bold dark:text-slate-200">
-              My Courses
-            </h1>
-            <a className="font-bold dark:text-slate-200">See all</a>
-          </div>
-          <div className="w-full px-4 gap-5 grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 grid-cols-1">
-            {data2.map((val: any, index: any) => (
-              <TutorCourseCard
-                key={index}
-                title={val.title}
-                preview_img_url={val.preview_img_url}
-                course_url=""
-                coursePrice={val.coursePrice}
-              />
-            ))}
+          <h3 className="text-xl font-semibold my-4">Statistics</h3>
+          <div className="relative px-3 py-6 md:px-5 bg-white mb-8 rounded-xl shadow-md">
+            <div className="font-cabin tracking-wide  mb-5 md:pl-5">
+              <h6 className="text-lg text-black/80 mb-3">My Earnings</h6>
+              <h6 className="text-4xl text-black">$58.9k</h6>
+            </div>
+            <Chart
+              options={{
+                ...earningsChartConfig,
+                stroke: {
+                  show: true,
+                  width: 1,
+                  colors: ["transparent"],
+                },
+              }}
+              series={[
+                {
+                  name: "Earnings",
+                  data: [
+                    1000, 1500, 2000, 2000, 2100, 3000, 1000, 2600, 3000, 0, 0,
+                    0,
+                  ],
+                },
+              ]}
+              type="bar"
+            />
           </div>
         </section>
       </section>

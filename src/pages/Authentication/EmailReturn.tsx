@@ -25,7 +25,8 @@ function EmailReturn() {
         <button
           className="border-primary border w-full rounded-lg py-2 px-6 text-white opacity-95 hover:opacity-100 bg-primary"
           onClick={() => {
-            if (user?.category === ("organisation" || "tutor")) {
+            // alert(user?.category)
+            if (user?.category === "tutor") {
               navigate(`/app/tutors/dashboard`);
             } else {
               navigate(`/app/students/dashboard`);

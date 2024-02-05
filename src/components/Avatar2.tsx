@@ -10,7 +10,7 @@ interface AvatarProps {
 
 const Avatar: React.FC<AvatarProps> = ({ size = 'medium', src, initials, alt }) => {
   const sizes = {
-    small: 'h-[32px] w-[32px]',
+    small: 'h-[30px] w-[30px]',
     medium: 'h-[48px] w-[48px]',
     large: 'h-[64px] w-[64px]',
     xl: 'h-[112px] w-[112px]',
