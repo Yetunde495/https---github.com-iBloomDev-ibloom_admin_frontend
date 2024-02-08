@@ -185,129 +185,7 @@ export const ADMIN_NAV_DATA = [
   },
 ];
 
-//Teachers navigation
-export const TEACHER_NAV_DATA = [
-  // MENU
-  {
-    section: "MENU",
-    children: [
-      {
-        name: "Dashboard",
-        path: "dashboards", //use for nested rendering
-        icon: icons.Dashboard,
-        children: [
-          {
-            name: "Analytics",
-            path: "/app/dashboard/analytics",
-            icon: icons.Analytics,
-          },
-          {
-            name: "Data",
-            path: "/app/dashboard/data",
-            icon: icons.Database,
-          },
-          {
-            name: "Summary",
-            path: "/app/dashboard/summary",
-            icon: icons.Summary,
-          },
-        ],
-      },
-    ],
-  },
-  // ACADEMICS
-  {
-    section: "ACADEMICS",
-    children: [
-      {
-        name: "Students",
-        path: "/app/academics/students",
-        icon: icons.Users,
-      },
-      {
-        name: "Evaluations",
-        path: "evaluations",
-        icon: icons.Exam,
-        children: [
-          {
-            name: "Examinations",
-            path: "examinations",
-            icon: icons.Exam,
-          },
-          {
-            name: "Quizzes",
-            path: "quizzes",
-            icon: icons.Book,
-          },
-          {
-            name: "CBT",
-            path: "/app/examinations/competitions",
-            icon: icons.Computer,
-          },
-          {
-            name: "Results",
-            path: "/app/examinations/results",
-            icon: icons.Result,
-          },
-        ],
-      },
-      {
-        name: "Boards",
-        path: "/app/academics/boards",
-        icon: icons.Board,
-      },
-    ],
-  },
-  // ACCOUNTS
-  {
-    section: "ACCOUNTS",
-    children: [
-      {
-        name: "Pay",
-        path: "/app/accounts/pays",
-        icon: icons.Payment,
-      },
-    ],
-  },
-  //MESSAGING
-  {
-    section: "COMMUNICATION",
-    children: [
-      {
-        name: "Q & A",
-        path: "/app/chats",
-        icon: icons.Chat,
-      },
-      {
-        name: "Notifications",
-        path: "/app/notifications",
-        icon: icons.Notification,
-      },
-      {
-        name: "Messages",
-        path: "/app/chats",
-        icon: icons.Chat,
-      },
-      {
-        name: "Announcements",
-        path: "/app/announcements",
-        icon: icons.Announcement,
-      },
-    ],
-  },
 
-  // SETTINGS
-  {
-    section: "SETTINGS",
-    children: [
-      {
-        name: "Profile",
-        path: "/app/settings/profile",
-        icon: icons.Profile,
-      },
-    ],
-  },
-];
 
 //Students navigation
 export const STUDENT_NAV_DATA = [
@@ -355,3 +233,46 @@ export const STUDENT_NAV_DATA = [
     ],
   },
 ];
+
+//Students navigation
+export const TUTOR_NAV_DATA = [
+  // MENU
+  {
+    children: [
+      {
+        name: "Home",
+        path: "/app/home", //use for nested rendering
+        icon: icons.Home,
+      },
+      {
+        name: "Dashboard",
+        path: "/app/tutors/dashboard", //use for nested rendering
+        icon: icons.Dashboard,
+      },
+      {
+        name: "My Courses",
+        // path: "/app/students/academics/subjects",
+        path: "/app/tutors/courses",
+        icon: icons.Book,
+      },
+      {
+        name: "Assessments",
+        path: "/app/students/academics/subjects",
+        icon: icons.Assessment,
+      },
+      {
+        name: "Live Classes",
+        // path: "/app/students/academics/subjects",
+        path: "/app/students/live-classes",
+        icon: icons.Bulb,
+      },
+      {
+        name: "Profile",
+        // path: "/app/students/settings/profile",
+        path: "/app/students/profile",
+        icon: icons.Profile,
+      },
+    ],
+  },
+];
+

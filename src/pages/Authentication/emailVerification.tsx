@@ -42,7 +42,7 @@ function EmailVerification() {
     setLoading(true);
     const data = {
       otp: otpValue,
-      user_id: user?.user_id,
+      user_id: user?.category === "organisation" ? user?.admin_id : user?.user_id,
     };
 
     try {
@@ -96,6 +96,7 @@ function EmailVerification() {
         "border-primary": isValid,
       }
     );
+
   return (
     <section className="w-full min-h-screen flex justify-center items-center">
       <h4 className="fixed left-6 font-semibold text-[15px] top-4 w-30 text-primary">

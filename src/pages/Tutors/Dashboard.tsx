@@ -7,6 +7,9 @@ import PreviewImg from "../../assets/images/Image.png";
 import { useApp } from "../../context/AppContext";
 import { RiMoneyDollarCircleFill } from "react-icons/ri";
 import { IoBookSharp, IoPeople } from "react-icons/io5";
+import { useQuery } from "@tanstack/react-query";
+import { getTutorDashboardDetails } from "../../services/tutorServices";
+import { toast } from "react-toastify";
 
 export const data2 = [
   {
@@ -49,6 +52,19 @@ export const data2 = [
 
 export default function TutorDashboard() {
   const { user } = useApp();
+
+  const { data} = useQuery(
+    ["TUTOR_DASHBOARD_DETAILS"],
+    () => getTutorDashboardDetails({
+      id: user?.user_id
+    }),
+    { keepPreviousData: true,
+      onError: (err:any) => {
+        toast.error(err.message);
+      },
+    
+    }
+  );
   return (
     <DefaultLayout>
       <section className="py-3 px-6 dark:bg-boxdark">
@@ -59,14 +75,14 @@ export default function TutorDashboard() {
         <div className="py-4 grid md:grid-cols-3 grid-cols-2 gap-6 w-[80%]">
           <DashboardCard2
             title="Amount Earned"
-            number="$15,000"
+            number={`$${data?.amountEarned || 0}`}
             color="#027A48"
             icon={<div className="p-1.5 rounded-full bg-[#027A48]/10 text-xl"><RiMoneyDollarCircleFill className="text-[#027A48]" /></div>}
           />
 
           <DashboardCard2
             title="My Courses"
-            number={15}
+            number={data?.courses || 0}
             color="#3843D0"
             icon={<div className="p-1.5 rounded-full bg-[#3843D0]/10 text-lg"><IoBookSharp className="text-[#3843D0]" /></div>}
           />
