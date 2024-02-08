@@ -5,14 +5,16 @@ import Logo from '../images/logo/logo-icon.svg';
 import SidebarLinkGroup from './SidebarLinkGroup';
 import { RiArrowDownSLine } from 'react-icons/ri';
 import {
-  STUDENT_NAV_DATA,
+  STUDENT_NAV_DATA, TUTOR_NAV_DATA,
 } from './config';
 import { SlSettings } from 'react-icons/sl';
+import { useApp } from '../context/AppContext';
 
 
 
 
 const Sidebar = ({ sidebarOpen, setSidebarOpen }: { sidebarOpen: any, setSidebarOpen: any }) => {
+  const { user } = useApp();
   const location = useLocation();
   const { pathname } = location;
 
@@ -26,13 +28,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: { sidebarOpen: any, setSidebar
   );
 
   //nav configuration
-  //users = admin, teacher, student
-  // const emptyArray: any[] = [];
-  const navConfig =  STUDENT_NAV_DATA;
-  // currentUser.userType === 'admin' ? ADMIN_NAV_DATA
-  // : currentUser.userType === 'teacher' ? TEACHER_NAV_DATA
-  // : currentUser.userType === 'student' ? STUDENT_NAV_DATA
-  // : emptyArray
+  const navConfig = user?.category === "student" ?  STUDENT_NAV_DATA : TUTOR_NAV_DATA;
 
   // close on click outside
   useEffect(() => {

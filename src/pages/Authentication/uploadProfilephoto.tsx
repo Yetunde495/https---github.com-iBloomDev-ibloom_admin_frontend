@@ -35,6 +35,7 @@ const UploadProfilePhoto: React.FC<UploadProfilePhotoProps> = ({
         const formData = new FormData();
         formData.append("file", file);
         formData.append("folder", `UserProfile/${user?.user_id}`);
+        formData.append("access", `public`);
 
         //uploading the image
 

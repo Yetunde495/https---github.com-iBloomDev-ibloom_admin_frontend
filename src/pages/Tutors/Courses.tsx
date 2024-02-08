@@ -2,13 +2,11 @@
 import { TutorCourseCard } from "../../components/card";
 import DefaultLayout from "../../layout/DefaultLayout";
 import { data2 } from "./Dashboard";
-import { useLocation } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 
 const Courses = () => {
-  const location = useLocation();
+  const navigate = useNavigate();
 
-  // Construct the new URL by appending "courseupload" to the current pathname
-  const newHref = `${location.pathname}/courseupload`;
   return (
     <DefaultLayout>
       <section className="py-3 px-6 dark:bg-boxdark">
@@ -17,9 +15,9 @@ const Courses = () => {
             <h1 className="text-xl font-bold dark:text-slate-200">
               My Courses
             </h1>
-            <a className="font-bold dark:text-slate-200" href={newHref}>
+            <span className="font-bold text-primary cursor-pointer dark:text-slate-200" onClick={() => navigate(`/app/tutors/courses/courseupload`)}>
               Create new course
-            </a>
+            </span>
           </div>
           <div className="w-full px-4 gap-5 grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 grid-cols-1">
             {data2.map((val: any, index: any) => (
