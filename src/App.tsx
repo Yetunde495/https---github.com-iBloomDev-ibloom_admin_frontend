@@ -44,11 +44,12 @@ const App = () => {
       if (error.response) {
         if (error?.response?.status === 401) {
           signOut();
-        } else {
         }
-      } else if (error.request) {
-      } else {
-        // flash error message
+        //   else {
+        //   }
+        // } else if (error.request) {
+        // } else {
+        //   flash error message
       }
 
       return Promise.reject(error);
@@ -67,8 +68,7 @@ const App = () => {
 
     //
   }, [preloader]);
- 
-  
+
   return (
     <Fragment>
       {loading ? (
@@ -94,16 +94,16 @@ const App = () => {
                 path="/reset-password/:email"
                 element={<AuthPages.ResetPasswordForm />}
               />
-              
+
               <Route
                 path="/account-setup/student"
                 element={<AuthPages.StudentAccountSetup />}
               />
-               <Route
+              <Route
                 path="/account-setup/tutor"
                 element={<AuthPages.TutorAccountSetup />}
               />
-               <Route
+              <Route
                 path="/account-setup/organisation"
                 element={<AuthPages.OrganisationAccountSetup />}
               />
@@ -112,10 +112,7 @@ const App = () => {
 
               <Route path="/search" element={<GeneralPages.SearchPage />} />
               <Route path="/faq" element={<GeneralPages.FaqPage />} />
-              <Route
-                  path="tutors"
-                  element={<TutorsPages.Dashboard />}
-                />
+              <Route path="tutors" element={<TutorsPages.Dashboard />} />
             </>
 
             <>
