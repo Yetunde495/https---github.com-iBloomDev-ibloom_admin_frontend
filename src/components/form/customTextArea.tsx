@@ -33,7 +33,7 @@ const Textarea: React.FC<TextareaProps> = ({ label, name, rules, OnChange, class
     <div className={containerClass}>
       <label
         htmlFor={name}
-        className="mb-3 block text-sm font-medium text-black dark:text-white"
+        className="mb-3 block text-black dark:text-white"
       >
         {label}
       </label>
@@ -44,8 +44,9 @@ const Textarea: React.FC<TextareaProps> = ({ label, name, rules, OnChange, class
         onChange={handleChange}
         value={value || ""}
         ref={ref}
+        rows={4}
         placeholder={placeholder}
-        className={`w-full rounded border border-stroke 
+        className={`w-full rounded border border-stroke custom-scrollbar
         bg-gray py-3 pl-4.5 pr-4.5 text-black
         focus:border-primary focus-visible:outline-none
         dark:border-strokedark dark:bg-meta-4

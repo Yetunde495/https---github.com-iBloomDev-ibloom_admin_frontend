@@ -46,15 +46,15 @@ type InputWithIconProps = {
         </label>
         <div className="relative">
           {leftIcon ? (
-            <span className="absolute left-3 top-4 dark:text-primary">{icon}</span>
+            <span className="absolute left-3 top-[17px] text-slate-600 dark:text-primary">{icon}</span>
           ) : null}
           <input
-            className={`w-full dark:bg-meta-4 bg-gray  border focus-visible:outline-none focus:ring-2 rounded-md  placeholder:text-slate-400 placeholder:text-sm py-3 ${rightIcon ? 'pr-9 pl-4' : 'pl-9 pr-4'} text-black  
+            className={`w-full dark:bg-meta-4 bg-gray  border focus-visible:outline-none rounded-md  placeholder:text-slate-400 py-3 ${rightIcon ? 'pr-9 pl-4' : 'pl-9 pr-4'} text-black  
   
               ${
                 error
                   ? "border-[#fda29b] focus:border-[#fda29b] focus:ring-[#fee4e2]"
-                  : "border-[#d0d5dd] focus:ring-[#d4d7ec70]"
+                  : "border-[#d0d5dd] focus:border-primary"
               } 
                 `}
             {...field}

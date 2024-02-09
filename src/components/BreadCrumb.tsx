@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 interface BreadcrumbProps {
   children?: React.ReactNode;
   routes?: { name: string; path?: string }[];
-  pageName: string;
+  pageName?: string;
   homeRoute: string;
   homeRouteName: string;
 }
@@ -17,12 +17,12 @@ export default function Breadcrumb(props: BreadcrumbProps) {
 
   return (
     <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-      <h2 className="text-title-md2 font-semibold text-black dark:text-white">
+      {/* <h2 className="text-title-md2 font-semibold text-black dark:text-white">
         {props.pageName}
-      </h2>
+      </h2> */}
 
       <nav>
-        <ol className="flex items-center gap-2 text-white">
+        <ol className="flex items-center gap-2 text-black/65 dark:text-white text-lg">
           {props?.routes ? (
             props?.routes?.map((p: any, routeIndex: number) =>
               routeIndex + 1 === props?.routes?.length ? (

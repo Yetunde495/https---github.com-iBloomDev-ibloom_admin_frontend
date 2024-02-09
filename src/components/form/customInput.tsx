@@ -35,7 +35,7 @@ export const AutoInput: React.FC<TextInputProps> = ({ type, disabled=false, defV
   const { onBlur, value, ref, onChange } = field;
   const { error } = fieldState;
 
-  const errorData = error ? ' border-danger' : ' border-slate-400';
+  const errorData = error ? ' border-danger' : ' border-[#d0d5dd]';
   const containerClass = classNames ? 'w-full ' + classNames : 'w-full';
 
   

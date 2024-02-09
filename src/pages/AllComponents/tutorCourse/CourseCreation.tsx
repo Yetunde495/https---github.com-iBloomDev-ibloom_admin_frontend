@@ -7,7 +7,11 @@ import { InputField } from "../../../components/form";
 // import { RxCross2 } from "react-icons/rx";
 import { SingleFileUploadWithProgress } from "./FileUpload";
 
-const CourseCreation = () => {
+type CourseCreationUpload = {
+  onProceed: () => void
+}
+
+const CourseCreation = (props: CourseCreationUpload) => {
   return (
     <div>
       <Button onClick={undefined} text="Creat a Section" width="full" />
@@ -44,7 +48,7 @@ const CourseCreation = () => {
                     <SingleFileUploadWithProgress />
                     <div className="flex justify-end gap-x-5 mt-10">
                       <button className="text-zinc-500">Cancel</button>
-                      <Button onClick={undefined} text="Save" />
+                      <Button onClick={props.onProceed} text="Save" />
                     </div>
                   </div>
                 </div>
@@ -76,8 +80,10 @@ const CourseCreation = () => {
                   <div>
                     <p className="text-lg">Upload Video</p>
                     <SingleFileUploadWithProgress />
+
+                    
                     <div className="flex justify-end gap-x-5 mt-10">
-                      <button className="text-zinc-500">Cancel</button>
+                      <button className="text-zinc-500" onClick={() => {}}>Cancel</button>
                       <Button onClick={undefined} text="Save" />
                     </div>
                   </div>
