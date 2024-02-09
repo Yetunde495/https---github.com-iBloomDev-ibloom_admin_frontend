@@ -1,80 +1,145 @@
+import { BsCurrencyDollar } from "react-icons/bs";
 import Button from "../../../components/button";
-import { InputField, Select, TextArea } from "../../../components/form";
+import {
+  FormGroup,
+  InputWithIcon,
+  Textarea,
+} from "../../../components/form";
+import { FormProvider, useForm } from "react-hook-form";
+import { AutoInput } from "../../../components/form/customInput";
+import Select from "../../../components/form/customSelect";
+import ReactSelect from "react-select";
+import { CourseImageUpload, CourseVideoUpload } from "./FileUpload";
+import { useState } from "react";
 
 const CourseDetails = () => {
+  const methods = useForm<FormData>();
+  const [selectedUsers, setSelectedUsers] = useState<any[]>([]);
+  const [users] = useState<any[]>([
+   {label: "UI",
+    value: "UI"
+  }, 
+    {label:"Development",
+     value: "Development"
+  }
+  ]);
+
+  const onSubmit = (data: FormData) => {
+    //   setIsLoading(true)
+    const { errors } = methods.formState;
+
+    // Check if there are any validation errors
+    if (Object.keys(errors).length > 0) {
+      console.log("Validation errors:", errors);
+      return; // Exit the function if there are errors
+    }
+    console.log(data);
+  };
   return (
     <div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-y-5 gap-x-15 mb-10">
-        <InputField
-          label="Course Name"
-          name="courseName"
-          placeholder="Course Name"
-          onChange={function (): void {
-            throw new Error("Function not implemented.");
-          }}
-          id={""}
-        />
-        <InputField
-          label="Price"
-          name="coursePrice"
-          placeholder="Price"
-          onChange={function (): void {
-            throw new Error("Function not implemented.");
-          }}
-          id={""}
-        />
-      </div>
+      <FormProvider {...methods}>
+      <form onSubmit={methods.handleSubmit(onSubmit)}>
 
-      <TextArea
-        label="Course Description"
-        value=""
-        height="200px"
-        placeholder="Course Description"
-        onChange={() => {
-          // e.target.value;
-        }}
-        id=""
-        name=""
-      />
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-y-5 gap-x-15 mt-10">
-        <Select
-          label="Duration"
-          value=""
-          onChange={undefined}
-          id=""
-          name=""
-          classNames=""
-          isRequired={true}
-          disabled={false}
-          placeholder="1-2 Weeks"
-          defaultValue=""
-          selectProps={undefined}
-        >
-          <option
-            value="placeholder"
-            selected
-            hidden
-            style={{ backgroundColor: "blue" }}
+        <FormGroup>
+          <AutoInput
+            label="Course Name"
+            name="title"
+            placeholder="Enter Course Name"
+            rules={{ required: "This field is required" }}
+          />
+
+          <InputWithIcon
+            label="Price"
+            name="course_price"
+            placeholder="0"
+            leftIcon
+            icon={<BsCurrencyDollar />}
+          />
+        </FormGroup>
+
+        <FormGroup>
+          <Textarea
+            label="Course Description"
+            name="description"
+            placeholder="Enter course description"
+            rules={{
+              required: "Course Description is required",
+            }}
+          />
+        </FormGroup>
+
+        <FormGroup>
+          <AutoInput
+            label="Category"
+            name="category"
+            placeholder="Enter Course Category"
+            rules={{ required: "This field is required" }}
+          />
+
+          <AutoInput
+            label="Sub-Category"
+            name="sub_category"
+            placeholder="Enter Course Sub-Category"
+            rules={{ required: "This field is required" }}
+          />
+        </FormGroup>
+
+        <FormGroup>
+          <Select
+            label="Duration"
+            name="duration"
+            rules={{ required: "Please select a duration" }}
           >
-            1-2 Weeks
-          </option>
-        </Select>
+            <option value="">Select duration...</option>
+            <option>1-2 Weeks</option>
+            <option>3-4 Weeks</option>
+          </Select>
 
-        <InputField
-          label="Price"
-          name="coursePrice"
-          placeholder="Price"
-          onChange={function (): void {
-            throw new Error("Function not implemented.");
-          }}
-          id={""}
-        />
-      </div>
+          <Select
+            label="Level"
+            name="level"
+            rules={{ required: "Please select a level" }}
+          >
+            <option value="">Select a level...</option>
+            <option>Beginner</option>
+            <option>Intermediate</option>
+          </Select>
+        </FormGroup>
 
-      <div className="flex justify-end gap-x-5 mt-10">
+        <div className="py-6">
+          <ReactSelect isMulti options={users} />
+        </div>
+
+
+        <div className="py-6">
+        <label
+          className="mb-2 text-[#344054] dark:text-slate-100"
+        >
+        Course Cover Image
+        </label>
+          <CourseImageUpload />
+        </div>
+
+        <div className="py-6">
+        <label
+          className="mb-2 text-[#344054] dark:text-slate-100"
+        >
+       Course Trailer/ Preview Video
+        </label>
+          <CourseVideoUpload />
+        </div>
+
+        <div className="flex justify-end gap-x-5 mt-10">
         <button className="text-zinc-500">Cancel</button>
-        <Button onClick={undefined} text="Save" />
+        <Button type="submit" onClick={() => {}} text="Next" />
       </div>
+       </form>
+      </FormProvider>
+
+      {/* <div className="flex justify-end gap-x-5 mt-10">
+        <button className="text-zinc-500">Cancel</button>
+        <Button type="submit" onClick={() => onSubmit(methods.getValues())} text="Save" />
+      </div> */}
     </div>
   );
 };

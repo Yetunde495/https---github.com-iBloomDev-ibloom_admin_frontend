@@ -62,5 +62,26 @@
     opacity: .90;
     color: #3843D0!important;
 }
-  
+
+
+/* React Select */
+.css-13cymwt-control {
+background-color: #EFF4FB!important;
+min-height: 50px!important;
+}
+.css-t3ipsp-control {
+    background-color: #EFF4FB!important;
+    min-height: 50px!important;
+
+}
+.css-1p3m7a8-multiValue {
+    background-color: #3843D0!important;
+    color: #ffffff!important;
+    border-radius: 9px!important;
+
+}
+.css-1y7rh0y-MultiValueGeneric2 {
+    color: #ffffff!important;  
+    border-radius: 9px!important;
+}
  
