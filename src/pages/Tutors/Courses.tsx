@@ -1,8 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { TutorCourseCard } from "../../components/card";
+import Button from "../../components/button";
 import DefaultLayout from "../../layout/DefaultLayout";
-import { data2 } from "./Dashboard";
-import {  useNavigate } from "react-router-dom";
+import CourseTable from "./CourseTable";
+import { useNavigate } from "react-router-dom";
+import { IoMdAdd } from "react-icons/io";
 
 const Courses = () => {
   const navigate = useNavigate();
@@ -15,21 +16,15 @@ const Courses = () => {
             <h1 className="text-xl font-bold dark:text-slate-200">
               My Courses
             </h1>
-            <span className="font-bold text-primary cursor-pointer dark:text-slate-200" onClick={() => navigate(`/app/tutors/courses/courseupload`)}>
-              Create new course
-            </span>
+            <Button
+              onClick={() => navigate(`/app/tutors/courses/courseupload`)}
+            >
+              <div className="flex gap-x-2 items-center">
+                <IoMdAdd /> Create new course
+              </div>
+            </Button>
           </div>
-          <div className="w-full px-4 gap-5 grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 grid-cols-1">
-            {data2.map((val: any, index: any) => (
-              <TutorCourseCard
-                key={index}
-                title={val.title}
-                preview_img_url={val.preview_img_url}
-                course_url=""
-                coursePrice={val.coursePrice}
-              />
-            ))}
-          </div>
+          <CourseTable />
         </section>
       </section>
     </DefaultLayout>

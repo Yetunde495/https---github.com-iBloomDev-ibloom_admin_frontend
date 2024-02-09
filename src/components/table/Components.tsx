@@ -176,7 +176,11 @@ export const TableRowWithSearch: React.FC<any> = () => (
 // <tr> <th>item1<th> <th>item2</th> </tr>
 export const TableRow: React.FC<PropsChildrenOnly> = ({ children }) => (
   <thead>
-    <tr className="text-left dark:bg-meta-4  border-y border-[#eee] dark:border-strokedark">
+    <tr
+      className="text-left dark:bg-meta-4 
+     border-[#eee] dark:border-strokedark"
+    >
+      {/* border-y */}
       {children}
     </tr>
   </thead>
