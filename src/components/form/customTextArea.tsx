@@ -47,7 +47,7 @@ const Textarea: React.FC<TextareaProps> = ({ label, name, rules, OnChange, class
         rows={4}
         placeholder={placeholder}
         className={`w-full rounded border border-stroke custom-scrollbar
-        bg-gray py-3 pl-4.5 pr-4.5 text-black
+         py-3 pl-4.5 pr-4.5 text-black
         focus:border-primary focus-visible:outline-none
         dark:border-strokedark dark:bg-meta-4
         dark:text-white dark:focus:border-primary${errorData}`}

@@ -44,7 +44,7 @@ export default function FieldInput({
     return (
         <div className={containerClass}>
             <label
-                className='mb-3 block text-sm font-medium text-black dark:text-white'
+                className='mb-3 block font-medium text-black dark:text-white'
                 htmlFor={name}
             >
                 {label}{requiredField}
@@ -53,7 +53,7 @@ export default function FieldInput({
                 <input
                     disabled={disabled}
                     // aria-disabled={disabled}
-                    className={`w-full rounded border border-stroke bg-gray py-3 px-4.5 
+                    className={`w-full rounded border border-stroke py-3 px-4.5 
                     text-black focus:border-primary focus-visible:outline-none dark:border-strokedark 
                     dark:bg-meta-4 dark:text-white dark:focus:border-primary${errorData}`}
                     type={inputType}

@@ -9,32 +9,29 @@ import Stepper from "../../components/Stepper2";
 
 const CourseUpload = () => {
   const [activeStep, setActiveStep] = useState(0);
+  const [courseData, setCourseData] = useState<any>({
+    tags: [],
+  });
   const [tabData, setTabData] = useState([
     {
       stepNumber: 1,
       label: "Course Details",
       completed: false,
-      content: <CourseDetails />,
     },
     {
       stepNumber: 2,
       label: "Course Upload",
       completed: false,
-      content: (
-        <CourseCreation onProceed={() => handleSetCompleted(activeStep + 1)} />
-      ),
     },
     {
       stepNumber: 3,
       label: "Assessment",
       completed: false,
-      content: <Assessment />,
     },
     {
       stepNumber: 4,
       label: "Settings",
       completed: false,
-      content: "hi",
     },
   ]);
 
@@ -66,8 +63,12 @@ const CourseUpload = () => {
           />
         </div>
         <div className="mt-6">
-          {/* <button onClick={() => handleStepClick()}>Next</button>
-        <button onClick={() => handleSetCompleted(activeStep)}>Complete Step</button> */}
+          <button onClick={() => handleStepClick()}>Next</button>
+          <button onClick={() => setActiveStep(activeStep - 1)}>Prev</button>
+          <button onClick={() => console.log(courseData)}>Console</button>
+          <button onClick={() => handleSetCompleted(activeStep)}>
+            Complete Step
+          </button>
 
           <div className="bg-white px-10 py-5">
             <Stepper
@@ -76,12 +77,26 @@ const CourseUpload = () => {
               setCompleted={handleSetCompleted}
             />
             <div className="py-8">
-              {tabData.map(
-                (tab, index) =>
-                  activeStep === index && (
-                    <div key={tab.label}>{tab.content}</div>
-                  )
-              )}
+              <div>
+                {activeStep === 0 ? (
+                  <div>
+                    <CourseDetails
+                      courseData={courseData}
+                      setCourseData={setCourseData}
+                      activeStep={activeStep}
+                      setActiveStep={setActiveStep}
+                    />
+                  </div>
+                ) : activeStep === 1 ? (
+                  <CourseCreation
+                    onProceed={() => handleSetCompleted(activeStep + 1)}
+                  />
+                ) : activeStep === 2 ? (
+                  <Assessment />
+                ) : (
+                  activeStep === 3 && <div>Hi</div>
+                )}
+              </div>
             </div>
           </div>
         </div>

@@ -65,11 +65,23 @@ export const AppProvider = ({ children }: PropsWithChildren) => {
   };
 
   const loadData = () => {
-    let d = localStorage.getItem(DATA_CENTER_USER);
-    if (d) {
-      signIn(JSON.parse(d));
-      // update({ user: JSON.parse(d), isLoggedIn: true });
+    // let d = localStorage.getItem(DATA_CENTER_USER);
+    // if (d) {
+    //   signIn(JSON.parse(d));
+    //   // update({ user: JSON.parse(d), isLoggedIn: true });
+    // }
+    let token = localStorage.getItem(DATA_CENTER_TOKEN);
+  if (token) {
+    // Token exists, fetch user data from local storage
+    let userData = localStorage.getItem(DATA_CENTER_USER);
+    if (userData) {
+      // User data found, sign in the user
+      signIn(JSON.parse(userData));
+    } else {
+      // User data not found, sign out the user
+      signOut();
     }
+  }
   };
 
   const updateUser = (data: any) => {
