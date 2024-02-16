@@ -1,40 +1,17 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from "react";
 import Breadcrumb from "../../components/BreadCrumb";
 import DefaultLayout from "../../layout/DefaultLayout";
-import CourseDetails from "../AllComponents/tutorCourse/CourseDetails";
-import CourseCreation from "../AllComponents/tutorCourse/CourseCreation";
-import Assessment from "../AllComponents/tutorCourse/Assessment";
 import Stepper from "../../components/Stepper2";
+import LiveClassDetails from "./LiveClassDetails";
 
-const CourseUpload = () => {
+const CreateLiveClasses = () => {
   const [activeStep, setActiveStep] = useState(0);
   const [tabData, setTabData] = useState([
     {
       stepNumber: 1,
-      label: "Course Details",
+      label: "Create Live Class",
       completed: false,
-      content: <CourseDetails />,
-    },
-    {
-      stepNumber: 2,
-      label: "Course Upload",
-      completed: false,
-      content: (
-        <CourseCreation onProceed={() => handleSetCompleted(activeStep + 1)} />
-      ),
-    },
-    {
-      stepNumber: 3,
-      label: "Assessment",
-      completed: false,
-      content: <Assessment />,
-    },
-    {
-      stepNumber: 4,
-      label: "Settings",
-      completed: false,
-      content: "hi",
+      content: <LiveClassDetails />,
     },
   ]);
 
@@ -51,24 +28,20 @@ const CourseUpload = () => {
     });
     setTabData(updatedTabData);
   };
-
   return (
     <DefaultLayout>
       <section className="px-6">
         <div className="flex justify-start pt-6">
           <Breadcrumb
             routes={[
-              { name: "My Courses", path: "Courses" },
-              { name: "Create Course", path: "" },
+              { name: "Live Classes", path: "live-classes" },
+              { name: "Create Live Classes", path: "" },
             ]}
             homeRoute={""}
             homeRouteName={""}
           />
         </div>
         <div className="mt-6">
-          {/* <button onClick={() => handleStepClick()}>Next</button>
-        <button onClick={() => handleSetCompleted(activeStep)}>Complete Step</button> */}
-
           <div className="bg-white px-10 py-5">
             <Stepper
               steps={tabData}
@@ -90,4 +63,4 @@ const CourseUpload = () => {
   );
 };
 
-export default CourseUpload;
+export default CreateLiveClasses;
