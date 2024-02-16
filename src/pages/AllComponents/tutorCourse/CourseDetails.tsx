@@ -7,24 +7,41 @@ import Select from "../../../components/form/customSelect";
 import CreatableSelect from "react-select/creatable";
 import { CourseImageUpload, CourseVideoUpload } from "./FileUpload";
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
+import { createCourse } from "../../../services/tutorCourseServices";
+import { useApp } from "../../../context/AppContext";
+import SuccessModal from "../../../components/modal/Success";
+import { useNavigate } from "react-router-dom";
 
 type Props = {
   courseData: any;
   setCourseData: any;
-}
+  activeStep: number;
+  setActiveStep: React.Dispatch<React.SetStateAction<number>>;
+};
 
-const CourseDetails: React.FC<Props> = ({courseData, setCourseData}) => {
+const CourseDetails: React.FC<Props> = ({
+  courseData,
+  setCourseData,
+  activeStep,
+  setActiveStep,
+}) => {
+  const { user } = useApp();
+  const navigate = useNavigate();
   const methods = useForm<FormData>();
   // const selectRef = useRef<string>();
   const [selected, setSelected] = useState<any[]>([]);
-
+  const [imgUrl, setImgUrl] = useState("");
+  const [videoUrl, setVideoUrl] = useState("");
   const [tags, setTags] = useState<any[]>([
     { label: "UI", value: "UI" },
     { label: "Development", value: "Development" },
   ]);
 
+  const [show, setShow] = useState(false);
+
   //customizing the select component data
-  const handleChange = (selectedOptions:any, actionMeta:any) => {
+  const handleChange = (selectedOptions: any, actionMeta: any) => {
     // Check if the user is creating a new option
     if (actionMeta.action === "create-option") {
       // Create a new option object using the selected value
@@ -41,14 +58,14 @@ const CourseDetails: React.FC<Props> = ({courseData, setCourseData}) => {
     }
     // Map over the selected options and return an array of their values
 
-    const selectedValues = selectedOptions.map((tag:any) => tag.value);
+    const selectedValues = selectedOptions.map((tag: any) => tag.value);
     setSelected(selectedValues);
     // let acc = data;
     // acc.skills = selectedValues;
     // setData(acc);
   };
 
-  const onSubmit = (data: any) => {
+  const onSubmit = async (data: any) => {
     //   setIsLoading(true)
     const { errors } = methods.formState;
 
@@ -57,13 +74,27 @@ const CourseDetails: React.FC<Props> = ({courseData, setCourseData}) => {
       console.log("Validation errors:", errors);
       return; // Exit the function if there are errors
     }
-    console.log(data);
-    setCourseData({
-      ...courseData,
-      tags: selected,
-      ...data
-    })
 
+    try {
+      const resp = await createCourse({
+        tags: selected,
+        cover_image: imgUrl,
+        preview_video: videoUrl,
+        published: false,
+        tutors: [user?.user_id],
+        visibility: "public",
+        curriculum_id: "",
+        ...data,
+      });
+
+      if (resp) {
+        setShow(true);
+        setCourseData(resp);
+      }
+    } catch (err: any) {
+      console.log(err);
+      toast.error(err.message);
+    }
   };
 
   useEffect(() => {
@@ -77,7 +108,7 @@ const CourseDetails: React.FC<Props> = ({courseData, setCourseData}) => {
           <FormGroup>
             <AutoInput
               label="Course Name"
-              name="title"
+              name="name"
               defaultValue={courseData.title}
               placeholder="Enter Course Name"
               rules={{ required: "This field is required" }}
@@ -85,12 +116,12 @@ const CourseDetails: React.FC<Props> = ({courseData, setCourseData}) => {
 
             <InputWithIcon
               label="Price"
-              name="course_price"
+              name="price"
               placeholder="0"
               defaultValue={courseData.course_price}
               leftIcon
               icon={<BsCurrencyDollar />}
-              rules={{required: "Please, enter a price for this course"}}
+              rules={{ required: "Please, enter a price for this course" }}
             />
           </FormGroup>
 
@@ -145,19 +176,21 @@ const CourseDetails: React.FC<Props> = ({courseData, setCourseData}) => {
 
           <FormGroup>
             <div className="w-full flex flex-col">
-            <label className="mb-[0.4rem] block text-black dark:text-white">Course Tags</label>
-            <CreatableSelect
-              isMulti
-              isClearable
-              options={tags}
-              value={selected.map((value) =>
-                tags.find((option) => option.value === value)
-              )}
-              onChange={handleChange}
-              className="w-full"
-            />
+              <label className="mb-[0.4rem] block text-black dark:text-white">
+                Course Tags
+              </label>
+              <CreatableSelect
+                isMulti
+                isClearable
+                options={tags}
+                value={selected.map((value) =>
+                  tags.find((option) => option.value === value)
+                )}
+                onChange={handleChange}
+                className="w-full"
+              />
             </div>
-            
+
             <Select
               label="Language"
               name="language"
@@ -173,14 +206,14 @@ const CourseDetails: React.FC<Props> = ({courseData, setCourseData}) => {
             <label className="mb-2 text-[#344054] dark:text-slate-100">
               Course Cover Image
             </label>
-            <CourseImageUpload setUrl={null} />
+            <CourseImageUpload setImgUrl={setImgUrl} />
           </div>
 
           <div className="py-6">
             <label className="mb-2 text-[#344054] dark:text-slate-100">
               Course Trailer/ Preview Video
             </label>
-            <CourseVideoUpload />
+            <CourseVideoUpload setVideoUrl={setVideoUrl} />
           </div>
 
           <div className="flex justify-end gap-x-5 mt-10">
@@ -189,6 +222,18 @@ const CourseDetails: React.FC<Props> = ({courseData, setCourseData}) => {
           </div>
         </form>
       </FormProvider>
+
+      <SuccessModal
+        show={show}
+        size="md:w-[450px] w-[400px]"
+        title="Course created successfully!"
+        desc="Course has been saved to your drafts. Go back to all courses page, or proceed to next step to create curriculum"
+        onProceed={() => {
+          setActiveStep(activeStep + 1);
+        }}
+        cancelBtn={true}
+        onCancel={() => navigate(-1)}
+      ></SuccessModal>
     </div>
   );
 };
