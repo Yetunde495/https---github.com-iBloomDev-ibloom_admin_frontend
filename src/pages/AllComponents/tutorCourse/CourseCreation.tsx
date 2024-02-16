@@ -9,7 +9,7 @@ import { useState } from "react";
 import { BsPen, BsTrash } from "react-icons/bs";
 import CourseContent from "./components/Content";
 
-type CourseCreationUpload = {
+type CourseCreationProps = {
   onProceed: () => void;
 };
 // interface Content {
@@ -144,7 +144,7 @@ const CreateSegment: React.FC<CreateSegmentProps> = ({
   );
 };
 
-const CourseCreation = () => {
+const CourseCreation: React.FC<CourseCreationProps> = ({}) => {
   const [sections, setSections] = useState<Section[]>([]);
   const [show, setShow] = useState(false);
   const [contentView, setContentView] = useState(false);

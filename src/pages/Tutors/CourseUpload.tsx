@@ -77,12 +77,14 @@ const CourseUpload = () => {
               setCompleted={handleSetCompleted}
             />
             <div className="py-8">
-                <div>
+              <div>
                 {activeStep === 0 ? (
                   <div>
                     <CourseDetails
                       courseData={courseData}
                       setCourseData={setCourseData}
+                      activeStep={activeStep}
+                      setActiveStep={setActiveStep}
                     />
                   </div>
                 ) : activeStep === 1 ? (
@@ -91,11 +93,10 @@ const CourseUpload = () => {
                   />
                 ) : activeStep === 2 ? (
                   <Assessment />
-                ) : activeStep === 3 && (
-                  <div>Hi</div>
+                ) : (
+                  activeStep === 3 && <div>Hi</div>
                 )}
-                </div>
-           
+              </div>
             </div>
           </div>
         </div>

@@ -74,3 +74,16 @@ export const getAuthenticatedResource = async (data: any) => {
 
   return response?.data;
 };
+export const createCourse = async (data: any) => {
+  const response: any = await axios
+    .post(`/course`, data)
+    .catch((e) => ({ error: e }));
+  //check error
+  if (response && response?.error) {
+    const err = response?.error?.response;
+    const msg = err?.data?.message || err?.statusText;
+    throw new Error(msg);
+  }
+
+  return response?.data;
+};
