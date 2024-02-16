@@ -185,8 +185,6 @@ export const ADMIN_NAV_DATA = [
   },
 ];
 
-
-
 //Students navigation
 export const STUDENT_NAV_DATA = [
   // MENU
@@ -263,16 +261,15 @@ export const TUTOR_NAV_DATA = [
       {
         name: "Live Classes",
         // path: "/app/students/academics/subjects",
-        path: "/app/students/live-classes",
+        path: "/app/tutors/live-classes",
         icon: icons.Bulb,
       },
       {
         name: "Profile",
         // path: "/app/students/settings/profile",
-        path: "/app/students/profile",
+        path: "/app/tutors/profile",
         icon: icons.Profile,
       },
     ],
   },
 ];
-

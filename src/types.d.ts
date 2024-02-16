@@ -12,29 +12,25 @@ declare global {
     password: string;
     category: string;
     email_verified: boolean;
-    account_setup:boolean;
-  };
+    account_setup: boolean;
+  }
 
-  
-  
-interface User {
-  user_id: string;
-  user_name: string;
-  first_name: string;
-  last_name: string;
-  role: string;
-  email: string;
-  category: string;
-  is_verified: boolean;
-  status: string;
-  organisation_id: string;
-  token: string;
-  refresh_token: string;
-  photo_url: string;
-  email_verified: boolean;
-}
-
-  
+  interface User {
+    user_id: string;
+    user_name: string;
+    first_name: string;
+    last_name: string;
+    role: string;
+    email: string;
+    category: string;
+    is_verified: boolean;
+    status: string;
+    organisation_id: string;
+    token: string;
+    refresh_token: string;
+    photo_url: string;
+    email_verified: boolean;
+  }
 
   interface SharedUserInfo {
     first_name: string;
@@ -46,11 +42,11 @@ interface User {
     category: UserType | string | undefined;
     created_at: null | string;
     email_verified: boolean;
-    account_setup:boolean;
+    account_setup: boolean;
   }
 
-   interface Student extends SharedUserInfo {
-   highest_edu: string;
+  interface Student extends SharedUserInfo {
+    highest_edu: string;
     dob: string;
     title: string;
     enrolled_courses: Array<string>;
@@ -59,19 +55,19 @@ interface User {
   }
 
   interface Tutor extends SharedUserInfo {
-     highest_edu: string;
-     dob: string;
-     title: string;
-     courses: Array<string>;
-     organisations: {
+    highest_edu: string;
+    dob: string;
+    title: string;
+    courses: Array<string>;
+    organisations: {
       org_id: string;
       name: string;
       photo_url: string;
-     }[];
-     total_courses: number | null;
-   }
+    }[];
+    total_courses: number | null;
+  }
 
-   interface Organisation extends SharedUserInfo {
+  interface Organisation extends SharedUserInfo {
     admin_id: string;
     name: string;
     courses: Array<string>;
@@ -85,12 +81,12 @@ interface User {
       title: string;
       courses: Array<string>;
       organisations: {
-       org_id: string;
-       name: string;
-       photo_url: string;
+        org_id: string;
+        name: string;
+        photo_url: string;
       }[];
       total_courses: number | null;
-    }
+    };
   }
 
   interface CourseCardData {}
@@ -128,7 +124,10 @@ interface User {
     liveDuration?: string;
     showIcon?: boolean;
     showButton?: boolean;
-    stateBtnTextCustomBgColor: string;
+    stateBtnTextCustomBgColor?: string;
+    bottomActionBtn?: boolean;
+    cardBtnBorder?: any;
+    textColor?: string;
     creator: {
       name: string;
       photo: string;

@@ -33,6 +33,7 @@ export const AuthenticatedRoutes = () => (
       </Route>
       <Route path="tutors/dashboard" element={<TutorsPages.Dashboard />} />
       <Route path="tutors/courses" element={<TutorsPages.Courses />} />
+      <Route path="tutors/live-classes" element={<TutorsPages.LiveClasses />} />
       <Route
         path="tutors/courses/courseupload"
         element={<TutorsPages.CourseUpload />}
@@ -54,7 +55,7 @@ export const UnAuthenticatedRoutes = () => (
     />
     <Route path="/email-return" element={<AuthPages.EmailReturn />} />
     <Route path="/forgot-password" element={<AuthPages.ResetPassword />} />
-   
+
     <Route path="/reset-password" element={<AuthPages.ResetPasswordForm />} />
 
     <Route path="/components" element={<Components />} />

@@ -11,7 +11,7 @@ type WarningProps = {
   children?: React.ReactNode;
   size?: string;
   onHide: () => void;
-  onProceed: () => void;
+  onProceed?: () => void;
 };
 
 const Modal: React.FC<WarningProps> = ({
@@ -20,7 +20,7 @@ const Modal: React.FC<WarningProps> = ({
   // onProceed,
   title,
   children,
-  closeButton=true,
+  closeButton = true,
   // cancelText,
   // okText,
   size,
@@ -69,9 +69,14 @@ const Modal: React.FC<WarningProps> = ({
             <h3 className="pb-2 text-xl font-bold text-center text-black dark:text-white sm:text-2xl">
               {title}
             </h3>
-           {closeButton && <button onClick={onHide} className="absolute -top-[12px] text-zinc-400 right-2 hover:bg-slate-400 hover:text-white rounded-full p-[2px]">
-              <RxCross2 size={22} className="" />
-            </button> }
+            {closeButton && (
+              <button
+                onClick={onHide}
+                className="absolute -top-[12px] text-zinc-400 right-2 hover:bg-slate-400 hover:text-white rounded-full p-[2px]"
+              >
+                <RxCross2 size={22} className="" />
+              </button>
+            )}
           </div>
 
           <div className="px-10 py-5">{children}</div>

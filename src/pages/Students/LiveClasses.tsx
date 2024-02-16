@@ -66,7 +66,9 @@ const LiveClasses = () => {
     <DefaultLayout>
       <section className="ml-10">
         <div className="mt-1">
-          <h1 className="text-xl font-bold dark:text-slate-200">My Courses</h1>
+          <h1 className="text-xl font-bold dark:text-slate-200">
+            Live Classes
+          </h1>
         </div>
 
         <div className="mt-10">

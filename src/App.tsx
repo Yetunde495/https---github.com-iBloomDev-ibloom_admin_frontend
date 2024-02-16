@@ -156,9 +156,18 @@ const App = () => {
                   element={<TutorsPages.Dashboard />}
                 />
                 <Route
+                  path="tutors/live-classes"
+                  element={<TutorsPages.LiveClasses />}
+                />
+                <Route
+                  path="tutors/live-classes/create"
+                  element={<TutorsPages.CreateLiveClasses />}
+                />
+                <Route
                   path="tutors/courses"
                   element={<TutorsPages.Courses />}
                 />
+
                 <Route
                   path="tutors/courses/courseupload"
                   element={<TutorsPages.CourseUpload />}

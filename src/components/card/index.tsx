@@ -168,10 +168,8 @@ export const SearchCourseCard: React.FC<CourseData> = ({
 
       <div className="px-5 py-3 relative">
         <div className="pb-3 flex justify-between">
-          <Pills 
-           pills={['Leadership', 'Marketing']}
-          />
-           <span
+          <Pills pills={["Leadership", "Marketing"]} />
+          <span
             className={`text-[12px] flex justify-center items-center font-medium text-danger bg-danger/10 rounded-xl px-3 py-0.5 `}
           >
             -15%
@@ -179,24 +177,21 @@ export const SearchCourseCard: React.FC<CourseData> = ({
         </div>
         <div className="">
           <h4 className="text-xl font-semibold mb-1">{title}</h4>
-          <p className="text-slate-600">Like to know the secrets of transforming a 2-14 team into a 3x Super Bowl winning Dynasty?</p>
+          <p className="text-slate-600">
+            Like to know the secrets of transforming a 2-14 team into a 3x Super
+            Bowl winning Dynasty?
+          </p>
         </div>
 
         <div className="px-1 pt-4">
           <div className="flex gap-2 items-center">
-            <p className="text-xl font-semibold">{'$45'}</p>
+            <p className="text-xl font-semibold">{"$45"}</p>
           </div>
         </div>
-
-       
       </div>
     </div>
   );
 };
-
-
-
-
 
 export const LiveClassCard: React.FC<LiveClassCardData> = ({
   stateBtnText,
@@ -211,12 +206,21 @@ export const LiveClassCard: React.FC<LiveClassCardData> = ({
   showIcon,
   showButton = false,
   stateBtnTextCustomBgColor,
+  bottomActionBtn = true,
+  cardBtnBorder = true,
+  textColor,
 }) => {
   const navigate = useNavigate();
+
+  const defaultBorder = "1px solid #3843D0";
+
   return (
     <div className="mx-2 sm:mx-0 w-auto relative rounded-md h-full pb-2 ">
       <div className="w-full relative">
-        <img src={preview_img_url} className="w-full h-30 rounded-md object-cover" />
+        <img
+          src={preview_img_url}
+          className="w-full h-30 rounded-md object-cover"
+        />
         {liveDuration ? (
           <div className="absolute right-5 bottom-4 text-zinc-400 text-xs rounded-md bg-white px-2 py-1">
             <p>Started: {liveDuration}</p>
@@ -227,16 +231,18 @@ export const LiveClassCard: React.FC<LiveClassCardData> = ({
       </div>
       <div className="">
         <div className="flex sm:justify-between flex-col px-1 sm:pt-2">
-         {!showButton && <div>
-            <button
-              className="rounded-full gap-1  py-2 px-3 text-white h-5 text-xs items-center text-center flex justify-center"
-              style={{ backgroundColor: stateBtnTextCustomBgColor }}
-            >
-              {showIcon ? <FaCircle className="text-white" /> : ""}
+          {!showButton && (
+            <div>
+              <button
+                className="rounded-full gap-1  py-2 px-3 text-white h-5 text-xs items-center text-center flex justify-center"
+                style={{ backgroundColor: stateBtnTextCustomBgColor }}
+              >
+                {showIcon ? <FaCircle className="text-white" /> : ""}
 
-              {stateBtnText}
-            </button>
-          </div>}
+                {stateBtnText}
+              </button>
+            </div>
+          )}
 
           <div className="mt-2">
             <h4 className="lg:text-lg text-base font-bold ">{title}</h4>
@@ -259,7 +265,7 @@ export const LiveClassCard: React.FC<LiveClassCardData> = ({
               <div className="ml-3 flex gap-1">
                 {creator.map((creatorItem, index) => (
                   <div key={index} className="flex items-center gap-2 my-2 ">
-                    <p className="text-zinc-400 text-xs">
+                    <p className="text-xs">
                       {creatorItem?.name}
                       {index < creator.length - 1 && ","}
                     </p>
@@ -275,20 +281,19 @@ export const LiveClassCard: React.FC<LiveClassCardData> = ({
         </div>
 
         <div className="px-1 w-full">
-          {showButton ? (
+          {bottomActionBtn && (
             <button
               onClick={() => navigate(course_url)}
-              className="w-full py-1.5 px-4 border border-primary rounded-md mt-3 text-primary font-medium hover:bg-primary hover:text-white"
-            >
-              RSVP Class
-            </button>
-          ) : (
-            <button
-              onClick={() => navigate(course_url)}
-              className="sm:text-base text-sm  flex items-center gap-2  text-primary"
+              style={{
+                backgroundColor: stateBtnTextCustomBgColor
+                  ? stateBtnTextCustomBgColor
+                  : "transparent",
+                color: textColor ? textColor : "rgb(56 67 208)",
+                border: cardBtnBorder ? cardBtnBorder : defaultBorder,
+              }}
+              className="w-full py-1.5 px-4 border  rounded-md mt-3  font-medium hover:bg-primary hover:text-white"
             >
               {card_action_text}
-              <IoIosArrowRoundForward />
             </button>
           )}
         </div>
@@ -311,12 +316,13 @@ export const LiveClassCard2: React.FC<LiveClassCardData> = ({
   return (
     <div className="mx-11 w-[17.5rem] sm:mx-0 sm:w-auto relative rounded-md h-full pb-2 ">
       <div className="w-full relative">
-        <img src={preview_img_url} className="w-full h-30 rounded-md object-cover" />
+        <img
+          src={preview_img_url}
+          className="w-full h-30 rounded-md object-cover"
+        />
       </div>
       <div className="">
         <div className="flex sm:justify-between flex-col sm:pt-2">
-        
-
           <div className="mt-1">
             <h4 className="lg:text-xl text-base font-semibold ">{title}</h4>
             <div className="flex w-full">
@@ -375,8 +381,6 @@ export const LiveClassCard2: React.FC<LiveClassCardData> = ({
     </div>
   );
 };
-
-
 
 export const TestimonialCard: React.FC<TestimonialCardData> = ({
   text,
@@ -437,7 +441,6 @@ export const TutorCourseCard: React.FC<TutorCourseDataProps> = ({
     backgroundImage: `url("${preview_img_url}")`,
     borderRadius: "6px",
     backgroundSize: "cover",
-
   };
   return (
     <div className=" cursor-pointer w-full flex flex-col md:h-full hover:bg-white p-4 rounded-lg transition duration-300 ease-in-out transform hover:shadow-lg">
@@ -457,5 +460,3 @@ export const TutorCourseCard: React.FC<TutorCourseDataProps> = ({
     </div>
   );
 };
-
-
