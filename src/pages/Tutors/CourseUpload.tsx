@@ -7,38 +7,33 @@ import CourseCreation from "../AllComponents/tutorCourse/CourseCreation";
 import Assessment from "../AllComponents/tutorCourse/Assessment";
 import Stepper from "../../components/Stepper2";
 
-
-
-
 const CourseUpload = () => {
   const [activeStep, setActiveStep] = useState(0);
+  const [courseData, setCourseData] = useState<any>({
+    tags: [],
+  });
   const [tabData, setTabData] = useState([
     {
       stepNumber: 1,
       label: "Course Details",
       completed: false,
-      content: <CourseDetails />,
     },
     {
       stepNumber: 2,
       label: "Course Upload",
       completed: false,
-      content: <CourseCreation onProceed={() => handleSetCompleted(activeStep + 1)} />,
     },
     {
       stepNumber: 3,
       label: "Assessment",
       completed: false,
-      content: <Assessment />,
     },
     {
       stepNumber: 4,
       label: "Settings",
       completed: false,
-      content: "hi",
     },
-  ])
-
+  ]);
 
   const handleStepClick = () => {
     setActiveStep(activeStep + 1);
@@ -54,42 +49,57 @@ const CourseUpload = () => {
     setTabData(updatedTabData);
   };
 
-
-  
   return (
     <DefaultLayout>
       <section className="px-6">
-      <div className="flex justify-start pt-6">
-        <Breadcrumb
-          routes={[
-            { name: "My Courses", path: "Courses" },
-            { name: "Create Course", path: "" },
-          ]}
-          homeRoute={""}
-          homeRouteName={""}
-        />
-      </div>
-      <div className="mt-6">
-        <button onClick={() => handleStepClick()}>Next</button>
-        <button onClick={() => handleSetCompleted(activeStep)}>Complete Step</button>
-
-        <div className="bg-white px-10 py-5">
-          <Stepper
-            steps={tabData}
-            activeStep={activeStep}
-            setCompleted={handleSetCompleted}
+        <div className="flex justify-start pt-6">
+          <Breadcrumb
+            routes={[
+              { name: "My Courses", path: "Courses" },
+              { name: "Create Course", path: "" },
+            ]}
+            homeRoute={""}
+            homeRouteName={""}
           />
-          <div className="py-8">
-            {tabData.map(
-              (tab, index) =>
-                activeStep === index && <div key={tab.label}>{tab.content}</div>
-            )}
+        </div>
+        <div className="mt-6">
+          <button onClick={() => handleStepClick()}>Next</button>
+          <button onClick={() => setActiveStep(activeStep - 1)}>Prev</button>
+          <button onClick={() => console.log(courseData)}>Console</button>
+          <button onClick={() => handleSetCompleted(activeStep)}>
+            Complete Step
+          </button>
+
+          <div className="bg-white px-10 py-5">
+            <Stepper
+              steps={tabData}
+              activeStep={activeStep}
+              setCompleted={handleSetCompleted}
+            />
+            <div className="py-8">
+                <div>
+                {activeStep === 0 ? (
+                  <div>
+                    <CourseDetails
+                      courseData={courseData}
+                      setCourseData={setCourseData}
+                    />
+                  </div>
+                ) : activeStep === 1 ? (
+                  <CourseCreation
+                    onProceed={() => handleSetCompleted(activeStep + 1)}
+                  />
+                ) : activeStep === 2 ? (
+                  <Assessment />
+                ) : activeStep === 3 && (
+                  <div>Hi</div>
+                )}
+                </div>
+           
+            </div>
           </div>
         </div>
-      </div>
       </section>
-      
-      
     </DefaultLayout>
   );
 };

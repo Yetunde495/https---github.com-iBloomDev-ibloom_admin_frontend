@@ -21,7 +21,7 @@ import { DATA_CENTER_TOKEN } from "./context/AppContext";
 axios.defaults.baseURL = "https://api.bytedegrees.com/api/v1";
 
 const App = () => {
-  const { signOut } = useApp();
+  const { signOut, loadData } = useApp();
   const [loading, setLoading] = useState(true);
   const preloader = document.getElementById("preloader");
 
@@ -57,8 +57,6 @@ const App = () => {
   );
 
   useEffect(() => {
-    // loadData();
-
     if (preloader) {
       setTimeout(() => {
         preloader.style.display = "none";
@@ -69,6 +67,10 @@ const App = () => {
     //
   }, [preloader]);
 
+  useEffect(() => {
+   loadData()
+  }, [])
+
   return (
     <Fragment>
       {loading ? (
@@ -78,7 +80,7 @@ const App = () => {
           <Routes>
             <>
               <Route path="/" element={<Homepage />} />
-              <Route path="*" element={<Homepage />} />
+              {/* <Route path="*" element={<Homepage />} /> */}
               <Route path="/signup" element={<AuthPages.StudentSignup />} />
               <Route path="/signin" element={<AuthPages.Signin />} />
               <Route

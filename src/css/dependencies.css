@@ -65,12 +65,10 @@
 
 
 /* React Select */
-.css-13cymwt-control {
-background-color: #EFF4FB!important;
+.css-13cymwt-control, .css-30r1yo-control {
 min-height: 50px!important;
 }
-.css-t3ipsp-control {
-    background-color: #EFF4FB!important;
+.css-t3ipsp-control, .css-1phn1ih-control {
     min-height: 50px!important;
 
 }

@@ -1,4 +1,4 @@
-import { useState } from "react";
+// import { useState } from "react";
 import Table from "../../components/table";
 import PreviewImg from "../../assets/images/Image.png";
 import { MdMoreVert } from "react-icons/md";
@@ -37,7 +37,7 @@ const dataArray = [
 ];
 
 const CourseTable = () => {
-  const [isModalVisible, setIsModalVisible] = useState(false);
+  // const [isModalVisible, setIsModalVisible] = useState(false);
 
   return (
     <section className="ml-10">

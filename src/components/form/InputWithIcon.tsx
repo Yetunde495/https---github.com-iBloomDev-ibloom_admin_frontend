@@ -49,7 +49,7 @@ type InputWithIconProps = {
             <span className="absolute left-3 top-[17px] text-slate-600 dark:text-primary">{icon}</span>
           ) : null}
           <input
-            className={`w-full dark:bg-meta-4 bg-gray  border focus-visible:outline-none rounded-md  placeholder:text-slate-400 py-3 ${rightIcon ? 'pr-9 pl-4' : 'pl-9 pr-4'} text-black  
+            className={`w-full dark:bg-meta-4  border focus-visible:outline-none rounded-md  placeholder:text-slate-400 py-3 ${rightIcon ? 'pr-9 pl-4' : 'pl-9 pr-4'} text-black  
   
               ${
                 error
