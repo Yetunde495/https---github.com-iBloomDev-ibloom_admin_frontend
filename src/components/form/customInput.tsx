@@ -53,7 +53,7 @@ export const AutoInput: React.FC<TextInputProps> = ({ type, disabled=false, defV
         placeholder={placeholder}
         onBlur={onBlur}
         onChange={onChange}
-        className={`w-full rounded border  bg-gray py-3 px-4.5 
+        className={`w-full rounded border py-3 px-4.5 
         text-black focus:border-primary focus-visible:outline-none dark:border-strokedark 
         dark:bg-meta-4 dark:text-white dark:focus:border-primary ${errorData}`}
       
@@ -95,7 +95,7 @@ const Input: React.FC<InputProps> = ({ label, name, rules, classNames, defaultVa
         ref={ref}
         type={type}
         placeholder={placeholder}
-        className={`w-full rounded border border-slate-300 bg-gray py-3 px-4.5 
+        className={`w-full rounded border border-slate-300 py-3 px-4.5 
         text-black focus:border-primary focus-visible:outline-none dark:border-strokedark 
         dark:bg-meta-4 dark:text-white dark:focus:border-primary${errorData}`}
       />

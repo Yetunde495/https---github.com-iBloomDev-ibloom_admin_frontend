@@ -48,7 +48,7 @@ const Select: React.FC<SelectProps> = ({
         ref={ref}
         className="relative z-20 w-full rounded min-h-[50px] appearance-none
         border border-[#d0d5dd] py-3 px-5 outline-none 
-        transition bg-gray focus:border-primary active:border-primary 
+        transition focus:border-primary active:border-primary 
         dark:border-form-strokedark dark:bg-form-input 
         dark:focus:border-primary"
       >

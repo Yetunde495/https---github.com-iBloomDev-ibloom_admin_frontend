@@ -5,12 +5,12 @@ import { useApp } from '../context/AppContext';
 import { useNavigate } from 'react-router-dom';
 
 const DefaultLayout = ({children}:{children: React.ReactNode}) => {
-  const { user, isLoggedIn } = useApp();
+  const { user, isLoggedIn} = useApp();
   const navigate = useNavigate()
   const [sidebarOpen, setSidebarOpen] = useState(false)
 
   useEffect(() => {
-    if (!user && !isLoggedIn) {
+    if (!user && isLoggedIn) {
       navigate("/")
     }
   }, [user, isLoggedIn])

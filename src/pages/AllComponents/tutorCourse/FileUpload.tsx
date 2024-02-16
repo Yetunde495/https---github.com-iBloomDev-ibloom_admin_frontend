@@ -6,6 +6,12 @@ import { RiDeleteBin5Line } from "react-icons/ri";
 import { FaCircleCheck } from "react-icons/fa6";
 import Button from "../../../components/button";
 import { BsCloudArrowDown } from "react-icons/bs";
+import {
+  getAuthenticatedResource,
+  uploadFile,
+} from "../../../services/tutorCourseServices";
+import { useApp } from "../../../context/AppContext";
+import { toast } from "react-toastify";
 
 export interface SingleFileUploadWithProgressProps {
   file?: File;
@@ -127,37 +133,54 @@ export function SingleFileUploadWithProgress() {
   );
 }
 
-
-export function CourseImageUpload() {
+export function CourseImageUpload(setUrl: any) {
+  const { user } = useApp();
   const [fileName, setFileName] = useState("");
   const [percent, setPercent] = useState(0);
+  const [uploading, setUploading] = useState(false);
   const [fileSize, setFileSize] = useState(0);
   const [logoUrl, setLogoUrl] = useState<string>("");
 
   const onFileDrop = async (e: any) => {
-    e.preventDefault();
-    const newFile = e.target.files[0];
+    try {
+      e.preventDefault();
+      const newFile = e.target.files[0];
 
-    if (newFile) {
-      setPercent(0);
-      setFileName(newFile.name);
-      setFileSize(newFile.size);
-      setLogoUrl(URL.createObjectURL(newFile) || "");
+      if (newFile) {
+        setPercent(0);
+        setFileName(newFile.name);
+        setFileSize(newFile.size);
 
-      const simulateProgress = () => {
-        const totalSteps = 100;
-        let currentStep = 0;
+        const formData = new FormData();
+        formData.append("file", newFile);
+        formData.append("folder", `UserProfile/${user?.user_id}`);
+        formData.append("access", `restricted`);
 
-        const interval = setInterval(() => {
-          currentStep += 1;
-          setPercent((currentStep / totalSteps) * 100);
-
-          if (currentStep === totalSteps) {
-            clearInterval(interval);
+        const responseData = await uploadFile(
+          formData,
+          (progress) => {
+            setPercent(progress);
+          },
+          () => {
+            setUploading(false);
           }
-        }, 50);
-      };
-      simulateProgress();
+        );
+        if (responseData) {
+          const url = await getAuthenticatedResource({
+            storagePath: responseData?.url,
+          });
+          if (url) {
+            toast.success("File Uploaded Successfully");
+            setLogoUrl(url?.url);
+            setUrl(url?.url);
+          }
+        }
+        // Handle the response data
+        setUploading(false);
+      }
+    } catch (err) {
+      console.log(err);
+      setUploading(false)
     }
   };
 
@@ -167,7 +190,7 @@ export function CourseImageUpload() {
         {percent === 100 ? (
           <div className="px-10 py-8">
             <div className="flex justify-between items-center">
-              <div className="flex gap-x-2 items-center">
+              <div className="flex gap-x-2 items-center flex-wrap">
                 <FaCircleCheck className="text-xl font-bold text-[#2CB84A]" />
                 <p className="text-zinc-400 text-lg">{fileName}</p>
               </div>
@@ -182,29 +205,26 @@ export function CourseImageUpload() {
               </div>
             </div>
 
-
-
             <div className="relative pt-5">
-
               <div className="flex mb-2 items-center justify-between">
                 <div className="flex w-full rounded-full bg-zinc-300 h-3">
                   <div className="w-full rounded-full">
                     <div
                       style={{ width: `${percent}%` }}
                       className="text-xs leading-none text-center text-white bg-primary rounded-full h-3"
-                    >{percent}%</div>
+                    >
+                      {percent}%
+                    </div>
                   </div>
-
                 </div>
               </div>
-              <img src={logoUrl} className="w-40 h-40 rounded"/>
-
+              <img src={logoUrl} className="w-40 h-40 rounded" />
             </div>
           </div>
         ) : percent > 0 ? (
           <div className="px-10 py-8">
             <div className="flex justify-between items-center">
-              <div className="flex gap-x-2 items-center">
+              <div className="flex gap-x-2 items-center flex-wrap">
                 <HiOutlineDocumentText className="text-xl font-bold" />
                 <p className="text-zinc-400 text-lg">{fileName}</p>
               </div>
@@ -232,21 +252,25 @@ export function CourseImageUpload() {
         ) : (
           <div className="h-full w-full relative pointer flex justify-center items-center">
             <div className="flex flex-col justify-center gap-5 items-center py-4">
-            <BsCloudArrowDown size={30} className='' />
-            <p className="text-lg text-slate-600">
-             "Drag and Drop" your image here or "Click" to upload your image
-            </p>
+              <BsCloudArrowDown size={30} className="" />
+              <p className="text-lg text-slate-600">
+                "Drag and Drop" your image here or "Click" to upload your image
+              </p>
 
-            <Button onClick={onFileDrop} text="Upload Image" width="60"/>
+              <Button
+                onClick={onFileDrop}
+                disabled={uploading}
+                text={uploading ? "Uploading Image" : "Upload Image"}
+                width="60"
+              />
 
-            <input
-              className="h-full w-full opacity-0 absolute top-0"
-              type="file"
-              onChange={onFileDrop}
-            />
+              <input
+                className="h-full w-full opacity-0 absolute top-0"
+                type="file"
+                accept="image/*"
+                onChange={onFileDrop}
+              />
             </div>
-            
-            
           </div>
         )}
       </div>
@@ -350,21 +374,19 @@ export function CourseVideoUpload() {
         ) : (
           <div className="h-full w-full relative pointer flex justify-center items-center">
             <div className="flex flex-col justify-center gap-5 items-center py-4">
-            <BsCloudArrowDown size={30} className='' />
-            <p className="text-lg text-slate-600">
-              Click to upload your video
-            </p>
+              <BsCloudArrowDown size={30} className="" />
+              <p className="text-lg text-slate-600">
+                Click to upload your video
+              </p>
 
-            <Button onClick={onFileDrop} text="Upload Video" width="60"/>
+              <Button onClick={onFileDrop} text="Upload Video" width="60" />
 
-            <input
-              className="h-full w-full opacity-0 absolute top-0"
-              type="file"
-              onChange={onFileDrop}
-            />
+              <input
+                className="h-full w-full opacity-0 absolute top-0"
+                type="file"
+                onChange={onFileDrop}
+              />
             </div>
-            
-            
           </div>
         )}
       </div>

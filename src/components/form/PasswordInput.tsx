@@ -45,7 +45,7 @@ export const PasswordInput: React.FC<PasswordInputProps> = ({
         <input
           {...field}
           ref={ref}
-          className={`w-full dark:bg-white border rounded  focus-visible:outline-none focus:border-primary bg-gray text-[15px] placeholder:text-slate-400  placeholder:text-sm py-3 pl-4.5  pr-3 text-black/90  ${
+          className={`w-full dark:bg-white border rounded  focus-visible:outline-none focus:border-primary text-[15px] placeholder:text-slate-400  placeholder:text-sm py-3 pl-4.5  pr-3 text-black/90  ${
             error
               ? "border-danger focus:border-[#fda29b] focus:ring-[#fee4e2]"
               : "border-slate-400 focus:ring-[#d4d7ec70]"
