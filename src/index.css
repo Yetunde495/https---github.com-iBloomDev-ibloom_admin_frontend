@@ -1,0 +1,225 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .editor-preview {
+    @apply min-h-[250px] p-4 rounded-md border border-[#d9d9d9] dark:border-form-strokedark;
+  }
+}
+
+a {
+  color: #3843d0;
+  text-decoration: inherit;
+  cursor: pointer;
+}
+a:hover {
+  color: #3d48dd;
+}
+
+body {
+  font-weight: 600;
+  background-color: #fff;
+  font-family: "Nunito", sans-serif;
+}
+
+input[type='radio'] {
+  appearance: none;
+  background-color: #fff;
+  margin: 0;
+  font: inherit;
+  color: currentColor;
+  width: 1.15em;
+  height: 1.15em;
+  border: 0.15em solid currentColor;
+  border-radius: 50%;
+  transform: translateY(-0.075em);
+}
+input[type="radio"] {
+  /* ...existing styles */
+  display: grid;
+  place-content: center;
+}
+
+input[type="radio"]::before {
+  content: "";
+  width: 0.65em;
+  height: 0.65em;
+  border-radius: 50%;
+  transform: scale(0);
+  transition: 120ms transform ease-in-out;
+  box-shadow: inset 1em 1em #000;
+}
+
+input[type="radio"]:checked::before {
+  transform: scale(1);
+}
+input[type="radio"]:focus {
+  outline: none;
+}
+input[type="radio"]::before {
+  /* Windows High Contrast Mode */
+  background-color: #ccc;
+}
+.PhoneInput {
+  min-height: 50px;
+  border: 1px solid #d0d5dd;
+  border-radius: 4px;
+}
+.PhoneInputCountry {
+  background-color: #fff;
+  margin-right: 0!important;
+  border-right: 1px solid #ccc;
+  padding: 0 7px;
+}
+.PhoneInputInput {
+  padding: 12px 6px;
+  outline: none;
+  border-radius: 4px;
+}
+.PhoneInputInput:focus {
+  border: 1px solid #0a58ca;
+}
+
+
+.hero-bg-2 {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-blend-mode: soft-light;
+  background-color: #00000080;
+  background-position: center;
+  padding: 9% 7%;
+}
+
+
+video {
+  border-radius: 10px;
+}
+
+.pagination {
+  display: flex;
+  padding-left: 0;
+  list-style: none;
+}
+.page-item.active .page-link {
+  z-index: 3;
+  color: #fff;
+  background-color: #23769E;
+  /* border-color: #0d6efd; */
+  border-radius: 3px;
+}
+.page-item:not(:first-child) .page-link {
+  margin-left: -1px;
+}
+.page-link {
+  padding: 0.515rem 0.95rem;
+}
+.page-link {
+  position: relative;
+  display: block;
+  color: #666666;
+  text-decoration: none;
+  background-color: #fff;
+  /* border: 1px solid #dee2e6; */
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+.page-link:hover {
+  z-index: 2;
+  color: #267fac;
+  background-color: #e9ecef;
+  border-color: #dee2e6;
+}
+.page-link:focus {
+  z-index: 3;
+  color: #267fac;
+  background-color: #e9ecef;
+  outline: 0;
+  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background-color: #d9d9d9ef;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: #D9D9D9;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background-color: transparent !important;
+}
+
+/* For Firefox */
+.custom-scrollbar::-moz-scrollbar {
+  width: 8px;
+}
+.custom-scrollbar::-moz-scrollbar-thumb {
+  background-color: #d9d9d9ef !important;
+  border-radius: 5px;
+}
+
+.custom-scrollbar::-moz-scrollbar-thumb:hover {
+  background-color: #d9d9d9;
+}
+.custom-scrollbar::-moz-scrollbar-track {
+  background-color: transparent !important;
+}
+/* .sidebar-scrollbar::-moz-scrollbar-track {
+  background-color: #1c2434!important;
+} */
+
+/* For Other Browsers */
+.custom-scrollbar::-ms-scrollbar {
+  width: 8px;
+}
+.custom-scrollbar::-ms-scrollbar-thumb {
+  background-color: #d9d9d9ef !important;
+  border-radius: 5px;
+}
+.custom-scrollbar::-ms-scrollbar-thumb:hover {
+  background-color: #d9d9d9 !important;
+}
+.custom-scrollbar::-ms-scrollbar-track {
+  background-color: transparent !important;
+}
+
+.react-datepicker__time-container {
+  width: 185px !important;
+}
+.react-datepicker__time-container
+  .react-datepicker__time
+  .react-datepicker__time-box {
+  width: 185px !important;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background-color: transparent !important;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+  background-color: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: #d9d9d9;
+}
+
+/*  */
+@keyframes scroll {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+.animate-scrolling-text {
+  animation: scroll 25s linear infinite;
+}
+
+
+
